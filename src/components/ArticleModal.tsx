@@ -106,9 +106,9 @@ export function ArticleModal({ article, onClose, onOpenBooking }: ArticleModalPr
                 onClose();
                 onOpenBooking();
               }}
-              className="bg-primary hover:bg-[#E8E5D5] text-black text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full transition-all cursor-pointer inline-flex items-center gap-2"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#E2DFD2] hover:bg-white text-black font-semibold text-xs sm:text-sm px-6 py-3 rounded-xl transition-all shadow-md cursor-pointer"
             >
-              <span>Schedule Advisory Briefing</span>
+              <span>Book a Session</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>

@@ -52,7 +52,7 @@ export function BioSection() {
           {/* Executive Portrait Card (5 cols) */}
           <div className="lg:col-span-5 relative group overflow-hidden rounded-2xl md:rounded-3xl border border-white/10 bg-black aspect-[4/5] shadow-2xl">
             <BlurUpImage
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1000&q=80&sat=-100"
+              src="/src/assets/images/LLS_2026-124.jpg"
               alt="Shalom C. Ernest - Executive Advisory & Leadership Consultant"
               containerClassName="w-full h-full"
               className="w-full h-full object-cover grayscale contrast-125 brightness-90 transition-transform duration-700 group-hover:scale-105"

@@ -109,7 +109,7 @@ function SecondaryInitiativeCard({
             onClick={onOpenBooking}
             className="group/btn inline-flex items-center gap-1.5 text-xs text-[#E2DFD2] hover:text-amber-300 transition-colors cursor-pointer font-medium"
           >
-            <span>Inquire About Engagement</span>
+            <span>Get in Touch</span>
             <ArrowRight className="w-3.5 h-3.5 -rotate-45 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-200" />
           </button>
         </div>
@@ -149,7 +149,7 @@ export function InitiativesSection({ onOpenBooking }: InitiativesSectionProps) {
                   : 'bg-[#E2DFD2] hover:bg-white text-black'
               }`}
             >
-              <span>Request Advisory Briefing</span>
+              <span>Book a Session</span>
               <ArrowRight className="w-4 h-4 -rotate-45" />
             </button>
           </div>
@@ -207,7 +207,7 @@ export function InitiativesSection({ onOpenBooking }: InitiativesSectionProps) {
                       onClick={onOpenBooking}
                       className="inline-flex items-center gap-2 text-xs font-medium text-[#C8C3A7] hover:text-white transition-colors cursor-pointer pt-2"
                     >
-                      <span>Explore Advisory Briefing</span>
+                      <span>Book a Session</span>
                       <ArrowRight className="w-3.5 h-3.5 -rotate-45" />
                     </button>
                   </div>

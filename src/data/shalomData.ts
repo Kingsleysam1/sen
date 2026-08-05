@@ -173,42 +173,42 @@ export const MILESTONES: Milestone[] = [
     title: "Keynote Addresses & Thought Leadership",
     category: "Leadership Development & Strategic Consulting",
     description: "Inspiring executives, professionals, and youth leaders at national forums, delivering high-impact lectures on transformational leadership and organizational growth.",
-    image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=800&q=80&sat=-100"
+    image: "/src/assets/images/shalom_ernest_hero_1782810399094.jpg"
   },
   {
     id: "m2",
     title: "State Advisory & Governance Recognition",
     category: "Public Sector & Youth Advocacy",
     description: "Partnering with government leaders to design pioneering youth development frameworks, civic empowerment models, and community impact initiatives.",
-    image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80&sat=-100"
+    image: "/src/assets/images/Screenshot_20250830-193038_Instagram.jpg"
   },
   {
     id: "m3",
     title: "International Policy & Global Strategy",
     category: "Capacity Building & Management Advisory",
     description: "Contributing strategic, forward-thinking policy advisory on educational transformation, executive mentoring, and structural governance at international leadership summits.",
-    image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80&sat=-100"
+    image: "/src/assets/images/LLS_2026-92.jpg"
   },
   {
     id: "m4",
     title: "Elite Fellowships & Professional Inductions",
     category: "Institute Fellowship & Management Excellence",
     description: "Recognized as a Fellow and Certified Management Consultant by leading national institutes for a career dedicated to high-performance enterprise advisory.",
-    image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80&sat=-100"
+    image: "/src/assets/images/20260629_070734.jpg"
   },
   {
     id: "m5",
     title: "Executive Boardroom & Corporate Restructuring",
     category: "Corporate Governance & Advisory",
     description: "Advising enterprise boards on structural agility, governance frameworks, operational alignment, and executive succession planning.",
-    image: "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80&sat=-100"
+    image: "/src/assets/images/_DSC0794.jpg"
   },
   {
     id: "m6",
     title: "Pan-African Youth Leadership Summits",
     category: "Mentorship & Civic Empowerment",
     description: "Orchestrating transformative mentorship frameworks and capacity-building summits for next-generation leaders across Africa.",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80&sat=-100"
+    image: "/src/assets/images/_DSC0988.jpg"
   }
 ];
 
@@ -416,7 +416,7 @@ export const EVENTS_DATA: EventItem[] = [
     venue: "Favoured Place, Beside UP ASSO Building, 25 Ikorodu Road, Maryland, Lagos",
     fee: "Free Entry (Registration Compulsory)",
     registrationUrl: "https://bit.ly/TCEbyClarityConclave",
-    flyerImage: "/src/assets/images/flyer_clarity_experience_1785847892158.jpg",
+    flyerImage: "/src/assets/images/WhatsApp Image 2026-07-31 at 22.50.33 (1).jpeg",
     description: "A curated experience for you to discover purpose, find direction and unlock your next phase with clarity.",
     highlights: [],
     host: "Shalom Ernest (Convener)"
@@ -437,7 +437,7 @@ export const EVENTS_DATA: EventItem[] = [
     fee: "₦35,000 (Was ₦50,000)",
     originalFee: "₦50,000",
     registrationUrl: "https://bit.ly/elevate-your-edge",
-    flyerImage: "/src/assets/images/flyer_elevate_edge_1785847917282.jpg",
+    flyerImage: "/src/assets/images/WhatsApp Image 2026-07-31 at 22.50.34 (1).jpeg",
     description: "A two months accountability, support, and strategic growth program hosted by Shalom Ernest.",
     highlights: [],
     host: "Shalom Ernest (Host)"
@@ -457,7 +457,7 @@ export const EVENTS_DATA: EventItem[] = [
     venue: "Virtual (Google Meet) & Yola / Abuja Community Hubs",
     fee: "Free Entry",
     registrationUrl: "https://bit.ly/TCEbyClarityConclave",
-    flyerImage: "/src/assets/images/flyer_meet_greet_1785847933734.jpg",
+    flyerImage: "/src/assets/images/WhatsApp Image 2026-07-31 at 22.50.35.jpeg",
     description: "Exclusive virtual session with Sir Shalom Ernest hosted by Youth Making Impact Initiative.",
     highlights: [],
     host: "Sir Shalom Ernest"

@@ -61,10 +61,10 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
             <div className="space-y-1">
               <div className="flex items-center gap-2 text-xs font-mono text-primary uppercase tracking-widest">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>Executive Advisory & Briefing Inquiry</span>
+                <span>Booking Request</span>
               </div>
               <h2 className="text-xl sm:text-2xl font-medium text-[#E1E0CC]">
-                Inquire or Book a Discovery Session
+                Book a Session
               </h2>
             </div>
 
@@ -89,17 +89,17 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
                 <div className="space-y-2">
                   <h3 className="text-2xl font-medium text-[#E1E0CC]">
-                    Advisory Inquiry Logged
+                    Request Received
                   </h3>
                   <p className="text-xs sm:text-sm text-gray-400 max-w-md mx-auto font-light leading-relaxed">
-                    Thank you, <span className="text-[#E1E0CC] font-medium">{formData.name}</span>. Your discovery session request for <span className="text-primary font-mono">{SERVICES.find(s => s.id === selectedService)?.title}</span> has been transmitted to our executive desk.
+                    Thank you, <span className="text-[#E1E0CC] font-medium">{formData.name}</span>. Your request for <span className="text-primary font-mono">{SERVICES.find(s => s.id === selectedService)?.title}</span> has been sent successfully.
                   </p>
                 </div>
 
                 <div className="p-4 bg-[#141414] rounded-xl border border-white/5 text-xs text-gray-400 font-mono text-left max-w-md mx-auto space-y-1">
-                  <div>Direct Email: shalom4impact@gmail.com</div>
-                  <div>Direct Phone: +234 813 207 8249</div>
-                  <div>Response Window: Within 12 Business Hours</div>
+                  <div>Email: shalom4impact@gmail.com</div>
+                  <div>Phone: +234 813 207 8249</div>
+                  <div>We will reply within 12 business hours</div>
                 </div>
 
                 <button
@@ -115,7 +115,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                 {/* Service Selection */}
                 <div className="space-y-2">
                   <label className="text-xs font-mono text-gray-400 uppercase tracking-wider block">
-                    Select Engagement Type
+                    Select Service
                   </label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {SERVICES.map((s) => (
@@ -191,10 +191,10 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-mono text-gray-400 block">Strategic Focus / Notes</label>
+                  <label className="text-xs font-mono text-gray-400 block">Additional Notes</label>
                   <textarea
                     rows={3}
-                    placeholder="Briefly describe your team's objectives or advisory needs..."
+                    placeholder="Briefly describe what you need..."
                     value={formData.notes}
                     onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                     className="w-full bg-[#141414] border border-white/10 rounded-xl px-4 py-2.5 text-xs sm:text-sm text-[#E1E0CC] focus:outline-none focus:border-primary transition-colors resize-none"
@@ -206,7 +206,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                   className="w-full bg-primary hover:bg-[#E8E5D5] text-black font-medium text-xs sm:text-sm py-3 rounded-full transition-all cursor-pointer flex items-center justify-center gap-2 shadow-lg"
                 >
                   <Send className="w-4 h-4" />
-                  <span>Transmit Advisory Request</span>
+                  <span>Send Request</span>
                 </button>
 
               </form>

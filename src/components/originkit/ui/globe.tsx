@@ -881,6 +881,50 @@ export default function Globe({
         };
         canvas.addEventListener("mousedown", handleMouseDown);
 
+        // Touch event handlers for mobile dragging support
+        const handleTouchStart = (event: TouchEvent) => {
+            if (event.touches.length !== 1) return;
+            isDragging = true;
+            velocity.x = 0;
+            velocity.y = 0;
+            lastMouseX = event.touches[0].clientX;
+            lastMouseY = event.touches[0].clientY;
+            startAnimation();
+
+            const handleTouchMoveDrag = (moveEvent: TouchEvent) => {
+                if (moveEvent.touches.length !== 1) return;
+                const sensitivity = mapDragSpeedUiToSensitivity(dragSpeed) * 1.5;
+                const dx = moveEvent.touches[0].clientX - lastMouseX;
+                const dy = moveEvent.touches[0].clientY - lastMouseY;
+                
+                targetRotation.x += dx * sensitivity;
+                targetRotation.y += dy * sensitivity;
+                targetRotation.y = Math.max(
+                    -Math.PI / 2,
+                    Math.min(Math.PI / 2, targetRotation.y)
+                );
+                velocity.x = dx * sensitivity * 0.3;
+                velocity.y = dy * sensitivity * 0.3;
+                lastMouseX = moveEvent.touches[0].clientX;
+                lastMouseY = moveEvent.touches[0].clientY;
+
+                // Only block vertical page scroll if user is dragging horizontally
+                if (Math.abs(dx) > Math.abs(dy)) {
+                    if (moveEvent.cancelable) moveEvent.preventDefault();
+                }
+            };
+
+            const handleTouchEnd = () => {
+                document.removeEventListener("touchmove", handleTouchMoveDrag);
+                document.removeEventListener("touchend", handleTouchEnd);
+                isDragging = false;
+            };
+
+            document.addEventListener("touchmove", handleTouchMoveDrag, { passive: false });
+            document.addEventListener("touchend", handleTouchEnd);
+        };
+        canvas.addEventListener("touchstart", handleTouchStart, { passive: true });
+
         const raycaster = new Raycaster();
         const mouse = new Vector2();
         const handleMouseMove = (event: MouseEvent) => {
@@ -916,6 +960,7 @@ export default function Globe({
                 cancelAnimationFrame(animationFrameId);
             canvas.removeEventListener("mousedown", handleMouseDown);
             canvas.removeEventListener("mousemove", handleMouseMove);
+            canvas.removeEventListener("touchstart", handleTouchStart);
             resizeObserver.disconnect();
             renderer.dispose();
             container.removeChild(canvas);

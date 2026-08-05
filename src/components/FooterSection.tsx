@@ -68,14 +68,13 @@ export function FooterSection({ onNavClick, onOpenBooking }: FooterSectionProps)
             
             {/* Logo & Brand Name */}
             <div className="flex items-center gap-3">
-              {/* Custom SVG Logo (24x24 black square #0A0A0A with rx=5 containing three parallel white diagonal lines) */}
-              <div className="w-8 h-8 rounded-[8px] bg-[#0A0A0A] flex items-center justify-center shrink-0 shadow-sm border border-black/10">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="24" height="24" rx="5" fill="#0A0A0A" />
-                  <line x1="6" y1="18" x2="18" y2="6" stroke="#C8C3A7" strokeWidth="2.5" strokeLinecap="round" />
-                  <line x1="6" y1="12" x2="12" y2="6" stroke="white" strokeWidth="2" strokeLinecap="round" />
-                  <line x1="12" y1="18" x2="18" y2="12" stroke="white" strokeWidth="2" strokeLinecap="round" />
-                </svg>
+              {/* Custom Logo Image */}
+              <div className="h-10 w-auto flex items-center justify-center shrink-0">
+                <img 
+                  src="/src/assets/images/Untit (1).png" 
+                  alt="Brand Logo" 
+                  className="h-full w-auto object-contain"
+                />
               </div>
               <span
                 className={`text-[19px] font-bold tracking-tight ${

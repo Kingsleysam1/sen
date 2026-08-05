@@ -36,12 +36,14 @@ async function startServer() {
 
   app.use(express.json());
 
-  // Gemini Chat API Endpoint
+  // Chat API Endpoint supporting both Gemini and Claude
   app.post("/api/chat", async (req, res) => {
     try {
-      const apiKey = process.env.GEMINI_API_KEY;
-      if (!apiKey) {
-        return res.status(500).json({ error: "GEMINI_API_KEY environment variable is missing." });
+      const geminiKey = process.env.GEMINI_API_KEY;
+      const anthropicKey = process.env.ANTHROPIC_API_KEY;
+
+      if (!geminiKey && !anthropicKey) {
+        return res.status(500).json({ error: "API key is missing. Please configure GEMINI_API_KEY or ANTHROPIC_API_KEY." });
       }
 
       const { history = [], message } = req.body;
@@ -49,8 +51,45 @@ async function startServer() {
         return res.status(400).json({ error: "Message string is required." });
       }
 
+      // If Anthropic Key is present, use Claude
+      if (anthropicKey) {
+        const formattedHistory = Array.isArray(history)
+          ? history.map((item: { role: string; content: string }) => ({
+              role: item.role === 'assistant' ? 'assistant' : 'user',
+              content: item.content,
+            }))
+          : [];
+
+        const messages = [...formattedHistory, { role: "user", content: message }];
+
+        const response = await fetch("https://api.anthropic.com/v1/messages", {
+          method: "POST",
+          headers: {
+            "x-api-key": anthropicKey,
+            "anthropic-version": "2023-06-01",
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            model: "claude-3-5-sonnet-20241022",
+            max_tokens: 1024,
+            system: SYSTEM_INSTRUCTION,
+            messages: messages,
+          }),
+        });
+
+        if (!response.ok) {
+          const errData = await response.json().catch(() => ({}));
+          throw new Error(errData?.error?.message || `Anthropic API error: ${response.status}`);
+        }
+
+        const data: any = await response.json();
+        const text = data.content?.[0]?.text || "I apologize, I couldn't generate a response. Please try again.";
+        return res.json({ reply: text });
+      }
+
+      // Fallback to Gemini
       const ai = new GoogleGenAI({
-        apiKey,
+        apiKey: geminiKey!,
         httpOptions: {
           headers: {
             'User-Agent': 'aistudio-build',
@@ -58,7 +97,6 @@ async function startServer() {
         },
       });
 
-      // Format history for the Gemini SDK
       const formattedHistory = Array.isArray(history)
         ? history.map((item: { role: string; content: string }) => ({
             role: item.role === 'assistant' ? 'model' : 'user',
@@ -79,7 +117,7 @@ async function startServer() {
 
       return res.json({ reply: text });
     } catch (err: any) {
-      console.error("Gemini API error:", err);
+      console.error("Chat API error:", err);
       return res.status(500).json({
         error: "Failed to communicate with AI Assistant.",
         details: err?.message || String(err),
