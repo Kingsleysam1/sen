@@ -308,22 +308,20 @@ export function Chatbot({ onOpenBooking }: { onOpenBooking?: () => void }) {
         }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="group relative flex items-center gap-2.5 px-4 py-3 rounded-full bg-gradient-to-r from-[#101010] to-[#1A1815] border border-[#8B5E3C]/60 text-[#DEDBC8] shadow-2xl hover:shadow-[#8B5E3C]/20 hover:border-[#D4A373] transition-all cursor-pointer overflow-hidden"
+        className="group relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-r from-[#101010] to-[#1A1815] border border-[#8B5E3C]/60 text-[#DEDBC8] shadow-2xl hover:shadow-[#8B5E3C]/20 hover:border-[#D4A373] transition-all cursor-pointer flex items-center justify-center overflow-hidden"
+        aria-label="Toggle Chatbot"
       >
-        <div className="relative z-10 flex items-center gap-2">
+        <div className="relative z-10">
           {isOpen ? (
-            <X className="w-5 h-5 text-[#D4A373]" />
+            <X className="w-5 h-5 sm:w-6 sm:h-6 text-[#D4A373]" />
           ) : (
-            <MessageSquare className="w-5 h-5 text-[#D4A373] group-hover:rotate-6 transition-transform" />
+            <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6 text-[#D4A373] group-hover:rotate-6 transition-transform" />
           )}
-          <span className="text-xs font-mono font-bold tracking-wide uppercase text-[#DEDBC8]">
-            {isOpen ? 'Close' : 'Clarity AI'}
-          </span>
         </div>
 
         {/* Pulsing indicator when closed */}
         {!isOpen && (
-          <span className="relative flex h-2 w-2">
+          <span className="absolute top-2.5 right-2.5 flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4A373] opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-[#8B5E3C]" />
           </span>
