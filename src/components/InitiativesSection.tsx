@@ -1,232 +1,226 @@
-import React, { useState, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { ArrowRight, Check, ChevronDown, ChevronUp } from 'lucide-react';
-import { INITIATIVES, Initiative } from '../data/shalomData';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { GsapScrollReveal } from './GsapScrollReveal';
-import { useTheme } from '../context/ThemeContext';
-import { BlurUpImage } from './BlurUpImage';
+import { triggerHaptic } from '../utils/haptics';
 
 interface InitiativesSectionProps {
   onOpenBooking: () => void;
 }
 
-function SecondaryInitiativeCard({
-  initiative,
-  isInView,
+const EXPERTISE_ROWS = [
+  {
+    number: '01',
+    title: 'Strategic Discovery & Clarity',
+    subtitle: 'Executive Clarity Consulting',
+    description:
+      'A structured diagnostic process to eliminate operational noise, identify the single point of impact, and create a 90-day execution roadmap aligned to your core strategic objectives.',
+    tags: ['90-min Virtual', 'On-site Available'],
+    image: '/src/assets/images/shalom_ernest_hero_1782810399094.jpg',
+  },
+  {
+    number: '02',
+    title: 'Executive Leadership Training',
+    subtitle: 'Corporate & Institutional',
+    description:
+      'Immersive executive training programmes designed for C-suite leaders, management teams, and high-potential professionals. Custom retreats, cohort programmes, and modular workshops.',
+    tags: ['Custom Retreats', 'On-site / Virtual'],
+    image: '/src/assets/images/LLS_2026-92.jpg',
+  },
+  {
+    number: '03',
+    title: 'Corporate Alignment Advisory',
+    subtitle: 'Systemic Consulting',
+    description:
+      'Multi-week governance and alignment engagements addressing strategic drift, team velocity, decision-making infrastructure, and cross-functional execution discipline.',
+    tags: ['2–12 Week Engagements', 'Systemic'],
+    image: '/src/assets/images/_DSC0794.jpg',
+  },
+  {
+    number: '04',
+    title: 'Clarity & Legacy Coaching',
+    subtitle: 'Executive Retainer',
+    description:
+      'Sustained 1-on-1 advisory for founders, directors, and executives navigating inflection points in their personal leadership trajectory, organisational legacy, and life purpose.',
+    tags: ['Monthly Retainer', 'Private'],
+    image: '/src/assets/images/20260629_070734.jpg',
+  },
+];
+
+function ExpertiseRow({
+  item,
   index,
   onOpenBooking,
 }: {
   key?: React.Key;
-  initiative: Initiative;
-  isInView: boolean;
+  item: typeof EXPERTISE_ROWS[0];
   index: number;
   onOpenBooking: () => void;
 }) {
-  const [showHighlights, setShowHighlights] = useState(false);
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
-
-  // Colorful theme per card index
-  const themeAccents = [
-    { badge: isLight ? "bg-amber-100 text-amber-900 border-amber-300" : "bg-amber-500/20 text-amber-300 border-amber-500/30", glow: "group-hover:border-amber-500/40", icon: "text-amber-500" },
-    { badge: isLight ? "bg-emerald-100 text-emerald-900 border-emerald-300" : "bg-emerald-500/20 text-emerald-300 border-emerald-500/30", glow: "group-hover:border-emerald-500/40", icon: "text-emerald-500" },
-    { badge: isLight ? "bg-indigo-100 text-indigo-900 border-indigo-300" : "bg-indigo-500/20 text-indigo-300 border-indigo-500/30", glow: "group-hover:border-indigo-500/40", icon: "text-indigo-500" },
-    { badge: isLight ? "bg-rose-100 text-rose-900 border-rose-300" : "bg-rose-500/20 text-rose-300 border-rose-500/30", glow: "group-hover:border-rose-500/40", icon: "text-rose-500" }
-  ];
-
-  const currentAccent = themeAccents[index % themeAccents.length];
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{
-        duration: 0.7,
-        delay: index * 0.12,
-        ease: [0.16, 1, 0.3, 1],
-      }}
-      className={`backdrop-blur-md rounded-2xl overflow-hidden flex flex-col justify-between min-h-[380px] border shadow-xl ${currentAccent.glow} transition-all duration-300 group hover:shadow-2xl ${
-        isLight
-          ? 'bg-white border-stone-200/90 hover:border-amber-400'
-          : 'bg-[#111317]/90 border-white/10 hover:border-white/20'
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.55, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+      className={`border-t border-white/[0.08] cursor-pointer group transition-colors duration-300 ${
+        isOpen ? 'bg-[#0E110E]' : 'hover:bg-white/[0.02]'
       }`}
+      onClick={() => setIsOpen((prev) => !prev)}
     >
-      {/* Top Image Header */}
-      <div className="relative h-44 overflow-hidden bg-black">
-        <BlurUpImage
-          src={initiative.image}
-          alt={initiative.title}
-          containerClassName="w-full h-full"
-          className="w-full h-full object-cover contrast-125 brightness-90 transition-transform duration-700 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#111317] via-[#111317]/30 to-transparent pointer-events-none" />
-        <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
-          <span className={`text-[10px] font-mono font-medium px-2.5 py-1 rounded-full border backdrop-blur-md ${currentAccent.badge}`}>
-            {initiative.subtitle}
-          </span>
-          <span className="text-[10px] font-mono text-gray-300 bg-black/60 px-2 py-0.5 rounded-full border border-white/10">
-            {initiative.number}
-          </span>
-        </div>
-      </div>
+      {/* Row Header */}
+      <div className="py-6 sm:py-8 px-2 sm:px-4 flex items-start gap-5 sm:gap-8">
+        {/* Number */}
+        <span className="font-mono text-[18px] sm:text-[22px] font-bold text-[#C8A96E]/50 group-hover:text-[#C8A96E] transition-colors shrink-0 mt-1">
+          {item.number}
+        </span>
 
-      {/* Card Content */}
-      <div className="p-6 flex flex-col justify-between flex-1 space-y-4">
-        <div className="space-y-2">
-          <h3 className="text-xl font-medium text-[#F3F3EE] group-hover:text-amber-200 transition-colors">
-            {initiative.title}
-          </h3>
-          <p className="text-xs sm:text-sm text-gray-400 font-light leading-relaxed">
-            {initiative.description}
-          </p>
-        </div>
+        {/* Title block */}
+        <div className="flex-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="flex flex-col gap-1">
+            <h3 className="typo-card-title text-[#F0F5F0] group-hover:text-[#C8A96E] transition-colors">
+              {item.title}
+            </h3>
+            <span className="typo-eyebrow text-[#627364] group-hover:text-[#9EAEA0] transition-colors">
+              {item.subtitle}
+            </span>
+          </div>
 
-        {/* Triage: Toggle secondary highlights */}
-        <div>
-          <button
-            onClick={() => setShowHighlights(!showHighlights)}
-            className="inline-flex items-center gap-1.5 text-xs font-mono text-[#C8C3A7] hover:text-white transition-colors cursor-pointer py-1"
-          >
-            <span>{showHighlights ? 'Hide Key Highlights' : 'View Key Highlights'}</span>
-            {showHighlights ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
-          </button>
-
-          {showHighlights && (
-            <ul className="space-y-2 pt-3 border-t border-white/10 mt-2">
-              {initiative.highlights.map((highlight, hIdx) => (
-                <li key={hIdx} className="flex items-start gap-2 text-xs text-gray-300 font-light">
-                  <Check className={`w-3.5 h-3.5 ${currentAccent.icon} shrink-0 mt-0.5`} />
-                  <span className="leading-tight">{highlight}</span>
-                </li>
+          {/* Tags + Arrow */}
+          <div className="flex items-center gap-4">
+            <div className="hidden md:flex items-center gap-2 flex-wrap">
+              {item.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="font-mono text-[11px] uppercase tracking-[0.1em] border border-white/[0.08] text-[#627364] px-2.5 py-1"
+                >
+                  {tag}
+                </span>
               ))}
-            </ul>
-          )}
-        </div>
-
-        {/* Bottom Link */}
-        <div className="pt-4 border-t border-white/10">
-          <button
-            onClick={onOpenBooking}
-            className="group/btn inline-flex items-center gap-1.5 text-xs text-[#E2DFD2] hover:text-amber-300 transition-colors cursor-pointer font-medium"
-          >
-            <span>Get in Touch</span>
-            <ArrowRight className="w-3.5 h-3.5 -rotate-45 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-200" />
-          </button>
+            </div>
+            <motion.span
+              animate={{ rotate: isOpen ? 45 : 0 }}
+              transition={{ duration: 0.3 }}
+              className="w-8 h-8 rounded-full border border-white/[0.1] group-hover:border-[#C8A96E]/50 flex items-center justify-center shrink-0 text-[#9EAEA0] group-hover:text-[#C8A96E] transition-colors duration-300"
+            >
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M6 2v8M2 6h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
+            </motion.span>
+          </div>
         </div>
       </div>
+
+      {/* Expandable Content */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden"
+          >
+            <div className="pb-8 px-2 sm:px-4 pl-10 sm:pl-16 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+              <div className="md:col-span-7 flex flex-col gap-5">
+                <p className="typo-card-desc">
+                  {item.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {item.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="font-mono text-[11px] uppercase tracking-[0.1em] border border-white/[0.08] text-[#627364] px-2.5 py-1"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    triggerHaptic('medium');
+                    onOpenBooking();
+                  }}
+                  className="self-start btn-primary py-2.5 px-5 typo-btn mt-2"
+                >
+                  <span>Enquire About This</span>
+                  <span className="btn-arrow">→</span>
+                </button>
+              </div>
+              <div className="md:col-span-5 overflow-hidden aspect-[16/9] rounded-sm border border-white/[0.08]">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover grayscale-[30%] contrast-105 brightness-85"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
 
 export function InitiativesSection({ onOpenBooking }: InitiativesSectionProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, margin: '-80px' });
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
-
   return (
-    <section id="initiatives" className={`min-h-screen py-20 sm:py-28 px-6 md:px-12 relative overflow-hidden transition-colors duration-500 ${
-      isLight ? 'bg-[#FAF9F5] text-stone-900' : 'bg-[#0A0B0D] text-[#F3F3EE]'
-    }`}>
-      {/* Subtle bg-noise overlay */}
-      <div className="bg-noise opacity-[0.1] absolute inset-0 pointer-events-none" />
+    <section
+      id="initiatives"
+      className="bg-[#080A08]"
+      aria-labelledby="expertise-heading"
+    >
+      <div className="site-container section-padding">
 
-      <div className="max-w-7xl mx-auto space-y-12 relative z-10">
-        
-        {/* Clean top divider & action button */}
+        {/* ── Header ── */}
         <GsapScrollReveal>
-          <div className="flex items-center justify-between pb-2">
-            <span className={`text-xs font-mono uppercase tracking-[0.25em] ${
-              isLight ? 'text-amber-800 font-semibold' : 'text-[#C8C3A7]'
-            }`}>
-              SERVICES & CORE INITIATIVES
-            </span>
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16 md:mb-20">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="block w-8 h-[2px] bg-[#C8A96E]" />
+                <span className="typo-eyebrow">Areas of Expertise</span>
+              </div>
+              <h2
+                id="expertise-heading"
+                className="typo-section-heading text-[#F0F5F0]"
+              >
+                Where Vision Meets{' '}
+                <span className="text-[#C8A96E]">Execution</span>
+              </h2>
+            </div>
             <button
-              onClick={onOpenBooking}
-              className={`inline-flex items-center gap-2 font-medium text-xs sm:text-sm px-5 py-2 rounded-full transition-all duration-300 cursor-pointer shrink-0 shadow-md ${
-                isLight
-                  ? 'bg-amber-600 hover:bg-amber-700 text-white'
-                  : 'bg-[#E2DFD2] hover:bg-white text-black'
-              }`}
+              onClick={() => { triggerHaptic('medium'); onOpenBooking(); }}
+              className="self-start lg:self-end btn-primary py-3 px-6 typo-btn"
             >
               <span>Book a Session</span>
-              <ArrowRight className="w-4 h-4 -rotate-45" />
+              <span className="btn-arrow">→</span>
             </button>
           </div>
         </GsapScrollReveal>
 
-        {/* 4-column card grid */}
-        <div
-          ref={containerRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
-          {INITIATIVES.map((initiative, index) => {
-            if (index === 0) {
-              return (
-                <motion.div
-                  key={initiative.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                  transition={{
-                    duration: 0.7,
-                    delay: index * 0.12,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  className="relative rounded-2xl overflow-hidden bg-[#111317] min-h-[380px] p-6 sm:p-8 flex flex-col justify-between group shadow-xl border border-white/10"
-                >
-                  <video
-                    src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260406_133058_0504132a-0cf3-4450-a370-8ea3b05c95d4.mp4"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="absolute inset-0 w-full h-full object-cover z-0 filter contrast-125 brightness-50"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-black/20 z-[1]" />
-
-                  <div className="relative z-10 flex items-center justify-between">
-                    <span className="text-xs font-mono text-[#C8C3A7] bg-black/70 px-2.5 py-1 rounded-full border border-white/10 backdrop-blur-md">
-                      {initiative.number}
-                    </span>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#E2BA6E] bg-black/80 px-2.5 py-1 rounded-full border border-[#E2BA6E]/30 backdrop-blur-md">
-                      Executive Strategy
-                    </span>
-                  </div>
-
-                  <div className="relative z-10 space-y-3">
-                    <h3 className="text-2xl sm:text-3xl font-medium text-[#F3F3EE]">
-                      {initiative.title}
-                    </h3>
-                    <p className="text-xs text-[#C8C3A7] font-mono uppercase tracking-wider">
-                      Executive Strategy & Advisory Hub
-                    </p>
-                    <p className="text-xs sm:text-sm text-gray-300 font-light leading-relaxed">
-                      {initiative.description}
-                    </p>
-                    <button
-                      onClick={onOpenBooking}
-                      className="inline-flex items-center gap-2 text-xs font-medium text-[#C8C3A7] hover:text-white transition-colors cursor-pointer pt-2"
-                    >
-                      <span>Book a Session</span>
-                      <ArrowRight className="w-3.5 h-3.5 -rotate-45" />
-                    </button>
-                  </div>
-                </motion.div>
-              );
-            }
-
-            return (
-              <SecondaryInitiativeCard
-                key={initiative.id}
-                initiative={initiative}
-                isInView={isInView}
-                index={index}
-                onOpenBooking={onOpenBooking}
-              />
-            );
-          })}
+        {/* ── Expertise Rows ── */}
+        <div className="border-b border-white/[0.08]">
+          {EXPERTISE_ROWS.map((item, index) => (
+            <ExpertiseRow
+              key={item.number}
+              item={item}
+              index={index}
+              onOpenBooking={onOpenBooking}
+            />
+          ))}
         </div>
 
+        {/* ── Philosophy Statement ── */}
+        <GsapScrollReveal>
+          <div className="mt-16 md:mt-20 flex flex-col md:flex-row gap-6 md:gap-16 border-t border-white/[0.08] pt-10">
+            <span className="typo-eyebrow shrink-0">The Approach</span>
+            <p className="typo-statement text-[#9EAEA0]">
+              "Real leadership is not a title — it is a discipline of clarity, a culture of alignment, and a commitment to measurable progress."
+            </p>
+          </div>
+        </GsapScrollReveal>
       </div>
     </section>
   );

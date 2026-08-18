@@ -1,33 +1,40 @@
-import React, { useState } from 'react';
-import { useTheme } from '../context/ThemeContext';
-import { triggerHaptic } from '../utils/haptics';
-import { Menu, X } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { X } from 'lucide-react';
+import { triggerHaptic } from '../utils/haptics';
 
 interface NavbarProps {
   onNavClick: (targetId: string) => void;
   onOpenBooking: () => void;
 }
 
-export function Navbar({ onNavClick, onOpenBooking }: NavbarProps) {
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
-  const [isOpen, setIsOpen] = useState(false);
+const NAV_ITEMS = [
+  { label: 'Home',         target: 'hero' },
+  { label: 'About',        target: 'bio' },
+  { label: 'Services',     target: 'initiatives' },
+  { label: 'Programs',     target: 'programs' },
+  { label: 'Engagements',  target: 'milestones' },
+  { label: 'Events',       target: 'events' },
+];
 
-  const navItems = [
-    { label: 'About', target: 'bio' },
-    { label: 'Impact', target: 'metrics' },
-    { label: 'Partnerships', target: 'partners' },
-    { label: 'Services', target: 'initiatives' },
-    { label: 'Testimonials', target: 'testimonials' },
-    { label: 'Engagements', target: 'milestones' },
-    { label: 'Events & Articles', target: 'events' },
-    { label: 'FAQ', target: 'faq' },
-  ];
+export function Navbar({ onNavClick, onOpenBooking }: NavbarProps) {
+  const [isOpen, setIsOpen]     = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isOpen]);
 
   const handleToggle = () => {
     triggerHaptic('light');
-    setIsOpen(!isOpen);
+    setIsOpen((prev) => !prev);
   };
 
   const handleItemClick = (target: string) => {
@@ -36,113 +43,132 @@ export function Navbar({ onNavClick, onOpenBooking }: NavbarProps) {
     setIsOpen(false);
   };
 
+  const handleBooking = () => {
+    triggerHaptic('medium');
+    onOpenBooking();
+    setIsOpen(false);
+  };
+
   return (
-    <header className="absolute top-0 left-1/2 -translate-x-1/2 z-20 w-[95vw] md:w-auto max-w-[95vw]">
-      <nav
-        className={`rounded-b-2xl md:rounded-b-3xl px-4 py-2 sm:px-6 sm:py-2.5 shadow-2xl transition-all duration-300 ${
-          isLight
-            ? 'bg-white/95 backdrop-blur-md border-x border-b border-gray-200 text-gray-900'
-            : 'bg-black/95 backdrop-blur-md border-x border-b border-white/10 text-[#F3F3EE]'
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? 'bg-[#0A0908]/90 backdrop-blur-xl border-b border-white/[0.08] py-4'
+            : 'bg-transparent py-6 sm:py-8'
         }`}
       >
-        {/* Desktop View: Horizontal Layout */}
-        <div className="hidden md:flex items-center gap-7">
-          <img 
-            src="/src/assets/images/Untit (1).png" 
-            alt="Brand Logo" 
-            className="h-7 w-auto object-contain cursor-pointer drop-shadow-sm"
-            onClick={() => handleItemClick('bio')}
-          />
-          <ul className="flex items-center gap-6 text-sm font-normal">
-            {navItems.map((item) => (
-              <li key={item.target}>
+        <div className="site-container flex items-center justify-between gap-4">
+          
+          {/* Logo */}
+          <button
+            onClick={() => handleItemClick('hero')}
+            className="flex items-center gap-1.5 shrink-0 group cursor-pointer"
+            aria-label="Home"
+          >
+            <span className="font-extrabold text-[20px] sm:text-[22px] tracking-tight text-white uppercase font-sans">
+              SHALOM
+            </span>
+            <span className="font-extrabold text-[20px] sm:text-[22px] tracking-tight text-[#C8A96E] uppercase font-sans">
+              ERNEST
+            </span>
+          </button>
+
+          {/* Center Floating Pill Navbar */}
+          <nav
+            className="hidden lg:flex items-center gap-1 rounded-full border border-white/[0.12] bg-[#1C1916]/60 backdrop-blur-md px-6 py-2 shadow-2xl"
+            aria-label="Primary navigation"
+          >
+            {NAV_ITEMS.map((item, idx) => (
+              <button
+                key={item.target}
+                onClick={() => handleItemClick(item.target)}
+                className={`px-4 py-1.5 text-[14px] font-medium transition-colors duration-200 cursor-pointer rounded-full ${
+                  idx === 0
+                    ? 'text-white font-semibold'
+                    : 'text-stone-300 hover:text-white'
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
+
+          {/* Right CTA Button: Pill with warm brown/gold accent */}
+          <div className="hidden lg:flex items-center">
+            <button
+              onClick={handleBooking}
+              className="px-6 py-2.5 rounded-full border border-[#C8A96E]/60 hover:border-[#C8A96E] bg-[#C8A96E]/10 hover:bg-[#C8A96E]/20 text-[#C8A96E] hover:text-[#E5C98E] text-[13px] font-semibold tracking-wide transition-all duration-200 cursor-pointer shadow-[0_0_20px_rgba(200,169,110,0.15)]"
+            >
+              Get In Touch
+            </button>
+          </div>
+
+          {/* Mobile Hamburger */}
+          <div className="lg:hidden flex items-center gap-3">
+            <button
+              onClick={handleBooking}
+              className="px-4 py-1.5 rounded-full border border-[#C8A96E]/60 bg-[#C8A96E]/10 text-[#C8A96E] text-[12px] font-semibold"
+            >
+              Contact
+            </button>
+
+            <button
+              onClick={handleToggle}
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isOpen}
+              className="w-10 h-10 flex flex-col items-center justify-center gap-[5px] cursor-pointer"
+            >
+              <span className={`block h-[2px] bg-white transition-all duration-300 ${isOpen ? 'w-5 rotate-45 translate-y-[7px]' : 'w-5'}`} />
+              <span className={`block h-[2px] bg-white transition-all duration-300 ${isOpen ? 'opacity-0 w-0' : 'w-5'}`} />
+              <span className={`block h-[2px] bg-white transition-all duration-300 ${isOpen ? 'w-5 -rotate-45 -translate-y-[7px]' : 'w-5'}`} />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile Fullscreen Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            key="mobile-menu"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-[60] bg-[#0A0908] flex flex-col p-6 pt-24 justify-between"
+          >
+            <div className="flex justify-between items-center absolute top-6 left-6 right-6">
+              <div className="flex items-center gap-1.5">
+                <span className="font-extrabold text-[20px] text-white">SHALOM</span>
+                <span className="font-extrabold text-[20px] text-[#C8A96E]">ERNEST</span>
+              </div>
+              <button onClick={handleToggle} className="text-stone-300 hover:text-white p-2">
+                <X size={24} />
+              </button>
+            </div>
+
+            <nav className="flex flex-col gap-4 mt-6">
+              {NAV_ITEMS.map((item) => (
                 <button
+                  key={item.target}
                   onClick={() => handleItemClick(item.target)}
-                  className={`transition-colors duration-200 cursor-pointer whitespace-nowrap font-medium ${
-                    isLight ? 'text-gray-600 hover:text-black' : 'text-[#E1E0CC]/80 hover:text-[#E1E0CC]'
-                  }`}
+                  className="text-left text-[28px] font-bold text-stone-200 hover:text-[#C8A96E] py-2 border-b border-white/[0.08]"
                 >
                   {item.label}
                 </button>
-              </li>
-            ))}
-          </ul>
-          <button
-            onClick={() => {
-              triggerHaptic('medium');
-              onOpenBooking();
-            }}
-            className={`text-xs font-semibold px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer shadow-sm whitespace-nowrap ${
-              isLight ? 'bg-amber-600 hover:bg-amber-700 text-white' : 'bg-[#E2DFD2] hover:bg-white text-black'
-            }`}
-          >
-            Inquire
-          </button>
-        </div>
+              ))}
+            </nav>
 
-        {/* Mobile View: Header bar + toggle */}
-        <div className="md:hidden flex flex-col w-full">
-          <div className="flex items-center justify-between w-full gap-2">
-            <img 
-              src="/src/assets/images/Untit (1).png" 
-              alt="Brand Logo" 
-              className="h-6 w-auto object-contain cursor-pointer"
-              onClick={() => handleItemClick('bio')}
-            />
-            
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => {
-                  triggerHaptic('medium');
-                  onOpenBooking();
-                  setIsOpen(false);
-                }}
-                className={`text-[10px] font-semibold px-3 py-1 rounded-full transition-all duration-200 cursor-pointer shadow-sm ${
-                  isLight ? 'bg-amber-600 hover:bg-amber-700 text-white' : 'bg-[#E2DFD2] hover:bg-white text-black'
-                }`}
-              >
-                Inquire
-              </button>
-
-              <button
-                onClick={handleToggle}
-                className="p-1 text-gray-400 hover:text-white transition-colors cursor-pointer"
-                aria-label="Toggle Menu"
-              >
-                {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-              </button>
-            </div>
-          </div>
-
-          {/* Animated Dropdown Menu for Mobile */}
-          <AnimatePresence>
-            {isOpen && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="overflow-hidden"
-              >
-                <ul className="flex flex-col gap-3.5 pt-4 pb-2 text-xs font-medium border-t border-white/10 mt-3">
-                  {navItems.map((item) => (
-                    <li key={item.target}>
-                      <button
-                        onClick={() => handleItemClick(item.target)}
-                        className={`w-full text-left transition-colors duration-200 cursor-pointer py-1 ${
-                          isLight ? 'text-gray-600 hover:text-black' : 'text-[#E1E0CC]/80 hover:text-[#E1E0CC]'
-                        }`}
-                      >
-                        {item.label}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </nav>
-    </header>
+            <button
+              onClick={handleBooking}
+              className="w-full py-4 rounded-full bg-[#C8A96E] text-[#0A0908] font-bold text-[15px] tracking-wide"
+            >
+              Get In Touch
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

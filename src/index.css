@@ -1,82 +1,125 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
 
 :root {
-  --accent: #8B5E3C;
-  --accent-light: #D4A373;
-  --accent-dark: #2A1C12;
-  --font-sans: "Barlow", "Almarai", ui-sans-serif, system-ui, sans-serif;
-  --font-dm-serif: "Instrument Serif", serif;
+  /* Fonts — 100% Sans-Serif System */
+  --font-primary: 'Manrope', Arial, sans-serif;
+  --font-sans: 'Manrope', Arial, sans-serif;
+  --font-hero: 'Anton', 'Impact', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  /* Colors — Warm Brown / Amber-Gold Palette */
+  --color-bg: #0A0908;
+  --color-surface: #141210;
+  --color-surface-2: #1C1916;
+  --color-accent: #C8A96E;
+  --color-accent-hover: #E5C98E;
+  --color-accent-dim: rgba(200, 169, 110, 0.15);
+  --color-accent-dark: #8B6D3A;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #A8A29E;
+  --color-text-tertiary: #78716C;
+  --color-border: rgba(255, 255, 255, 0.08);
 }
 
 @theme {
-  --color-primary: #DEDBC8;
-  --color-accent: #8B5E3C;
-  --color-accent-light: #D4A373;
-  --color-accent-dark: #2A1C12;
-  --font-serif: "Instrument Serif", serif;
-  --font-dm-serif: "Instrument Serif", serif;
-  --font-sans: "Barlow", "Almarai", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Manrope', Arial, sans-serif;
+  --font-hero: 'Anton', 'Impact', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --color-accent: #C8A96E;
+  --color-accent-hover: #E5C98E;
 }
 
-.font-dm-serif {
-  font-family: "Instrument Serif", serif;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-* {
-  font-family: 'Almarai', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+/* Global Selection Highlight in Warm Brown / Gold */
+::selection {
+  background-color: #C8A96E !important;
+  color: #0A0908 !important;
+}
+
+::-moz-selection {
+  background-color: #C8A96E !important;
+  color: #0A0908 !important;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #000000;
-  color: #E1E0CC;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-primary);
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background-color: #000000;
-  color: #E1E0CC;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
   overflow-x: hidden;
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* SVG noise texture utilities */
-.noise-overlay {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+.font-hero {
+  font-family: var(--font-hero);
 }
 
-.bg-noise {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+/* Sans-serif statement class replacing old serif */
+.font-serif-italic {
+  font-family: var(--font-primary);
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.03em;
 }
 
-/* Marquee Animation */
-@keyframes hero-marquee {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+.site-container {
+  width: 100%;
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.25rem, 5vw, 4.5rem);
+  padding-right: clamp(1.25rem, 5vw, 4.5rem);
 }
 
-.animate-hero-marquee {
-  animation: hero-marquee 35s linear infinite;
+.section-padding {
+  padding-top: clamp(70px, 9vw, 130px);
+  padding-bottom: clamp(70px, 9vw, 130px);
 }
 
-.animate-hero-marquee:hover {
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee-scroll 25s linear infinite;
+}
+
+.animate-marquee:hover {
   animation-play-state: paused;
 }
 
-/* Custom scrollbar */
+.animate-marquee-slow {
+  animation: marquee-scroll 45s linear infinite;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: var(--color-bg);
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #212121;
+  background: #292524;
   border-radius: 3px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #8B5E3C;
+  background: var(--color-accent);
 }

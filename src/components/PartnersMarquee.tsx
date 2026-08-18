@@ -1,93 +1,140 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
+import { PARTNERS } from '../data/shalomData';
 import { GsapScrollReveal } from './GsapScrollReveal';
-import { useTheme } from '../context/ThemeContext';
 
-const TRUSTED_ORGANIZATIONS = [
-  "African Union",
-  "American University of Nigeria",
-  "G-Organization",
-  "A'Doo Arts & Media",
-  "Taraba State University",
-  "University of Jos",
-  "African Film Institute",
-  "Hand of Favor Foundation",
-  "Impact Training Room",
-  "Pannyword",
-  "Nobis Solutions",
-  "Youth Ministers International (YMI)"
+function PartnerItem({ name }: { key?: React.Key; name: string }) {
+  return (
+    <div className="shrink-0 flex items-center px-8 border-r border-white/[0.06]">
+      <span className="text-[15px] font-medium text-[#627364] hover:text-[#9EAEA0] transition-colors whitespace-nowrap">
+        {name}
+      </span>
+    </div>
+  );
+}
+
+const CREDENTIALS = [
+  { code: 'FIMC', full: 'Fellow, Institute of Management Consultants' },
+  { code: 'CMC',  full: 'Certified Management Consultant' },
+  { code: 'CMS',  full: 'Certified Management Specialist — Distinction' },
+  { code: 'JMT',  full: 'John Maxwell Team Certified' },
+];
+
+const AFFILIATIONS = [
+  'Tony Elumelu Foundation Mentor',
+  'Lateef Jakande Leadership Fellow',
+  'Friends for Leadership Network (120+ Nations)',
+  'Platform Public Service Bootcamp Alumnus',
+];
+
+const HONOURS = [
+  'MLA Foundation Leadership Award',
+  'National Orientation Agency Civic Impact Award',
+  '100 Change-Makers on the Plateau',
+  '20 Most Influential Young People — Taraba State (2021)',
 ];
 
 export function PartnersMarquee() {
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
-
-  // Duplicate list twice to ensure infinite seamless looping
-  const marqueeItems = [...TRUSTED_ORGANIZATIONS, ...TRUSTED_ORGANIZATIONS];
-
   return (
     <section
       id="partners"
-      className={`py-12 overflow-hidden relative transition-colors duration-500 border-y ${
-        isLight ? 'bg-[#FAF9F5] border-stone-200/80' : 'bg-[#0A0B0D] border-white/10'
-      }`}
+      className="bg-[#080A08] border-t border-white/[0.08]"
+      aria-labelledby="credibility-heading"
     >
-      <GsapScrollReveal>
-        <div className="max-w-7xl mx-auto px-6 mb-6 text-center">
-          <span
-            className={`text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] ${
-              isLight ? 'text-amber-800 font-semibold' : 'text-[#C8C3A7]'
-            }`}
-          >
-            TRUSTED BY
-          </span>
-        </div>
-      </GsapScrollReveal>
+      <div className="site-container section-padding">
 
-      <div className="relative w-full overflow-hidden py-2">
-        {/* Soft edge fade overlays */}
-        <div
-          className={`absolute left-0 top-0 bottom-0 w-24 sm:w-36 z-10 pointer-events-none bg-gradient-to-r ${
-            isLight ? 'from-[#FAF9F5] to-transparent' : 'from-[#0A0B0D] to-transparent'
-          }`}
-        />
-        <div
-          className={`absolute right-0 top-0 bottom-0 w-24 sm:w-36 z-10 pointer-events-none bg-gradient-to-l ${
-            isLight ? 'from-[#FAF9F5] to-transparent' : 'from-[#0A0B0D] to-transparent'
-          }`}
-        />
+        {/* ── Header ── */}
+        <GsapScrollReveal>
+          <div className="flex items-center gap-3 mb-16 md:mb-20">
+            <span className="block w-8 h-[2px] bg-[#C8A96E]" />
+            <span className="typo-eyebrow">Professional Credibility</span>
+          </div>
+        </GsapScrollReveal>
 
-        {/* Straight Horizontal Marquee Track */}
-        <motion.div
-          className="flex whitespace-nowrap items-center gap-8 sm:gap-12 w-max"
-          animate={{ x: ['0%', '-50%'] }}
-          transition={{
-            repeat: Infinity,
-            repeatType: 'loop',
-            duration: 35,
-            ease: 'linear',
-          }}
-        >
-          {marqueeItems.map((org, index) => (
-            <div key={index} className="flex items-center gap-8 sm:gap-12">
-              <span
-                className={`text-sm sm:text-base font-mono font-medium uppercase tracking-widest transition-colors ${
-                  isLight ? 'text-stone-800 hover:text-amber-800' : 'text-[#E2DFD2]/80 hover:text-[#C8C3A7]'
-                }`}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+
+          {/* LEFT: Credentials (5 cols) */}
+          <div className="lg:col-span-5 flex flex-col gap-10">
+            <GsapScrollReveal>
+              <h2
+                id="credibility-heading"
+                className="typo-section-heading text-[#F0F5F0]"
               >
-                {org}
-              </span>
-              <span className={`text-xs ${isLight ? 'text-amber-700/60' : 'text-[#C8C3A7]/50'}`}>
-                ✦
-              </span>
-            </div>
-          ))}
-        </motion.div>
+                Recognised. Certified. <span className="text-[#C8A96E]">Trusted.</span>
+              </h2>
+            </GsapScrollReveal>
+
+            <GsapScrollReveal>
+              <div className="space-y-4">
+                <span className="typo-eyebrow block mb-4">Certifications</span>
+                {CREDENTIALS.map((cred, i) => (
+                  <motion.div
+                    key={cred.code}
+                    initial={{ opacity: 0, x: -16 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: '-40px' }}
+                    transition={{ duration: 0.45, delay: i * 0.06 }}
+                    className="flex items-start gap-4 border-b border-white/[0.06] pb-3"
+                  >
+                    <span className="font-bold text-[#C8A96E] text-[16px] shrink-0 mt-0.5">
+                      {cred.code}
+                    </span>
+                    <span className="text-[14px] text-[#9EAEA0] leading-snug">
+                      {cred.full}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+            </GsapScrollReveal>
+
+            <GsapScrollReveal>
+              <div className="space-y-2.5">
+                <span className="typo-eyebrow block mb-4">Honours & Recognition</span>
+                {HONOURS.map((h, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <span className="text-[#C8A96E] mt-1 text-[10px]">◆</span>
+                    <p className="text-[13px] text-[#627364] leading-relaxed">{h}</p>
+                  </div>
+                ))}
+              </div>
+            </GsapScrollReveal>
+          </div>
+
+          {/* RIGHT: Affiliations & Partners (7 cols) */}
+          <div className="lg:col-span-7 flex flex-col gap-10">
+            <GsapScrollReveal>
+              <div className="space-y-3">
+                <span className="typo-eyebrow block mb-4">Institutional Affiliations</span>
+                {AFFILIATIONS.map((aff, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-40px' }}
+                    transition={{ duration: 0.45, delay: i * 0.06 }}
+                    className="border border-white/[0.08] bg-[#0E110E] px-5 py-4 rounded-sm"
+                  >
+                    <p className="text-[14px] font-medium text-[#9EAEA0]">{aff}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </GsapScrollReveal>
+
+            <GsapScrollReveal>
+              <div>
+                <span className="typo-eyebrow block mb-6">Partner Organisations</span>
+                <div className="overflow-hidden border-y border-white/[0.06] py-3">
+                  <div className="flex w-max animate-marquee-slow">
+                    {[...PARTNERS, ...PARTNERS].map((partner, i) => (
+                      <PartnerItem key={`${partner}-${i}`} name={partner} />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </GsapScrollReveal>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
-
-
-
-

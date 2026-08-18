@@ -1,118 +1,83 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import { FAQS } from '../data/shalomData';
 import { GsapScrollReveal } from './GsapScrollReveal';
-import { useTheme } from '../context/ThemeContext';
-
-const BOOKING_FAQS = [
-  {
-    question: "What is your methodology for Executive Clarity Advisory?",
-    answer: "We employ a diagnostic-first methodology: auditing operational inputs, mapping friction points across executive leadership, aligning strategic priorities, and implementing lightweight governance frameworks that drive execution velocity."
-  },
-  {
-    question: "What is the typical engagement duration and format?",
-    answer: "Engagements range from intensive 90-minute Strategic Discovery Sessions to 2–4 week Alignment Diagnostic Retreats, and 3–6 month Executive Advisory retainers. Sessions are delivered both virtually and on-site globally."
-  },
-  {
-    question: "Do you consult for early-stage startups, enterprises, and non-profits alike?",
-    answer: "Yes. Through Leadview Consulting and Clarity Conclave, we tailor institutional frameworks specifically for venture-backed founders, corporate boards, educational institutions, and public sector ministries."
-  },
-  {
-    question: "How do we begin a strategic advisory engagement?",
-    answer: "Begin by submitting a request for a Strategic Discovery Session. Our team will review your organizational context, schedule an initial consultation, and propose a customized advisory scope."
-  }
-];
 
 export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
 
-  const toggleIndex = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
+  const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
 
   return (
-    <section id="faq" className={`py-20 sm:py-28 px-6 md:px-12 transition-colors duration-500 ${
-      isLight ? 'bg-[#FAF9F5] text-stone-900' : 'bg-[#0A0B0D] text-[#F3F3EE]'
-    }`}>
-      <div className="max-w-4xl mx-auto space-y-16">
-        
-        {/* Header */}
+    <section
+      id="faq"
+      className="bg-[#0A0908] border-t border-white/[0.08]"
+      aria-labelledby="faq-heading"
+    >
+      <div className="site-container section-padding">
+        {/* ── Uniform Section Header (matches Testimonials) ── */}
         <GsapScrollReveal>
-          <div className="flex flex-col items-center text-center space-y-3">
-            <span className={`text-xs font-mono uppercase tracking-[0.25em] ${
-              isLight ? 'text-amber-800 font-semibold' : 'text-[#C8C3A7]'
-            }`}>
-              ENGAGEMENT ENQUIRIES
-            </span>
-            <h2 className={`text-3xl sm:text-5xl font-normal ${
-              isLight ? 'text-stone-900' : 'text-[#F3F3EE]'
-            }`}>
-              Frequently Asked Questions
+          <div className="flex items-center gap-3 mb-12 sm:mb-16">
+            <span className="block w-8 h-[2px] bg-[#C8A96E]" />
+            <h2
+              id="faq-heading"
+              className="font-mono text-[11px] font-semibold tracking-[0.16em] uppercase text-[#C8A96E]"
+            >
+              FAQ
             </h2>
-            <p className={`text-sm font-light max-w-md ${
-              isLight ? 'text-stone-600' : 'text-gray-400'
-            }`}>
-              Key details on advisory scope, methodology, and how to begin an executive engagement.
-            </p>
           </div>
         </GsapScrollReveal>
 
-        {/* Accordion */}
-        <div className="space-y-4">
-          {BOOKING_FAQS.map((faq, index) => {
-            const isOpen = openIndex === index;
-
+        {/* ── Accordion List ── */}
+        <div className="max-w-4xl mx-auto border-t border-white/[0.08]">
+          {FAQS.map((faq, i) => {
+            const isOpen = openIndex === i;
             return (
-              <div
-                key={index}
-                className={`rounded-2xl border overflow-hidden transition-colors shadow-lg ${
-                  isLight
-                    ? 'bg-white border-stone-200 hover:border-amber-500/50 shadow-stone-200'
-                    : 'bg-[#111317] border-white/10 hover:border-white/20'
-                }`}
+              <motion.div
+                key={i}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.35, delay: i * 0.04 }}
+                className="border-b border-white/[0.08]"
               >
                 <button
-                  onClick={() => toggleIndex(index)}
-                  className="w-full p-6 sm:p-7 text-left flex items-center justify-between gap-4 cursor-pointer"
+                  onClick={() => toggle(i)}
+                  className="w-full flex items-start justify-between gap-6 py-6 text-left cursor-pointer group"
+                  aria-expanded={isOpen}
                 >
-                  <span className={`text-base sm:text-lg font-medium ${
-                    isLight ? 'text-stone-900' : 'text-[#F3F3EE]'
-                  }`}>
+                  <span className="text-[17px] sm:text-[19px] font-semibold text-white group-hover:text-[#C8A96E] transition-colors leading-snug tracking-tight">
                     {faq.question}
                   </span>
-                  <ChevronDown
-                    className={`w-5 h-5 shrink-0 transition-transform duration-300 ${
-                      isLight ? 'text-amber-800' : 'text-[#C8C3A7]'
-                    } ${isOpen ? 'rotate-180' : ''}`}
-                  />
+                  <motion.span
+                    animate={{ rotate: isOpen ? 45 : 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="shrink-0 w-7 h-7 rounded-full border border-white/[0.1] group-hover:border-[#C8A96E]/50 flex items-center justify-center text-stone-400 group-hover:text-[#C8A96E] transition-colors text-sm mt-0.5"
+                  >
+                    +
+                  </motion.span>
                 </button>
 
                 <AnimatePresence>
                   {isOpen && (
                     <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className={`px-6 sm:px-7 pb-7 text-sm sm:text-base font-light leading-relaxed border-t pt-4 ${
-                        isLight ? 'text-stone-700 border-stone-200' : 'text-gray-300 border-white/10'
-                      }`}>
+                      <p className="text-stone-400 text-[15px] sm:text-[16px] pb-6 leading-[1.7] pr-6 font-normal">
                         {faq.answer}
-                      </div>
+                      </p>
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
+              </motion.div>
             );
           })}
         </div>
-
       </div>
     </section>
   );
 }
-

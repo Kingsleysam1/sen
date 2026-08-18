@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { MILESTONES } from '../data/shalomData';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { GsapScrollReveal } from './GsapScrollReveal';
+import { MILESTONES } from '../data/shalomData';
 import Smooth3DSlideshow from './originkit/ui/coverflowgallery';
-import { useTheme } from '../context/ThemeContext';
+import { useEffect, useState } from 'react';
 
 interface MilestonesSectionProps {
   onOpenBooking: () => void;
@@ -10,56 +11,54 @@ interface MilestonesSectionProps {
 
 export function MilestonesSection({ onOpenBooking: _onOpenBooking }: MilestonesSectionProps) {
   const [isMobile, setIsMobile] = useState(false);
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 640);
-    };
+    const handleResize = () => setIsMobile(window.innerWidth < 640);
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const coverflowSlides = MILESTONES.map((m) => ({
-    image: {
-      src: m.image,
-      alt: m.title,
-    },
+    image: { src: m.image, alt: m.title },
     title: m.title,
   }));
 
   return (
-    <section id="milestones" className={`py-20 sm:py-28 px-6 md:px-12 relative overflow-hidden transition-colors duration-500 ${
-      isLight ? 'bg-[#FAF9F5] text-stone-900' : 'bg-[#0A0B0D] text-[#F3F3EE]'
-    }`}>
-      <div className="max-w-7xl mx-auto space-y-12">
-        
-        {/* Section Header */}
+    <section
+      id="milestones"
+      className="bg-[#0E110E] border-t border-white/[0.08]"
+      aria-labelledby="milestones-heading"
+    >
+      <div className="site-container section-padding">
+
+        {/* ── Header ── */}
         <GsapScrollReveal>
-          <div className="flex flex-col md:flex-row md:items-end justify-between pb-2 gap-6">
-            <div className="space-y-2">
-              <span className={`text-xs font-mono uppercase tracking-[0.25em] block ${
-                isLight ? 'text-amber-800 font-semibold' : 'text-[#C8C3A7]'
-              }`}>
-                SELECTED ENGAGEMENTS & MILESTONES
-              </span>
-              <h2 className={`text-3xl sm:text-5xl font-normal ${
-                isLight ? 'text-stone-900' : 'text-[#F3F3EE]'
-              }`}>
-                Milestone Engagements & Policy Advisory
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16 md:mb-20">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="block w-8 h-[2px] bg-[#C8A96E]" />
+                <span className="typo-eyebrow">Selected Engagements</span>
+              </div>
+              <h2
+                id="milestones-heading"
+                className="typo-section-heading text-[#F0F5F0]"
+              >
+                Milestone <span className="text-[#C8A96E]">Engagements</span> &amp; Policy Advisory
               </h2>
             </div>
+            <p className="typo-body text-[16px] sm:text-[17px] max-w-[380px] leading-relaxed">
+              A selection of keynotes, state advisories, international policy forums, and institutional inductions.
+            </p>
           </div>
         </GsapScrollReveal>
 
-        {/* 3D Coverflow Gallery View without background bounding box */}
-        <div className="relative w-full h-[400px] sm:h-[480px] flex items-center justify-center py-2 overflow-hidden">
+        {/* ── 3D Coverflow Gallery ── */}
+        <div className="relative w-full h-[400px] sm:h-[480px] flex items-center justify-center overflow-hidden">
           <Smooth3DSlideshow
             slides={coverflowSlides}
-            cardWidth={isMobile ? 290 : 420}
-            cardHeight={isMobile ? 310 : 360}
+            cardWidth={isMobile ? 280 : 420}
+            cardHeight={isMobile ? 300 : 360}
             radius={2.2}
             tilt={10}
             sideTilt={6}
@@ -68,12 +67,12 @@ export function MilestonesSection({ onOpenBooking: _onOpenBooking }: MilestonesS
             autoplay={true}
             autoplayDirection="rightToLeft"
             showTitle={true}
-            titleColor="#F3F3EE"
+            titleColor="#F0F5F0"
             titleFont={{
-              fontFamily: '"Almarai", sans-serif',
-              fontSize: isMobile ? '18px' : '22px',
+              fontFamily: '"Manrope", sans-serif',
+              fontSize: isMobile ? '16px' : '20px',
               fontWeight: 600,
-              lineHeight: '1.2em',
+              lineHeight: '1.25em',
             }}
             titlePosition={{
               position: 'bottomLeft',
@@ -90,10 +89,8 @@ export function MilestonesSection({ onOpenBooking: _onOpenBooking }: MilestonesS
           />
         </div>
 
+
       </div>
     </section>
   );
 }
-
-
-

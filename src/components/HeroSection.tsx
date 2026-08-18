@@ -1,11 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
-import { WordsPullUp } from './WordsPullUp';
 import { Navbar } from './Navbar';
-import { PROFILE_DATA } from '../data/shalomData';
-import { useTheme } from '../context/ThemeContext';
-import { triggerHaptic } from '../utils/haptics';
 
 interface HeroSectionProps {
   onNavClick: (targetId: string) => void;
@@ -13,125 +8,99 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ onNavClick, onOpenBooking }: HeroSectionProps) {
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (v) {
+      v.playbackRate = 0.75;
+    }
+  }, []);
 
   return (
-    <section className={`relative min-h-screen w-full p-3 sm:p-5 md:p-6 transition-colors duration-500 ${isLight ? 'bg-[#FAF9F5]' : 'bg-[#0A0B0D]'}`}>
-      <div className={`relative min-h-[92vh] sm:min-h-screen w-full rounded-2xl md:rounded-[2.5rem] overflow-hidden flex flex-col justify-between shadow-2xl transition-all duration-500 ${
-        isLight
-          ? 'bg-[#F2F0E8] border border-stone-300/80 shadow-gray-200'
-          : 'bg-[#0D0E11] border border-white/10'
-      }`}>
-        
-        {/* Background Cinematic Video */}
-        <video
-          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className={`absolute inset-0 w-full h-full object-cover z-0 filter transition-all duration-500 ${
-            isLight
-              ? 'brightness-[0.98] contrast-105 saturate-90 opacity-60'
-              : 'brightness-[0.70] contrast-115 saturate-80 opacity-75'
-          }`}
-        />
+    <section
+      id="hero"
+      className="relative w-full min-h-screen flex flex-col justify-between bg-[#0A0908] overflow-hidden"
+      aria-label="Hero"
+    >
+      {/* ── Background Video with Overlay ── */}
+      <video
+        ref={videoRef}
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0 brightness-[0.42] contrast-110 motion-reduce:hidden"
+        aria-hidden="true"
+      />
 
-        {/* Noise overlay */}
-        <div className="noise-overlay absolute inset-0 opacity-[0.1] mix-blend-overlay pointer-events-none z-[1]" />
+      {/* ── Vignette / Gradient Overlays ── */}
+      <div
+        className="absolute inset-0 z-[1] pointer-events-none"
+        style={{
+          background:
+            'linear-gradient(to bottom, rgba(10,9,8,0.7) 0%, rgba(10,9,8,0.25) 40%, rgba(10,9,8,0.75) 80%, #0A0908 100%)',
+        }}
+        aria-hidden="true"
+      />
 
-        {/* Ambient Gradient Mask */}
-        <div className={`absolute inset-0 z-[2] pointer-events-none transition-all duration-500 ${
-          isLight
-            ? 'bg-gradient-to-t from-[#FAF9F5] via-[#FAF9F5]/20 to-transparent'
-            : 'bg-gradient-to-t from-[#0D0E11] via-transparent to-[#0D0E11]/40'
-        }`} />
+      {/* ── Floating Header ── */}
+      <Navbar onNavClick={onNavClick} onOpenBooking={onOpenBooking} />
 
-        {/* Top Navbar */}
-        <Navbar onNavClick={onNavClick} onOpenBooking={onOpenBooking} />
+      {/* ── Hero Main Content ── */}
+      <div className="relative z-10 flex-1 flex flex-col justify-center pt-28 sm:pt-36 pb-16">
+        <div className="site-container w-full">
+          <div className="flex flex-col items-start max-w-6xl">
 
-        {/* Hero Content (bottom-aligned) */}
-        <div className="relative z-10 mt-auto p-6 sm:p-10 md:p-14 lg:p-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end max-w-7xl mx-auto">
-            
-            {/* Left 8 columns for Central Headline */}
-            <div className="lg:col-span-8 flex flex-col justify-end space-y-4">
-              <WordsPullUp
-                text="Lead with Clarity. Build with Purpose."
-                showAsterisk={true}
-                className={`text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-normal sm:font-medium leading-[1.08] tracking-tight select-none ${
-                  isLight ? 'text-stone-900' : 'text-[#F3F3EE]'
-                }`}
-              />
-            </div>
+            {/* Eyebrow: Warm Brown/Gold Uppercase */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="mb-3 sm:mb-4"
+            >
+              <span className="text-[#C8A96E] font-bold text-[13px] sm:text-[15px] tracking-[0.2em] uppercase">
+                MANAGEMENT CONSULTANT • STRATEGIC ADVISOR • INSTITUTION BUILDER
+              </span>
+            </motion.div>
 
-            {/* Right 4 columns for description + CTA */}
-            <div className="lg:col-span-4 space-y-6 pb-1 lg:pb-3">
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.8,
-                  delay: 0.4,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className={`text-xs sm:text-sm md:text-base leading-relaxed max-w-md font-light ${
-                  isLight ? 'text-stone-700' : 'text-[#E2DFD2]/80'
-                }`}
-              >
-                Helping visionary leaders remove operational complexity, align strategy, and build organizations that endure across Africa and globally.
-              </motion.p>
+            {/* Giant Dominant Headline: SHALOM ERNEST */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="font-hero text-white text-[clamp(68px,15vw,190px)] font-normal tracking-[-0.01em] leading-[0.92] uppercase select-none"
+            >
+              SHALOM ERNEST
+            </motion.h1>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.8,
-                  delay: 0.6,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className="flex items-center gap-4 flex-wrap pt-2"
-              >
-                <button
-                  onClick={() => {
-                    triggerHaptic('medium');
-                    onOpenBooking();
-                  }}
-                  className={`group inline-flex items-center gap-3 font-semibold text-xs sm:text-sm pl-6 pr-2.5 py-3 rounded-full transition-all duration-300 cursor-pointer shadow-xl tracking-tight ${
-                    isLight
-                      ? 'bg-amber-600 hover:bg-amber-700 text-white'
-                      : 'bg-[#E2DFD2] hover:bg-white text-black'
-                  }`}
-                >
-                  <span>Book a Strategy Session</span>
-                  <div className={`rounded-full w-8 h-8 flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 ${
-                    isLight ? 'bg-amber-900 text-amber-100' : 'bg-black text-[#E2DFD2]'
-                  }`}>
-                    <ArrowRight className="w-4 h-4" />
-                  </div>
-                </button>
-
-                <button
-                  onClick={() => {
-                    triggerHaptic('light');
-                    onNavClick('bio');
-                  }}
-                  className={`text-xs sm:text-sm transition-colors cursor-pointer font-medium underline underline-offset-4 tracking-tight ${
-                    isLight ? 'text-stone-700 hover:text-stone-900' : 'text-[#E2DFD2]/80 hover:text-[#E2DFD2]'
-                  }`}
-                >
-                  Explore the Journey
-                </button>
-              </motion.div>
-            </div>
-
+            {/* Description on the left */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.35 }}
+              className="mt-6 sm:mt-8 text-stone-200 text-[16px] sm:text-[18px] leading-[1.65] max-w-[540px] font-normal"
+            >
+              Building generational legacies, shaping the next generation of African leaders, and redefining what's possible at the intersection of vision and execution.
+            </motion.p>
           </div>
         </div>
-
       </div>
+
+      {/* ── Center Bottom Scroll Indicator ── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.7, duration: 0.6 }}
+        onClick={() => onNavClick('bio')}
+        className="relative z-10 flex flex-col items-center pb-8 cursor-pointer group"
+      >
+        <div className="w-[3px] h-7 bg-[#C8A96E] rounded-full group-hover:scale-y-110 transition-transform shadow-[0_0_12px_rgba(200,169,110,0.8)]" />
+        <span className="text-[12px] text-stone-400 font-medium tracking-wider mt-2.5 group-hover:text-white transition-colors">
+          Scroll Down
+        </span>
+      </motion.div>
     </section>
   );
 }
-
-

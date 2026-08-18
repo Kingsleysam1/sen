@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTheme } from '../context/ThemeContext';
 
 export type CurtainStage = 'idle' | 'covering' | 'uncovering';
 
@@ -17,8 +16,6 @@ export function CurtainWipe({
   onCoverComplete,
   onUncoverComplete,
 }: CurtainWipeProps) {
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
 
   // High-end cubic bezier easing
   const easeCurve = [0.76, 0, 0.24, 1];
@@ -48,9 +45,7 @@ export function CurtainWipe({
                 onUncoverComplete();
               }
             }}
-            className={`w-full h-full flex flex-col items-center justify-center relative shadow-2xl ${
-              isLight ? 'bg-[#1C1917]' : 'bg-[#0A0B0D]'
-            }`}
+            className="w-full h-full flex flex-col items-center justify-center relative shadow-2xl bg-[#080A08]"
           >
             {/* Top Gold / Amber Line */}
             <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent opacity-90" />
@@ -74,7 +69,7 @@ export function CurtainWipe({
               className="text-center space-y-3 relative z-10 px-6"
             >
               <div className="inline-flex items-center justify-center w-14 h-14 rounded-full border border-amber-500/40 bg-amber-500/10 shadow-lg">
-                <span className="font-serif italic text-amber-400 font-bold text-xl tracking-wider">
+                <span className="font-sans text-amber-400 font-extrabold text-xl tracking-wider">
                   SCE
                 </span>
               </div>
