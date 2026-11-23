@@ -46,7 +46,7 @@ export function PartnersMarquee() {
         {/* ── Header ── */}
         <GsapScrollReveal>
           <div className="flex items-center gap-3 mb-16 md:mb-20">
-            <span className="block w-8 h-[2px] bg-[#C8A96E]" />
+            <span className="block w-8 h-[2px] bg-[#8AC4FF]" />
             <span className="typo-eyebrow">Professional Credibility</span>
           </div>
         </GsapScrollReveal>
@@ -58,9 +58,9 @@ export function PartnersMarquee() {
             <GsapScrollReveal>
               <h2
                 id="credibility-heading"
-                className="typo-section-heading text-[#F0F5F0]"
+                className="typo-section-heading text-[#F0F5F0] text-[clamp(32px,3.8vw,54px)]"
               >
-                Recognised. Certified. <span className="text-[#C8A96E]">Trusted.</span>
+                Recognised. Certified. <span className="text-[#8AC4FF]">Trusted.</span>
               </h2>
             </GsapScrollReveal>
 
@@ -74,9 +74,9 @@ export function PartnersMarquee() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: '-40px' }}
                     transition={{ duration: 0.45, delay: i * 0.06 }}
-                    className="flex items-start gap-4 border-b border-white/[0.06] pb-3"
+                    className="flex items-baseline gap-4 border-b border-white/[0.06] pb-3"
                   >
-                    <span className="font-bold text-[#C8A96E] text-[16px] shrink-0 mt-0.5">
+                    <span className="font-bold text-[#8AC4FF] text-[16px] shrink-0 w-12">
                       {cred.code}
                     </span>
                     <span className="text-[14px] text-[#9EAEA0] leading-snug">
@@ -92,7 +92,7 @@ export function PartnersMarquee() {
                 <span className="typo-eyebrow block mb-4">Honours & Recognition</span>
                 {HONOURS.map((h, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <span className="text-[#C8A96E] mt-1 text-[10px]">◆</span>
+                    <span className="text-[#8AC4FF] mt-1 text-[10px]">◆</span>
                     <p className="text-[13px] text-[#627364] leading-relaxed">{h}</p>
                   </div>
                 ))}

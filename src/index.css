@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
 
 :root {
   /* Fonts — 100% Sans-Serif System */
@@ -8,14 +7,14 @@
   --font-hero: 'Anton', 'Impact', sans-serif;
   --font-mono: 'Space Mono', monospace;
 
-  /* Colors — Warm Brown / Amber-Gold Palette */
+  /* Colors — Light Blue accent on warm ink */
   --color-bg: #0A0908;
   --color-surface: #141210;
   --color-surface-2: #1C1916;
-  --color-accent: #C8A96E;
-  --color-accent-hover: #E5C98E;
-  --color-accent-dim: rgba(200, 169, 110, 0.15);
-  --color-accent-dark: #8B6D3A;
+  --color-accent: #8AC4FF;
+  --color-accent-hover: #B9DCFF;
+  --color-accent-dim: rgba(138, 196, 255, 0.15);
+  --color-accent-dark: #4F8BC4;
   --color-text-primary: #FFFFFF;
   --color-text-secondary: #A8A29E;
   --color-text-tertiary: #78716C;
@@ -26,27 +25,26 @@
   --font-sans: 'Manrope', Arial, sans-serif;
   --font-hero: 'Anton', 'Impact', sans-serif;
   --font-mono: 'Space Mono', monospace;
-  --color-accent: #C8A96E;
-  --color-accent-hover: #E5C98E;
+  --color-accent: #8AC4FF;
+  --color-accent-hover: #B9DCFF;
 }
 
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
-/* Global Selection Highlight in Warm Brown / Gold */
+/* Global Selection Highlight in Light Blue */
 ::selection {
-  background-color: #C8A96E !important;
+  background-color: #8AC4FF !important;
   color: #0A0908 !important;
 }
 
 ::-moz-selection {
-  background-color: #C8A96E !important;
+  background-color: #8AC4FF !important;
   color: #0A0908 !important;
 }
 
 html {
-  scroll-behavior: smooth;
   background-color: var(--color-bg);
   color: var(--color-text-primary);
   font-family: var(--font-primary);
@@ -88,6 +86,168 @@ body {
 .section-padding {
   padding-top: clamp(70px, 9vw, 130px);
   padding-bottom: clamp(70px, 9vw, 130px);
+}
+
+/* ── Scroll engine ──────────────────────────────────────────────
+   Lenis owns smooth scrolling. CSS scroll-behavior on top of it makes
+   anchor jumps double-ease, so it is switched off whenever Lenis runs. */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* ── Type + button system ───────────────────────────────────────
+   These classes are used across the sections but were never defined,
+   so eyebrows, section headings, card titles and every button rendered
+   as 16px body text. Utilities in markup (text-[...], bg-[...]) still win. */
+@layer components {
+  .typo-eyebrow {
+    font-family: var(--font-primary);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .typo-section-heading {
+    font-family: var(--font-primary);
+    font-size: clamp(34px, 5vw, 64px);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+
+  .typo-card-title {
+    font-family: var(--font-primary);
+    font-size: clamp(20px, 2vw, 26px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .typo-card-desc {
+    font-family: var(--font-primary);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+    max-width: 62ch;
+  }
+
+  .typo-body {
+    font-family: var(--font-primary);
+    font-size: 16px;
+    line-height: 1.6;
+    color: #9EAEA0;
+  }
+
+  .typo-statement {
+    font-family: var(--font-primary);
+    font-size: clamp(20px, 2.2vw, 30px);
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  .typo-testimonial-quote {
+    font-family: var(--font-primary);
+    font-size: clamp(24px, 3.5vw, 44px);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  .typo-testimonial-author {
+    font-family: var(--font-primary);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #F0F5F0;
+  }
+
+  .typo-testimonial-role {
+    font-family: var(--font-primary);
+    font-size: 14px;
+    line-height: 1.4;
+    color: #9EAEA0;
+  }
+
+  .typo-btn {
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    border-radius: 9999px;
+    background-color: var(--color-accent);
+    color: #0A0908;
+    cursor: pointer;
+    transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-primary:hover { background-color: var(--color-accent-hover); }
+  .btn-primary:active { transform: scale(0.98); }
+  .btn-primary:focus-visible { outline: 2px solid var(--color-accent-hover); outline-offset: 3px; }
+
+  .btn-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 9999px;
+    background-color: rgba(10, 9, 8, 0.14);
+    font-size: 13px;
+    line-height: 1;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-primary:hover .btn-arrow { transform: translateX(3px); }
+}
+
+/* ── Reduced motion ─────────────────────────────────────────────
+   Marquees, smooth scroll and long transitions stop for visitors who
+   ask the OS for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-marquee,
+  .animate-marquee-slow { animation: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Scroll stage ───────────────────────────────────────────────
+   A tall track with one sticky screen inside it. svh so the stage does not
+   jump when a phone's address bar collapses; vh is the fallback. */
+.stage-track {
+  height: calc(100vh + var(--travel, 200) * 1vh);
+  height: calc(100svh + var(--travel, 200) * 1svh);
+}
+.stage-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+}
+
+@keyframes caption-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.caption-in {
+  animation: caption-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes marquee-scroll {

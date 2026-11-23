@@ -21,7 +21,7 @@ function MarqueeContent() {
           <span className="whitespace-nowrap text-[13px] font-semibold uppercase tracking-[0.16em] text-stone-300">
             {item}
           </span>
-          <span className="block w-2 h-2 rounded-full shrink-0 bg-[#C8A96E]" aria-hidden="true" />
+          <span className="block w-2 h-2 rounded-full shrink-0 bg-[#8AC4FF]" aria-hidden="true" />
         </React.Fragment>
       ))}
     </div>

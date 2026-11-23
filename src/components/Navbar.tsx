@@ -69,7 +69,7 @@ export function Navbar({ onNavClick, onOpenBooking }: NavbarProps) {
             <span className="font-extrabold text-[20px] sm:text-[22px] tracking-tight text-white uppercase font-sans">
               SHALOM
             </span>
-            <span className="font-extrabold text-[20px] sm:text-[22px] tracking-tight text-[#C8A96E] uppercase font-sans">
+            <span className="font-extrabold text-[20px] sm:text-[22px] tracking-tight text-[#8AC4FF] uppercase font-sans">
               ERNEST
             </span>
           </button>
@@ -94,11 +94,11 @@ export function Navbar({ onNavClick, onOpenBooking }: NavbarProps) {
             ))}
           </nav>
 
-          {/* Right CTA Button: Pill with warm brown/gold accent */}
+          {/* Right CTA Button: Pill with light blue accent */}
           <div className="hidden lg:flex items-center">
             <button
               onClick={handleBooking}
-              className="px-6 py-2.5 rounded-full border border-[#C8A96E]/60 hover:border-[#C8A96E] bg-[#C8A96E]/10 hover:bg-[#C8A96E]/20 text-[#C8A96E] hover:text-[#E5C98E] text-[13px] font-semibold tracking-wide transition-all duration-200 cursor-pointer shadow-[0_0_20px_rgba(200,169,110,0.15)]"
+              className="px-6 py-2.5 rounded-full border border-[#8AC4FF]/60 hover:border-[#8AC4FF] bg-[#8AC4FF]/10 hover:bg-[#8AC4FF]/20 text-[#8AC4FF] hover:text-[#B9DCFF] text-[13px] font-semibold tracking-wide transition-all duration-200 cursor-pointer shadow-[0_0_20px_rgba(138, 196, 255,0.15)]"
             >
               Get In Touch
             </button>
@@ -108,7 +108,7 @@ export function Navbar({ onNavClick, onOpenBooking }: NavbarProps) {
           <div className="lg:hidden flex items-center gap-3">
             <button
               onClick={handleBooking}
-              className="px-4 py-1.5 rounded-full border border-[#C8A96E]/60 bg-[#C8A96E]/10 text-[#C8A96E] text-[12px] font-semibold"
+              className="px-4 py-1.5 rounded-full border border-[#8AC4FF]/60 bg-[#8AC4FF]/10 text-[#8AC4FF] text-[12px] font-semibold"
             >
               Contact
             </button>
@@ -141,7 +141,7 @@ export function Navbar({ onNavClick, onOpenBooking }: NavbarProps) {
             <div className="flex justify-between items-center absolute top-6 left-6 right-6">
               <div className="flex items-center gap-1.5">
                 <span className="font-extrabold text-[20px] text-white">SHALOM</span>
-                <span className="font-extrabold text-[20px] text-[#C8A96E]">ERNEST</span>
+                <span className="font-extrabold text-[20px] text-[#8AC4FF]">ERNEST</span>
               </div>
               <button onClick={handleToggle} className="text-stone-300 hover:text-white p-2">
                 <X size={24} />
@@ -153,7 +153,7 @@ export function Navbar({ onNavClick, onOpenBooking }: NavbarProps) {
                 <button
                   key={item.target}
                   onClick={() => handleItemClick(item.target)}
-                  className="text-left text-[28px] font-bold text-stone-200 hover:text-[#C8A96E] py-2 border-b border-white/[0.08]"
+                  className="text-left text-[28px] font-bold text-stone-200 hover:text-[#8AC4FF] py-2 border-b border-white/[0.08]"
                 >
                   {item.label}
                 </button>
@@ -162,7 +162,7 @@ export function Navbar({ onNavClick, onOpenBooking }: NavbarProps) {
 
             <button
               onClick={handleBooking}
-              className="w-full py-4 rounded-full bg-[#C8A96E] text-[#0A0908] font-bold text-[15px] tracking-wide"
+              className="w-full py-4 rounded-full bg-[#8AC4FF] text-[#0A0908] font-bold text-[15px] tracking-wide"
             >
               Get In Touch
             </button>

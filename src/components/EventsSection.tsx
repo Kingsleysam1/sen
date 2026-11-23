@@ -58,10 +58,10 @@ function StatusBadge({ status }: { status: string }) {
   return (
     <span className={`inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border ${
       isOpen
-        ? 'bg-[#C8A96E]/15 text-[#E5C98E] border-[#C8A96E]/40'
+        ? 'bg-[#8AC4FF]/15 text-[#B9DCFF] border-[#8AC4FF]/40'
         : 'bg-white/[0.06] text-stone-400 border-white/[0.1]'
     }`}>
-      <span className={`w-1.5 h-1.5 rounded-full ${isOpen ? 'bg-[#C8A96E] animate-pulse' : 'bg-amber-400'}`} />
+      <span className={`w-1.5 h-1.5 rounded-full ${isOpen ? 'bg-[#8AC4FF] animate-pulse' : 'bg-[#B9DCFF]'}`} />
       {status}
     </span>
   );
@@ -107,12 +107,12 @@ function RegistrationModal({
 
         {success ? (
           <div className="text-center py-4 flex flex-col items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-[#C8A96E]/15 border border-[#C8A96E]/30 flex items-center justify-center">
-              <Check size={22} className="text-[#C8A96E]" />
+            <div className="w-12 h-12 rounded-full bg-[#8AC4FF]/15 border border-[#8AC4FF]/30 flex items-center justify-center">
+              <Check size={22} className="text-[#8AC4FF]" />
             </div>
             <h3 className="text-[20px] font-bold text-white">Registration Started</h3>
             <p className="text-stone-400 text-[14px]">You've been redirected to the registration link.</p>
-            <button onClick={onClose} className="px-6 py-2.5 bg-[#C8A96E] text-[#0A0908] font-semibold rounded-full text-[14px] cursor-pointer mt-2">
+            <button onClick={onClose} className="px-6 py-2.5 bg-[#8AC4FF] text-[#0A0908] font-semibold rounded-full text-[14px] cursor-pointer mt-2">
               Done
             </button>
           </div>
@@ -134,11 +134,11 @@ function RegistrationModal({
                     placeholder={placeholder}
                     value={form[key as keyof typeof form]}
                     onChange={(e) => setForm((p) => ({ ...p, [key]: e.target.value }))}
-                    className="bg-[#1C1916] border border-white/[0.08] focus:border-[#C8A96E]/50 rounded-lg px-4 py-3 text-white text-[14px] outline-none transition-colors placeholder:text-stone-600"
+                    className="bg-[#1C1916] border border-white/[0.08] focus:border-[#8AC4FF]/50 rounded-lg px-4 py-3 text-white text-[14px] outline-none transition-colors placeholder:text-stone-600"
                   />
                 </div>
               ))}
-              <button type="submit" className="w-full py-3 bg-[#C8A96E] hover:bg-[#E5C98E] text-[#0A0908] font-bold rounded-full text-[14px] transition-colors cursor-pointer mt-1">
+              <button type="submit" className="w-full py-3 bg-[#8AC4FF] hover:bg-[#B9DCFF] text-[#0A0908] font-bold rounded-full text-[14px] transition-colors cursor-pointer mt-1">
                 Register Now →
               </button>
             </form>
@@ -171,8 +171,8 @@ export function EventsSection() {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <span className="block w-8 h-[2px] bg-[#C8A96E]" />
-                <span className="font-mono text-[11px] font-semibold tracking-[0.16em] uppercase text-[#C8A96E]">
+                <span className="block w-8 h-[2px] bg-[#8AC4FF]" />
+                <span className="font-mono text-[11px] font-semibold tracking-[0.16em] uppercase text-[#8AC4FF]">
                   Hosted Events &amp; Calendar
                 </span>
               </div>
@@ -180,7 +180,7 @@ export function EventsSection() {
                 id="events-heading"
                 className="text-[36px] sm:text-[50px] text-white font-bold leading-tight tracking-tight font-sans"
               >
-                Ideas That <span className="text-[#C8A96E]">Move</span> People
+                Ideas That <span className="text-[#8AC4FF]">Move</span> People
               </h2>
             </div>
           </div>
@@ -211,7 +211,7 @@ export function EventsSection() {
                 <StatusBadge status={featured.status} />
               </div>
               <div className="absolute top-4 right-4">
-                <span className="font-mono text-[10px] uppercase tracking-widest text-[#E5C98E] bg-[#1C1916]/90 px-2.5 py-1 rounded border border-[#C8A96E]/25 backdrop-blur-md">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-[#B9DCFF] bg-[#1C1916]/90 px-2.5 py-1 rounded border border-[#8AC4FF]/25 backdrop-blur-md">
                   {featured.organizer}
                 </span>
               </div>
@@ -220,10 +220,10 @@ export function EventsSection() {
             {/* Content */}
             <div className="p-7 sm:p-8 flex flex-col gap-4 flex-1">
               <div className="flex items-center gap-2 text-stone-500 text-[12px] font-mono">
-                <Clock className="w-3.5 h-3.5 text-[#C8A96E]" />
+                <Clock className="w-3.5 h-3.5 text-[#8AC4FF]" />
                 <span>{featured.dateDisplay} · {featured.timeDisplay}</span>
               </div>
-              <h3 className="text-[24px] sm:text-[28px] font-bold text-white leading-tight tracking-tight group-hover:text-[#C8A96E] transition-colors">
+              <h3 className="text-[24px] sm:text-[28px] font-bold text-white leading-tight tracking-tight group-hover:text-[#8AC4FF] transition-colors">
                 {featured.title}
               </h3>
               <p className="text-stone-400 text-[15px] leading-[1.6]">
@@ -232,7 +232,7 @@ export function EventsSection() {
 
               {/* Location */}
               <div className="flex items-start gap-2 text-stone-500 text-[13px]">
-                <MapPin className="w-4 h-4 text-[#C8A96E] shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-[#8AC4FF] shrink-0 mt-0.5" />
                 <span>{featured.venue}</span>
               </div>
 
@@ -244,7 +244,7 @@ export function EventsSection() {
                     onClick={() => setCalendarMenu(calendarMenu === featured.id ? null : featured.id)}
                     className="inline-flex items-center gap-1.5 bg-white/[0.05] hover:bg-white/[0.09] border border-white/[0.1] text-stone-300 hover:text-white font-mono text-[12px] px-3.5 py-2 rounded-full transition-all cursor-pointer"
                   >
-                    <CalendarPlus className="w-3.5 h-3.5 text-[#C8A96E]" />
+                    <CalendarPlus className="w-3.5 h-3.5 text-[#8AC4FF]" />
                     Calendar
                   </button>
                   <AnimatePresence>
@@ -258,11 +258,11 @@ export function EventsSection() {
                         <a href={getGoogleCalendarUrl(featured)} target="_blank" rel="noopener noreferrer"
                           onClick={() => setCalendarMenu(null)}
                           className="flex items-center gap-2 text-[12px] text-stone-300 hover:text-white px-3 py-2 rounded-lg hover:bg-white/[0.06] transition-colors">
-                          <ExternalLink className="w-3.5 h-3.5 text-[#C8A96E]" /> Google Calendar
+                          <ExternalLink className="w-3.5 h-3.5 text-[#8AC4FF]" /> Google Calendar
                         </a>
                         <button onClick={() => { downloadICS(featured); setCalendarMenu(null); }}
                           className="w-full flex items-center gap-2 text-[12px] text-stone-300 hover:text-white px-3 py-2 rounded-lg hover:bg-white/[0.06] transition-colors cursor-pointer text-left">
-                          <Download className="w-3.5 h-3.5 text-[#C8A96E]" /> Apple / Outlook (.ics)
+                          <Download className="w-3.5 h-3.5 text-[#8AC4FF]" /> Apple / Outlook (.ics)
                         </button>
                       </motion.div>
                     )}
@@ -271,7 +271,7 @@ export function EventsSection() {
 
                 <button
                   onClick={(e) => { e.stopPropagation(); triggerHaptic('medium'); setRegisterEvent(featured); }}
-                  className="inline-flex items-center gap-1.5 bg-[#C8A96E] hover:bg-[#E5C98E] text-[#0A0908] font-bold text-[12px] px-5 py-2 rounded-full transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-1.5 bg-[#8AC4FF] hover:bg-[#B9DCFF] text-[#0A0908] font-bold text-[12px] px-5 py-2 rounded-full transition-colors cursor-pointer"
                 >
                   Register →
                 </button>
@@ -305,12 +305,12 @@ export function EventsSection() {
                 <div className="flex flex-col justify-between gap-1 min-w-0 flex-1">
                   <div>
                     <StatusBadge status={event.status} />
-                    <h3 className="text-[16px] font-bold text-white mt-1.5 line-clamp-2 leading-snug group-hover:text-[#C8A96E] transition-colors">
+                    <h3 className="text-[16px] font-bold text-white mt-1.5 line-clamp-2 leading-snug group-hover:text-[#8AC4FF] transition-colors">
                       {event.title}
                     </h3>
                   </div>
                   <div className="flex items-center gap-1.5 text-stone-500 text-[11px] font-mono">
-                    <Clock className="w-3 h-3 text-[#C8A96E]" />
+                    <Clock className="w-3 h-3 text-[#8AC4FF]" />
                     <span>{event.dateDisplay}</span>
                   </div>
                 </div>
@@ -319,7 +319,7 @@ export function EventsSection() {
 
             {/* Bottom CTA block (mirrors quote block in ArticlesSection) */}
             <div className="mt-auto p-6 sm:p-7 bg-[#141210] flex flex-col gap-3">
-              <span className="text-[#C8A96E]/20 text-[40px] font-extrabold leading-none select-none">"</span>
+              <span className="text-[#8AC4FF]/20 text-[40px] font-extrabold leading-none select-none">"</span>
               <p className="text-[16px] font-semibold text-stone-300 leading-snug">
                 Every great leader needs a room that challenges them to grow.
               </p>
@@ -360,7 +360,7 @@ export function EventsSection() {
               <div className="mt-4 flex gap-3 justify-center">
                 <button
                   onClick={() => { setRegisterEvent(flyerOpen); setFlyerOpen(null); }}
-                  className="px-6 py-2.5 bg-[#C8A96E] hover:bg-[#E5C98E] text-[#0A0908] font-bold text-[13px] rounded-full transition-colors cursor-pointer"
+                  className="px-6 py-2.5 bg-[#8AC4FF] hover:bg-[#B9DCFF] text-[#0A0908] font-bold text-[13px] rounded-full transition-colors cursor-pointer"
                 >
                   Register Now →
                 </button>

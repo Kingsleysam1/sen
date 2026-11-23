@@ -72,14 +72,14 @@ function ExpertiseRow({
       {/* Row Header */}
       <div className="py-6 sm:py-8 px-2 sm:px-4 flex items-start gap-5 sm:gap-8">
         {/* Number */}
-        <span className="font-mono text-[18px] sm:text-[22px] font-bold text-[#C8A96E]/50 group-hover:text-[#C8A96E] transition-colors shrink-0 mt-1">
+        <span className="font-mono text-[18px] sm:text-[22px] font-bold text-[#8AC4FF]/50 group-hover:text-[#8AC4FF] transition-colors shrink-0 mt-1">
           {item.number}
         </span>
 
         {/* Title block */}
         <div className="flex-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="flex flex-col gap-1">
-            <h3 className="typo-card-title text-[#F0F5F0] group-hover:text-[#C8A96E] transition-colors">
+            <h3 className="typo-card-title text-[#F0F5F0] group-hover:text-[#8AC4FF] transition-colors">
               {item.title}
             </h3>
             <span className="typo-eyebrow text-[#627364] group-hover:text-[#9EAEA0] transition-colors">
@@ -102,7 +102,7 @@ function ExpertiseRow({
             <motion.span
               animate={{ rotate: isOpen ? 45 : 0 }}
               transition={{ duration: 0.3 }}
-              className="w-8 h-8 rounded-full border border-white/[0.1] group-hover:border-[#C8A96E]/50 flex items-center justify-center shrink-0 text-[#9EAEA0] group-hover:text-[#C8A96E] transition-colors duration-300"
+              className="w-8 h-8 rounded-full border border-white/[0.1] group-hover:border-[#8AC4FF]/50 flex items-center justify-center shrink-0 text-[#9EAEA0] group-hover:text-[#8AC4FF] transition-colors duration-300"
             >
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <path d="M6 2v8M2 6h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
@@ -179,7 +179,7 @@ export function InitiativesSection({ onOpenBooking }: InitiativesSectionProps) {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16 md:mb-20">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <span className="block w-8 h-[2px] bg-[#C8A96E]" />
+                <span className="block w-8 h-[2px] bg-[#8AC4FF]" />
                 <span className="typo-eyebrow">Areas of Expertise</span>
               </div>
               <h2
@@ -187,7 +187,7 @@ export function InitiativesSection({ onOpenBooking }: InitiativesSectionProps) {
                 className="typo-section-heading text-[#F0F5F0]"
               >
                 Where Vision Meets{' '}
-                <span className="text-[#C8A96E]">Execution</span>
+                <span className="text-[#8AC4FF]">Execution</span>
               </h2>
             </div>
             <button

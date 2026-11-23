@@ -30,11 +30,11 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
         {/* ── 1. JOIN COMMUNITY CARD ── */}
         <GsapScrollReveal>
           <div className="flex flex-col items-center text-center mb-10 sm:mb-12">
-            <span className="text-[#C8A96E] font-bold text-[12px] sm:text-[13px] tracking-[0.22em] uppercase mb-3">
+            <span className="text-[#8AC4FF] font-bold text-[12px] sm:text-[13px] tracking-[0.22em] uppercase mb-3">
               JOIN COMMUNITY
             </span>
             <h2 className="text-[34px] sm:text-[46px] font-bold text-white tracking-tight leading-tight font-sans">
-              Join <span className="text-[#C8A96E]">Shalom Ernest</span> Community
+              Join <span className="text-[#8AC4FF]">Shalom Ernest</span> Community
             </h2>
           </div>
         </GsapScrollReveal>
@@ -44,7 +44,7 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
           <div className="max-w-2xl mx-auto bg-[#141210] border border-white/[0.08] rounded-2xl p-6 sm:p-10 mb-24 sm:mb-32 shadow-2xl">
             {submitted ? (
               <div className="text-center py-8 flex flex-col items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-[#C8A96E]/15 border border-[#C8A96E]/40 flex items-center justify-center text-[#C8A96E]">
+                <div className="w-12 h-12 rounded-full bg-[#8AC4FF]/15 border border-[#8AC4FF]/40 flex items-center justify-center text-[#8AC4FF]">
                   <Check size={24} />
                 </div>
                 <h3 className="text-[20px] font-bold text-white">Welcome to the Community</h3>
@@ -62,7 +62,7 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
                       placeholder="Enter your first name"
                       value={formData.firstName}
                       onChange={(e) => setFormData((p) => ({ ...p, firstName: e.target.value }))}
-                      className="bg-[#0A0908] border border-white/[0.08] focus:border-[#C8A96E]/60 rounded-xl px-4 py-3 text-white text-[14px] outline-none transition-colors placeholder:text-stone-600"
+                      className="bg-[#0A0908] border border-white/[0.08] focus:border-[#8AC4FF]/60 rounded-xl px-4 py-3 text-white text-[14px] outline-none transition-colors placeholder:text-stone-600"
                     />
                   </div>
                   <div className="flex flex-col gap-1.5 text-left">
@@ -73,7 +73,7 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
                       placeholder="Enter last name"
                       value={formData.lastName}
                       onChange={(e) => setFormData((p) => ({ ...p, lastName: e.target.value }))}
-                      className="bg-[#0A0908] border border-white/[0.08] focus:border-[#C8A96E]/60 rounded-xl px-4 py-3 text-white text-[14px] outline-none transition-colors placeholder:text-stone-600"
+                      className="bg-[#0A0908] border border-white/[0.08] focus:border-[#8AC4FF]/60 rounded-xl px-4 py-3 text-white text-[14px] outline-none transition-colors placeholder:text-stone-600"
                     />
                   </div>
                 </div>
@@ -87,7 +87,7 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
                     placeholder="Enter your email"
                     value={formData.email}
                     onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))}
-                    className="bg-[#0A0908] border border-white/[0.08] focus:border-[#C8A96E]/60 rounded-xl px-4 py-3 text-white text-[14px] outline-none transition-colors placeholder:text-stone-600"
+                    className="bg-[#0A0908] border border-white/[0.08] focus:border-[#8AC4FF]/60 rounded-xl px-4 py-3 text-white text-[14px] outline-none transition-colors placeholder:text-stone-600"
                   />
                 </div>
 
@@ -95,7 +95,7 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
                 <div className="flex justify-center pt-3">
                   <button
                     type="submit"
-                    className="w-full sm:w-auto min-w-[220px] py-3.5 px-8 rounded-full bg-[#C8A96E] hover:bg-[#E5C98E] text-[#0A0908] font-bold text-[14px] tracking-wide inline-flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer shadow-lg hover:shadow-[0_0_25px_rgba(200,169,110,0.25)]"
+                    className="w-full sm:w-auto min-w-[220px] py-3.5 px-8 rounded-full bg-[#8AC4FF] hover:bg-[#B9DCFF] text-[#0A0908] font-bold text-[14px] tracking-wide inline-flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer shadow-lg hover:shadow-[0_0_25px_rgba(138, 196, 255,0.25)]"
                   >
                     <span>Join Community</span>
                     <span className="text-[16px]">→</span>
@@ -113,7 +113,7 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
             <span className="font-extrabold text-[22px] tracking-tight text-white uppercase font-sans">
               SHALOM
             </span>
-            <span className="font-extrabold text-[22px] tracking-tight text-[#C8A96E] uppercase font-sans">
+            <span className="font-extrabold text-[22px] tracking-tight text-[#8AC4FF] uppercase font-sans">
               ERNEST
             </span>
           </div>
@@ -137,7 +137,7 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="w-11 h-11 border border-white/[0.1] hover:border-[#C8A96E]/60 bg-[#141210] hover:bg-[#1C1916] flex items-center justify-center text-stone-400 hover:text-[#C8A96E] transition-all rounded-lg"
+                className="w-11 h-11 border border-white/[0.1] hover:border-[#8AC4FF]/60 bg-[#141210] hover:bg-[#1C1916] flex items-center justify-center text-stone-400 hover:text-[#8AC4FF] transition-all rounded-lg"
               >
                 <Icon className="w-4 h-4" />
               </a>

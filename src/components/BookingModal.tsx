@@ -63,7 +63,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
           {/* Header */}
           <div className="mb-6 text-left">
-            <span className="text-[#C8A96E] font-bold text-[11px] sm:text-[12px] tracking-[0.2em] uppercase block mb-1">
+            <span className="text-[#8AC4FF] font-bold text-[11px] sm:text-[12px] tracking-[0.2em] uppercase block mb-1">
               GET IN TOUCH
             </span>
             <h2 className="text-[24px] sm:text-[28px] font-bold text-white tracking-tight font-sans">
@@ -73,14 +73,14 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
           {submitted ? (
             <div className="py-8 text-center flex flex-col items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-[#C8A96E]/15 border border-[#C8A96E]/40 flex items-center justify-center text-[#C8A96E]">
+              <div className="w-12 h-12 rounded-full bg-[#8AC4FF]/15 border border-[#8AC4FF]/40 flex items-center justify-center text-[#8AC4FF]">
                 <Check size={24} />
               </div>
               <h3 className="text-[20px] font-bold text-white">Consultation Request Sent</h3>
               <p className="text-stone-400 text-[14px]">Thank you, {formData.name}. We will review your request and get back to you within 24 hours.</p>
               <button
                 onClick={onClose}
-                className="mt-3 px-6 py-2.5 rounded-full bg-[#C8A96E] text-[#0A0908] font-bold text-[13px] cursor-pointer"
+                className="mt-3 px-6 py-2.5 rounded-full bg-[#8AC4FF] text-[#0A0908] font-bold text-[13px] cursor-pointer"
               >
                 Close
               </button>
@@ -96,7 +96,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                   placeholder="Enter your name"
                   value={formData.name}
                   onChange={(e) => setFormData((p) => ({ ...p, name: e.target.value }))}
-                  className="bg-[#0A0908] border border-white/[0.08] focus:border-[#C8A96E]/60 rounded-xl px-4 py-3 text-white text-[14px] outline-none transition-colors placeholder:text-stone-600"
+                  className="bg-[#0A0908] border border-white/[0.08] focus:border-[#8AC4FF]/60 rounded-xl px-4 py-3 text-white text-[14px] outline-none transition-colors placeholder:text-stone-600"
                 />
               </div>
 
@@ -110,7 +110,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                     placeholder="name@email.com"
                     value={formData.email}
                     onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))}
-                    className="bg-[#0A0908] border border-white/[0.08] focus:border-[#C8A96E]/60 rounded-xl px-4 py-3 text-white text-[14px] outline-none transition-colors placeholder:text-stone-600"
+                    className="bg-[#0A0908] border border-white/[0.08] focus:border-[#8AC4FF]/60 rounded-xl px-4 py-3 text-white text-[14px] outline-none transition-colors placeholder:text-stone-600"
                   />
                 </div>
                 <div className="flex flex-col gap-1.5">
@@ -120,7 +120,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                     placeholder="+234 ..."
                     value={formData.phone}
                     onChange={(e) => setFormData((p) => ({ ...p, phone: e.target.value }))}
-                    className="bg-[#0A0908] border border-white/[0.08] focus:border-[#C8A96E]/60 rounded-xl px-4 py-3 text-white text-[14px] outline-none transition-colors placeholder:text-stone-600"
+                    className="bg-[#0A0908] border border-white/[0.08] focus:border-[#8AC4FF]/60 rounded-xl px-4 py-3 text-white text-[14px] outline-none transition-colors placeholder:text-stone-600"
                   />
                 </div>
               </div>
@@ -131,7 +131,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                 <select
                   value={formData.service}
                   onChange={(e) => setFormData((p) => ({ ...p, service: e.target.value }))}
-                  className="bg-[#0A0908] border border-white/[0.08] focus:border-[#C8A96E]/60 rounded-xl px-4 py-3 text-white text-[14px] outline-none transition-colors cursor-pointer"
+                  className="bg-[#0A0908] border border-white/[0.08] focus:border-[#8AC4FF]/60 rounded-xl px-4 py-3 text-white text-[14px] outline-none transition-colors cursor-pointer"
                 >
                   {SERVICES.map((s) => (
                     <option key={s.id} value={s.title} className="bg-[#141210] text-white">
@@ -149,14 +149,14 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                   placeholder="Tell us about your organization or consulting goals..."
                   value={formData.message}
                   onChange={(e) => setFormData((p) => ({ ...p, message: e.target.value }))}
-                  className="bg-[#0A0908] border border-white/[0.08] focus:border-[#C8A96E]/60 rounded-xl px-4 py-3 text-white text-[14px] outline-none transition-colors resize-none placeholder:text-stone-600"
+                  className="bg-[#0A0908] border border-white/[0.08] focus:border-[#8AC4FF]/60 rounded-xl px-4 py-3 text-white text-[14px] outline-none transition-colors resize-none placeholder:text-stone-600"
                 />
               </div>
 
               {/* Pill Submit Button */}
               <button
                 type="submit"
-                className="w-full py-3.5 mt-2 rounded-full bg-[#C8A96E] hover:bg-[#E5C98E] text-[#0A0908] font-bold text-[14px] tracking-wide inline-flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer shadow-lg hover:shadow-[0_0_20px_rgba(200,169,110,0.25)]"
+                className="w-full py-3.5 mt-2 rounded-full bg-[#8AC4FF] hover:bg-[#B9DCFF] text-[#0A0908] font-bold text-[14px] tracking-wide inline-flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer shadow-lg hover:shadow-[0_0_20px_rgba(138, 196, 255,0.25)]"
               >
                 <span>Send Consultation Request</span>
                 <span className="text-[16px]">→</span>

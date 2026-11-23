@@ -47,8 +47,8 @@ export function CurtainWipe({
             }}
             className="w-full h-full flex flex-col items-center justify-center relative shadow-2xl bg-[#080A08]"
           >
-            {/* Top Gold / Amber Line */}
-            <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent opacity-90" />
+            {/* Top accent line */}
+            <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-[#8AC4FF] to-transparent opacity-90" />
 
             {/* Subtle Grid Accent */}
             <div
@@ -68,8 +68,8 @@ export function CurtainWipe({
               transition={{ duration: 0.25 }}
               className="text-center space-y-3 relative z-10 px-6"
             >
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full border border-amber-500/40 bg-amber-500/10 shadow-lg">
-                <span className="font-sans text-amber-400 font-extrabold text-xl tracking-wider">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full border border-[#8AC4FF]/40 bg-[#8AC4FF]/10 shadow-lg">
+                <span className="font-sans text-[#8AC4FF] font-extrabold text-xl tracking-wider">
                   SCE
                 </span>
               </div>
@@ -77,15 +77,15 @@ export function CurtainWipe({
                 <p className="text-stone-400 font-mono text-[10px] sm:text-xs uppercase tracking-[0.3em] font-medium">
                   TRANSITIONING TO
                 </p>
-                <h4 className="text-amber-200/90 font-mono text-xs sm:text-sm uppercase tracking-[0.2em] font-semibold mt-1">
+                <h4 className="text-[#B9DCFF]/90 font-mono text-xs sm:text-sm uppercase tracking-[0.2em] font-semibold mt-1">
                   {targetLabel || 'SHALOM C. ERNEST'}
                 </h4>
               </div>
-              <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-amber-500/60 to-transparent mx-auto rounded-full" />
+              <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-[#8AC4FF]/60 to-transparent mx-auto rounded-full" />
             </motion.div>
 
-            {/* Bottom Gold / Amber Line */}
-            <div className="absolute bottom-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-amber-500/50 to-transparent" />
+            {/* Bottom accent line */}
+            <div className="absolute bottom-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-[#8AC4FF]/50 to-transparent" />
           </motion.div>
         </div>
       )}

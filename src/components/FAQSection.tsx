@@ -18,10 +18,10 @@ export function FAQSection() {
         {/* ── Uniform Section Header (matches Testimonials) ── */}
         <GsapScrollReveal>
           <div className="flex items-center gap-3 mb-12 sm:mb-16">
-            <span className="block w-8 h-[2px] bg-[#C8A96E]" />
+            <span className="block w-8 h-[2px] bg-[#8AC4FF]" />
             <h2
               id="faq-heading"
-              className="font-mono text-[11px] font-semibold tracking-[0.16em] uppercase text-[#C8A96E]"
+              className="font-mono text-[11px] font-semibold tracking-[0.16em] uppercase text-[#8AC4FF]"
             >
               FAQ
             </h2>
@@ -46,13 +46,13 @@ export function FAQSection() {
                   className="w-full flex items-start justify-between gap-6 py-6 text-left cursor-pointer group"
                   aria-expanded={isOpen}
                 >
-                  <span className="text-[17px] sm:text-[19px] font-semibold text-white group-hover:text-[#C8A96E] transition-colors leading-snug tracking-tight">
+                  <span className="text-[17px] sm:text-[19px] font-semibold text-white group-hover:text-[#8AC4FF] transition-colors leading-snug tracking-tight">
                     {faq.question}
                   </span>
                   <motion.span
                     animate={{ rotate: isOpen ? 45 : 0 }}
                     transition={{ duration: 0.25 }}
-                    className="shrink-0 w-7 h-7 rounded-full border border-white/[0.1] group-hover:border-[#C8A96E]/50 flex items-center justify-center text-stone-400 group-hover:text-[#C8A96E] transition-colors text-sm mt-0.5"
+                    className="shrink-0 w-7 h-7 rounded-full border border-white/[0.1] group-hover:border-[#8AC4FF]/50 flex items-center justify-center text-stone-400 group-hover:text-[#8AC4FF] transition-colors text-sm mt-0.5"
                   >
                     +
                   </motion.span>

@@ -154,7 +154,7 @@ export function Chatbot({ onOpenBooking }: { onOpenBooking?: () => void }) {
       const parts = line.split(/(\*\*.*?\*\*)/g);
       const renderedLine = parts.map((part, pIdx) => {
         if (part.startsWith('**') && part.endsWith('**')) {
-          return <strong key={pIdx} className="font-semibold text-[#E5C98E]">{part.slice(2, -2)}</strong>;
+          return <strong key={pIdx} className="font-semibold text-[#B9DCFF]">{part.slice(2, -2)}</strong>;
         }
         return part;
       });
@@ -191,14 +191,14 @@ export function Chatbot({ onOpenBooking }: { onOpenBooking?: () => void }) {
             <div className="px-4 py-3.5 bg-[#1C1916] border-b border-white/[0.08] flex items-center justify-between shrink-0">
               <div className="flex items-center gap-2.5">
                 <div className="relative">
-                  <div className="w-8 h-8 rounded-full bg-[#C8A96E]/20 border border-[#C8A96E]/40 flex items-center justify-center text-[#C8A96E]">
+                  <div className="w-8 h-8 rounded-full bg-[#8AC4FF]/20 border border-[#8AC4FF]/40 flex items-center justify-center text-[#8AC4FF]">
                     <Bot className="w-4 h-4" />
                   </div>
-                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-[#C8A96E] border-2 border-[#1C1916] rounded-full" />
+                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-[#8AC4FF] border-2 border-[#1C1916] rounded-full" />
                 </div>
                 <div>
                   <h4 className="text-[12px] font-bold uppercase tracking-wider text-white flex items-center gap-1.5 font-sans">
-                    Clarity AI <Sparkles className="w-3 h-3 text-[#C8A96E]" />
+                    Clarity AI <Sparkles className="w-3 h-3 text-[#8AC4FF]" />
                   </h4>
                   <p className="text-[10px] text-stone-400 font-mono">Shalom Ernest Assistant</p>
                 </div>
@@ -232,7 +232,7 @@ export function Chatbot({ onOpenBooking }: { onOpenBooking?: () => void }) {
                   }`}
                 >
                   {msg.role === 'assistant' && (
-                    <div className="w-6 h-6 rounded-full bg-[#C8A96E]/15 border border-[#C8A96E]/30 flex items-center justify-center shrink-0 mt-0.5 text-[#C8A96E]">
+                    <div className="w-6 h-6 rounded-full bg-[#8AC4FF]/15 border border-[#8AC4FF]/30 flex items-center justify-center shrink-0 mt-0.5 text-[#8AC4FF]">
                       <Bot className="w-3 h-3" />
                     </div>
                   )}
@@ -240,7 +240,7 @@ export function Chatbot({ onOpenBooking }: { onOpenBooking?: () => void }) {
                   <div
                     className={`max-w-[84%] rounded-2xl p-3.5 ${
                       msg.role === 'user'
-                        ? 'bg-[#C8A96E] text-[#0A0908] font-medium rounded-br-none shadow-md'
+                        ? 'bg-[#8AC4FF] text-[#0A0908] font-medium rounded-br-none shadow-md'
                         : 'bg-[#1C1916] border border-white/[0.08] text-stone-200 rounded-bl-none shadow-sm'
                     }`}
                   >
@@ -265,13 +265,13 @@ export function Chatbot({ onOpenBooking }: { onOpenBooking?: () => void }) {
               {/* Typing Indicator */}
               {isLoading && (
                 <div className="flex gap-2.5 items-center text-stone-400 text-xs pl-1">
-                  <div className="w-6 h-6 rounded-full bg-[#C8A96E]/15 border border-[#C8A96E]/30 flex items-center justify-center shrink-0 text-[#C8A96E]">
+                  <div className="w-6 h-6 rounded-full bg-[#8AC4FF]/15 border border-[#8AC4FF]/30 flex items-center justify-center shrink-0 text-[#8AC4FF]">
                     <Bot className="w-3 h-3" />
                   </div>
                   <div className="bg-[#1C1916] border border-white/[0.08] rounded-2xl rounded-bl-none px-3.5 py-2.5 flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 bg-[#C8A96E] rounded-full animate-bounce [animation-delay:-0.3s]" />
-                    <span className="w-1.5 h-1.5 bg-[#C8A96E] rounded-full animate-bounce [animation-delay:-0.15s]" />
-                    <span className="w-1.5 h-1.5 bg-[#C8A96E] rounded-full animate-bounce" />
+                    <span className="w-1.5 h-1.5 bg-[#8AC4FF] rounded-full animate-bounce [animation-delay:-0.3s]" />
+                    <span className="w-1.5 h-1.5 bg-[#8AC4FF] rounded-full animate-bounce [animation-delay:-0.15s]" />
+                    <span className="w-1.5 h-1.5 bg-[#8AC4FF] rounded-full animate-bounce" />
                   </div>
                 </div>
               )}
@@ -286,7 +286,7 @@ export function Chatbot({ onOpenBooking }: { onOpenBooking?: () => void }) {
                   <button
                     key={i}
                     onClick={() => handleSend(q)}
-                    className="shrink-0 text-[11px] bg-[#1C1916] hover:bg-[#C8A96E]/20 hover:text-[#E5C98E] border border-white/[0.08] hover:border-[#C8A96E]/50 text-stone-300 px-3 py-1 rounded-full transition-colors whitespace-nowrap cursor-pointer"
+                    className="shrink-0 text-[11px] bg-[#1C1916] hover:bg-[#8AC4FF]/20 hover:text-[#B9DCFF] border border-white/[0.08] hover:border-[#8AC4FF]/50 text-stone-300 px-3 py-1 rounded-full transition-colors whitespace-nowrap cursor-pointer"
                   >
                     {q}
                   </button>
@@ -296,14 +296,14 @@ export function Chatbot({ onOpenBooking }: { onOpenBooking?: () => void }) {
 
             {/* Footer Direct Booking Callout */}
             {onOpenBooking && (
-              <div className="px-3.5 py-2 bg-[#191613] border-t border-[#C8A96E]/20 flex items-center justify-between text-[11px] shrink-0">
+              <div className="px-3.5 py-2 bg-[#191613] border-t border-[#8AC4FF]/20 flex items-center justify-between text-[11px] shrink-0">
                 <span className="text-stone-300">Need executive consultation?</span>
                 <button
                   onClick={() => {
                     setIsOpen(false);
                     onOpenBooking();
                   }}
-                  className="text-[#C8A96E] hover:text-[#E5C98E] font-semibold hover:underline flex items-center gap-0.5 cursor-pointer"
+                  className="text-[#8AC4FF] hover:text-[#B9DCFF] font-semibold hover:underline flex items-center gap-0.5 cursor-pointer"
                 >
                   Book Session →
                 </button>
@@ -324,12 +324,12 @@ export function Chatbot({ onOpenBooking }: { onOpenBooking?: () => void }) {
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask Clarity AI..."
                 disabled={isLoading}
-                className="flex-1 bg-[#0A0908] border border-white/[0.08] focus:border-[#C8A96E]/60 rounded-xl px-3.5 py-2.5 text-[13px] text-white placeholder-stone-500 focus:outline-none transition-colors"
+                className="flex-1 bg-[#0A0908] border border-white/[0.08] focus:border-[#8AC4FF]/60 rounded-xl px-3.5 py-2.5 text-[13px] text-white placeholder-stone-500 focus:outline-none transition-colors"
               />
               <button
                 type="submit"
                 disabled={!input.trim() || isLoading}
-                className="p-2.5 bg-[#C8A96E] hover:bg-[#E5C98E] disabled:opacity-40 text-[#0A0908] font-bold rounded-xl transition-all shrink-0 cursor-pointer shadow-md"
+                className="p-2.5 bg-[#8AC4FF] hover:bg-[#B9DCFF] disabled:opacity-40 text-[#0A0908] font-bold rounded-xl transition-all shrink-0 cursor-pointer shadow-md"
                 aria-label="Send message"
               >
                 <Send className="w-4 h-4" />
@@ -347,26 +347,26 @@ export function Chatbot({ onOpenBooking }: { onOpenBooking?: () => void }) {
         }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="group relative w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#141210] border border-[#C8A96E]/50 text-white shadow-2xl hover:border-[#C8A96E] transition-all cursor-pointer flex items-center justify-center overflow-hidden hover:shadow-[0_0_25px_rgba(200,169,110,0.3)]"
+        className="group relative w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#141210] border border-[#8AC4FF]/50 text-white shadow-2xl hover:border-[#8AC4FF] transition-all cursor-pointer flex items-center justify-center overflow-hidden hover:shadow-[0_0_25px_rgba(138, 196, 255,0.3)]"
         aria-label="Toggle Clarity AI Chatbot"
       >
         <div className="relative z-10">
           {isOpen ? (
-            <X className="w-6 h-6 text-[#C8A96E]" />
+            <X className="w-6 h-6 text-[#8AC4FF]" />
           ) : (
-            <MessageSquare className="w-6 h-6 text-[#C8A96E] group-hover:rotate-6 transition-transform" />
+            <MessageSquare className="w-6 h-6 text-[#8AC4FF] group-hover:rotate-6 transition-transform" />
           )}
         </div>
 
         {/* Pulsing indicator when closed */}
         {!isOpen && (
           <span className="absolute top-2.5 right-2.5 flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#C8A96E] opacity-75" />
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#C8A96E]" />
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#8AC4FF] opacity-75" />
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#8AC4FF]" />
           </span>
         )}
 
-        <div className="absolute inset-0 bg-[#C8A96E]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+        <div className="absolute inset-0 bg-[#8AC4FF]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
       </motion.button>
     </div>
   );

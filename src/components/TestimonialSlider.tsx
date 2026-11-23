@@ -59,7 +59,7 @@ export function TestimonialSlider() {
         {/* ── Header ── */}
         <GsapScrollReveal>
           <div className="flex items-center gap-3 mb-16 md:mb-20">
-            <span className="block w-8 h-[2px] bg-[#C8A96E]" />
+            <span className="block w-8 h-[2px] bg-[#8AC4FF]" />
             <span className="typo-eyebrow">Executive Testimonials</span>
           </div>
         </GsapScrollReveal>
@@ -70,7 +70,7 @@ export function TestimonialSlider() {
           <div className="lg:col-span-3 flex flex-col items-start gap-8">
             {/* Quote Mark */}
             <div
-              className="text-[#C8A96E]/20 select-none leading-none text-[90px] sm:text-[120px] font-extrabold"
+              className="text-[#8AC4FF]/20 select-none leading-none text-[90px] sm:text-[120px] font-extrabold"
               aria-hidden="true"
             >
               “
@@ -81,14 +81,14 @@ export function TestimonialSlider() {
               <button
                 onClick={() => go(-1)}
                 aria-label="Previous testimonial"
-                className="w-12 h-12 rounded-full border border-white/[0.1] hover:border-[#C8A96E]/50 flex items-center justify-center text-[#9EAEA0] hover:text-[#C8A96E] transition-colors cursor-pointer"
+                className="w-12 h-12 rounded-full border border-white/[0.1] hover:border-[#8AC4FF]/50 flex items-center justify-center text-[#9EAEA0] hover:text-[#8AC4FF] transition-colors cursor-pointer"
               >
                 ←
               </button>
               <button
                 onClick={() => go(1)}
                 aria-label="Next testimonial"
-                className="w-12 h-12 rounded-full border border-white/[0.1] hover:border-[#C8A96E]/50 flex items-center justify-center text-[#9EAEA0] hover:text-[#C8A96E] transition-colors cursor-pointer"
+                className="w-12 h-12 rounded-full border border-white/[0.1] hover:border-[#8AC4FF]/50 flex items-center justify-center text-[#9EAEA0] hover:text-[#8AC4FF] transition-colors cursor-pointer"
               >
                 →
               </button>
@@ -102,7 +102,7 @@ export function TestimonialSlider() {
                   onClick={() => { setDirection(idx > currentIndex ? 1 : -1); setCurrentIndex(idx); }}
                   aria-label={`Testimonial ${idx + 1}`}
                   className={`block h-[3px] rounded-full transition-all duration-300 cursor-pointer ${
-                    idx === currentIndex ? 'w-8 bg-[#C8A96E]' : 'w-3 bg-white/20 hover:bg-white/40'
+                    idx === currentIndex ? 'w-8 bg-[#8AC4FF]' : 'w-3 bg-white/20 hover:bg-white/40'
                   }`}
                 />
               ))}
@@ -130,8 +130,8 @@ export function TestimonialSlider() {
 
                 {/* Author Info */}
                 <footer className="flex items-center gap-4 border-t border-white/[0.08] pt-6">
-                  <div className="w-12 h-12 rounded-full bg-[#C8A96E]/15 border border-[#C8A96E]/30 flex items-center justify-center shrink-0">
-                    <span className="text-[18px] font-bold text-[#C8A96E]">
+                  <div className="w-12 h-12 rounded-full bg-[#8AC4FF]/15 border border-[#8AC4FF]/30 flex items-center justify-center shrink-0">
+                    <span className="text-[18px] font-bold text-[#8AC4FF]">
                       {current.name.charAt(0)}
                     </span>
                   </div>

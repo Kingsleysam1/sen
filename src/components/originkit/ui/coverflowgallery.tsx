@@ -42,6 +42,13 @@ interface Smooth3DSlideshowProps {
         paddingBottom?: number
     }
     style?: CSSProperties
+    /**
+     * Scroll-driven mode. A fractional card index (0 to slides.length - 1).
+     * When set, the caller owns the motion: autoplay, click and arrow keys are
+     * off and the CSS transition is removed, so every frame is a direct
+     * function of this number.
+     */
+    position?: number
 }
 
 const DEFAULT_SLIDES: Slide[] = [
@@ -124,6 +131,7 @@ export default function Smooth3DSlideshow(props: Smooth3DSlideshowProps) {
         titleColor = "#ffffff",
         titlePosition,
         style,
+        position,
     } = props
 
     const tp = titlePosition || {}
@@ -142,6 +150,9 @@ export default function Smooth3DSlideshow(props: Smooth3DSlideshowProps) {
     // Loop is always on.
     const loop = true
     const [active, setActive] = useState(0)
+
+    const scrubbed = typeof position === "number"
+    const pos = scrubbed ? Math.max(0, Math.min(n - 1, position as number)) : active
 
     // Keep active valid if the slide list changes.
     useEffect(() => {
@@ -177,11 +188,11 @@ export default function Smooth3DSlideshow(props: Smooth3DSlideshowProps) {
 
     const handleCardClick = useCallback(
         (i: number) => {
-            if (isStatic || autoplay || lockRef.current) return
+            if (isStatic || scrubbed || autoplay || lockRef.current) return
             lock()
             setActive((a) => (i === a ? (a + 1) % n : i))
         },
-        [isStatic, autoplay, n, lock]
+        [isStatic, scrubbed, autoplay, n, lock]
     )
 
     // Autoplay — the transition's Delay drives the time each card holds.
@@ -190,12 +201,12 @@ export default function Smooth3DSlideshow(props: Smooth3DSlideshowProps) {
             ? transition.delay
             : 2.5
     useEffect(() => {
-        if (isStatic || !autoplay || n < 2) return
+        if (isStatic || scrubbed || !autoplay || n < 2) return
         const ms = Math.max(0.3, delay) * 1000
         const dir = autoplayDirection === "leftToRight" ? -1 : 1
         const id = window.setInterval(() => step(dir), ms)
         return () => window.clearInterval(id)
-    }, [isStatic, autoplay, autoplayDirection, delay, n, step])
+    }, [isStatic, scrubbed, autoplay, autoplayDirection, delay, n, step])
 
     const onKeyDown = useCallback(
         (e: React.KeyboardEvent) => {
@@ -221,12 +232,12 @@ export default function Smooth3DSlideshow(props: Smooth3DSlideshowProps) {
     const dim = 1 - Math.max(0, Math.min(100, opacity)) / 100
 
     const rootStyle: CSSProperties = {
+        minWidth: 320,
+        minHeight: 360,
         ...(style || {}),
         position: "relative",
         width: "100%",
         height: "100%",
-        minWidth: 320,
-        minHeight: 360,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -238,10 +249,10 @@ export default function Smooth3DSlideshow(props: Smooth3DSlideshowProps) {
     return (
         <div
             style={rootStyle}
-            tabIndex={0}
+            tabIndex={scrubbed ? undefined : 0}
             role="group"
             aria-roledescription="carousel"
-            onKeyDown={isStatic ? undefined : onKeyDown}
+            onKeyDown={isStatic || scrubbed ? undefined : onKeyDown}
         >
             <div
                 style={{
@@ -252,14 +263,14 @@ export default function Smooth3DSlideshow(props: Smooth3DSlideshowProps) {
                 }}
             >
                 {list.map((slide, i) => {
-                    let rel = i - active
-                    if (loop) {
+                    let rel = i - pos
+                    if (loop && !scrubbed) {
                         if (rel > n / 2) rel -= n
                         if (rel < -n / 2) rel += n
                     }
                     const ax = Math.abs(rel)
-                    const visible = ax <= MAX_VISIBLE
-                    const isActive = rel === 0
+                    const visible = scrubbed ? ax < MAX_VISIBLE + 1 : ax <= MAX_VISIBLE
+                    const isActive = scrubbed ? ax < 0.5 : rel === 0
                     const sc = Math.max(0.4, 1 - ax * SCALE_STEP)
                     // Gap 0–20 → spacing 0 (stacked) to ~600px (far apart).
                     const tx = rel * (gap * 30)
@@ -279,11 +290,20 @@ export default function Smooth3DSlideshow(props: Smooth3DSlideshowProps) {
                         transformStyle: "preserve-3d",
                         transformOrigin: "center center",
                         transform: `translate(-50%, -50%) translateX(${tx}px) translateZ(${tz}px) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${sc})`,
-                        transition: transitionCss,
-                        opacity: visible ? 1 : 0,
-                        cursor: autoplay || isActive ? "default" : "pointer",
+                        transition: scrubbed ? "none" : transitionCss,
+                        opacity: scrubbed
+                            ? Math.max(0, Math.min(1, MAX_VISIBLE + 1 - ax))
+                            : visible
+                              ? 1
+                              : 0,
+                        cursor:
+                            scrubbed || autoplay || isActive
+                                ? "default"
+                                : "pointer",
                         pointerEvents:
-                            visible && !isStatic && !autoplay ? "auto" : "none",
+                            visible && !isStatic && !autoplay && !scrubbed
+                                ? "auto"
+                                : "none",
                         backgroundColor: "#1a1a1a",
                     }
 
@@ -360,8 +380,14 @@ export default function Smooth3DSlideshow(props: Smooth3DSlideshowProps) {
                                     position: "absolute",
                                     inset: 0,
                                     background: "#000000",
-                                    opacity: isActive ? 0 : dim,
-                                    transition: `opacity ${dur}s ${ease}`,
+                                    opacity: scrubbed
+                                        ? dim * Math.min(1, ax)
+                                        : isActive
+                                          ? 0
+                                          : dim,
+                                    transition: scrubbed
+                                        ? "none"
+                                        : `opacity ${dur}s ${ease}`,
                                     pointerEvents: "none",
                                 }}
                             />

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { MotionConfig } from 'framer-motion';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import Lenis from 'lenis';
 import gsap from 'gsap';
@@ -45,52 +46,16 @@ const SECTION_LABELS: Record<string, string> = {
   faq:          'ENGAGEMENT ENQUIRIES',
 };
 
-const SECTION_SEO: Record<string, { title: string; description: string }> = {
-  hero: {
-    title: 'Shalom C. Ernest | Management Consultant & Executive Leadership Trainer',
-    description: 'Equipping leaders. Transforming organisations. Shalom C. Ernest (FIMC, CMC) — Strategic Advisor helping executives and institutions build strategic clarity and lasting impact across Africa.',
-  },
-  bio: {
-    title: 'About Shalom C. Ernest | Management Consultant & Strategic Advisor',
-    description: 'Shalom C. Ernest is a Certified Management Consultant (CMC, FIMC) with over 9 years of experience advising corporate boards, non-profits, and government agencies across Africa.',
-  },
-  metrics: {
-    title: 'Impact Record | Shalom C. Ernest',
-    description: '10,000+ leaders trained, 9+ years executive advisory, 95% client satisfaction rate. The measured impact of Shalom C. Ernest.',
-  },
-  initiatives: {
-    title: 'Areas of Expertise | Shalom C. Ernest',
-    description: 'Strategic Discovery, Executive Leadership Training, Corporate Alignment Advisory, and Clarity Coaching — delivered by Shalom C. Ernest (FIMC, CMC).',
-  },
-  programs: {
-    title: 'Programs & Initiatives | Shalom C. Ernest',
-    description: 'Clarity Conclave, Leadview Consulting, and Youth Making Impact — an ecosystem of leadership programs for individuals, corporations, and youth across Africa.',
-  },
-  partners: {
-    title: 'Professional Credibility | Shalom C. Ernest',
-    description: 'FIMC, CMC certified. Fellow of the Lateef Jakande Leadership Academy. Tony Elumelu Foundation Mentor. John Maxwell Team Certified.',
-  },
-  milestones: {
-    title: 'Selected Engagements | Shalom C. Ernest',
-    description: 'Keynote addresses, state advisory, international policy forums, and institutional inductions across Africa and globally.',
-  },
-  events: {
-    title: 'Hosted Events & Calendar | Shalom C. Ernest',
-    description: 'Register for upcoming executive leadership summits, masterclasses, and keynote lectures hosted by Shalom C. Ernest.',
-  },
-  testimonials: {
-    title: 'Executive Testimonials | Shalom C. Ernest',
-    description: 'What leaders, executives, and professionals say about working with Shalom C. Ernest.',
-  },
-  articles: {
-    title: 'Insights & Thinking | Shalom C. Ernest',
-    description: 'Strategic essays, leadership insights, and executive reflections by Shalom C. Ernest (FIMC, CMC).',
-  },
-  faq: {
-    title: 'Engagement Enquiries | Shalom C. Ernest',
-    description: 'Frequently asked questions about executive coaching, management consulting, speaker engagements, and strategy session bookings with Shalom C. Ernest.',
-  },
+// The tab title and share text stay put while the visitor scrolls. Only the
+// booking form and an open article change them.
+const HOME_SEO = {
+  title: 'Shalom C. Ernest | Management Consultant & Executive Leadership Trainer',
+  description: 'Equipping leaders. Transforming organisations. Shalom C. Ernest (FIMC, CMC) — Strategic Advisor helping executives and institutions build strategic clarity and lasting impact across Africa.',
 };
+
+const prefersReducedMotion = () =>
+  typeof window !== 'undefined' &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function MainContent() {
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
@@ -98,53 +63,35 @@ function MainContent() {
   const [curtainStage, setCurtainStage]       = useState<CurtainStage>('idle');
   const [pendingTargetId, setPendingTargetId] = useState<string | null>(null);
   const [targetLabel, setTargetLabel]         = useState<string>('');
-  const [activeSection, setActiveSection]     = useState<string>('hero');
 
-  // Lenis smooth scroll
+  // Lenis smooth scroll — one loop, shared with GSAP's ticker. Skipped entirely
+  // for visitors who ask their system for reduced motion.
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
+      lerp: 0.09,
       smoothWheel: true,
       wheelMultiplier: 1,
-      touchMultiplier: 2,
     });
 
     lenis.on('scroll', ScrollTrigger.update);
+    const tick = (time: number) => lenis.raf(time * 1000);
+    gsap.ticker.add(tick);
+    gsap.ticker.lagSmoothing(0);
 
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    return () => { lenis.destroy(); };
-  }, []);
-
-  // Active section detection for SEO
-  useEffect(() => {
-    const sectionIds = ['hero', 'bio', 'metrics', 'initiatives', 'programs', 'partners', 'milestones', 'events', 'testimonials', 'articles', 'faq'];
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveSection(entry.target.id);
-        });
-      },
-      { rootMargin: '-30% 0px -40% 0px', threshold: 0.1 }
-    );
-
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
-    return () => { observer.disconnect(); };
+    return () => {
+      gsap.ticker.remove(tick);
+      lenis.destroy();
+    };
   }, []);
 
   const handleNavClick = (targetId: string) => {
     if (curtainStage !== 'idle') return;
+    if (prefersReducedMotion()) {
+      document.getElementById(targetId)?.scrollIntoView({ behavior: 'auto' });
+      return;
+    }
     setPendingTargetId(targetId);
     setTargetLabel(SECTION_LABELS[targetId] || targetId.toUpperCase());
     setCurtainStage('covering');
@@ -153,10 +100,7 @@ function MainContent() {
   const handleCoverComplete = () => {
     if (pendingTargetId) {
       const el = document.getElementById(pendingTargetId);
-      if (el) {
-        el.scrollIntoView({ behavior: 'auto' });
-        setActiveSection(pendingTargetId);
-      }
+      if (el) el.scrollIntoView({ behavior: 'auto' });
     }
     setTimeout(() => { setCurtainStage('uncovering'); }, 40);
   };
@@ -170,9 +114,10 @@ function MainContent() {
     ? { title: 'Book a Consultation | Shalom C. Ernest', description: 'Reserve an executive consultation or strategy session with Shalom C. Ernest (CMC, FIMC), Management Consultant and Strategic Advisor.' }
     : selectedArticle
     ? { title: `${selectedArticle.title} | Shalom C. Ernest Insights`, description: selectedArticle.summary }
-    : SECTION_SEO[activeSection] || SECTION_SEO.hero;
+    : HOME_SEO;
 
   return (
+    <MotionConfig reducedMotion="user">
     <div className="min-h-screen bg-[#080A08] text-[#F0F5F0] relative">
       {/* Dynamic SEO */}
       <Helmet>
@@ -217,7 +162,7 @@ function MainContent() {
         onUncoverComplete={handleUncoverComplete}
       />
 
-      <main className="w-full overflow-x-hidden">
+      <main className="w-full overflow-x-clip">
 
         {/* 1. HERO — Who is this person? */}
         <HeroSection onNavClick={handleNavClick} onOpenBooking={() => setIsBookingOpen(true)} />
@@ -251,9 +196,7 @@ function MainContent() {
         </GsapScrollReveal>
 
         {/* 8. MILESTONES — What impact have they made? */}
-        <GsapScrollReveal>
-          <MilestonesSection onOpenBooking={() => setIsBookingOpen(true)} />
-        </GsapScrollReveal>
+        <MilestonesSection onOpenBooking={() => setIsBookingOpen(true)} />
 
         {/* 9. EVENTS — Active programmes */}
         <GsapScrollReveal>
@@ -290,6 +233,7 @@ function MainContent() {
       {/* Floating Chatbot */}
       <Chatbot onOpenBooking={() => setIsBookingOpen(true)} />
     </div>
+    </MotionConfig>
   );
 }
 

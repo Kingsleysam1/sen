@@ -79,14 +79,14 @@ export function MetricsSection() {
         {/* ── Centered Header ── */}
         <GsapScrollReveal>
           <div className="flex flex-col items-center text-center space-y-3 mb-16 sm:mb-20">
-            <span className="text-[#C8A96E] font-bold text-[13px] tracking-[0.2em] uppercase">
+            <span className="text-[#8AC4FF] font-bold text-[13px] tracking-[0.2em] uppercase">
               MEASURED MILESTONES
             </span>
             <h2
               id="metrics-heading"
               className="text-[40px] sm:text-[56px] text-white font-bold leading-tight tracking-tight font-sans"
             >
-              The <span className="text-[#C8A96E]">Impact</span> Matrix
+              The <span className="text-[#8AC4FF]">Impact</span> Matrix
             </h2>
           </div>
         </GsapScrollReveal>
@@ -100,10 +100,10 @@ export function MetricsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.55, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className="bg-[#141210] border border-white/[0.08] hover:border-[#C8A96E]/40 rounded-2xl p-8 flex flex-col justify-between min-h-[220px] transition-all duration-300 group shadow-lg hover:shadow-[0_10px_30px_rgba(200,169,110,0.1)]"
+              className="bg-[#141210] border border-white/[0.08] hover:border-[#8AC4FF]/40 rounded-2xl p-8 flex flex-col justify-between min-h-[220px] transition-all duration-300 group shadow-lg hover:shadow-[0_10px_30px_rgba(138, 196, 255,0.1)]"
             >
-              {/* Stat Number in Brown/Gold Sans-serif */}
-              <div className="text-[48px] sm:text-[60px] font-extrabold text-[#C8A96E] leading-none tracking-tight font-sans">
+              {/* Stat Number in Light Blue Sans-serif */}
+              <div className="text-[48px] sm:text-[60px] font-extrabold text-[#8AC4FF] leading-none tracking-tight font-sans">
                 <AnimatedCounter
                   value={stat.value}
                   suffix={stat.suffix}

@@ -25,21 +25,21 @@ export function ArticlesSection({ onSelectArticle }: ArticlesSectionProps) {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16 md:mb-20">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <span className="block w-8 h-[2px] bg-[#C8A96E]" />
+                <span className="block w-8 h-[2px] bg-[#8AC4FF]" />
                 <span className="typo-eyebrow">Insights & Thinking</span>
               </div>
               <h2
                 id="insights-heading"
                 className="typo-section-heading text-[#F0F5F0]"
               >
-                Executive <span className="text-[#C8A96E]">Reflections</span> &amp; Writings
+                Executive <span className="text-[#8AC4FF]">Reflections</span> &amp; Writings
               </h2>
             </div>
             <a
               href="https://www.linkedin.com/in/shalom-ernest-fimc-cmc-4028061a5"
               target="_blank"
               rel="noopener noreferrer"
-              className="self-start lg:self-end flex items-center gap-2 typo-eyebrow text-[#9EAEA0] hover:text-[#C8A96E] transition-colors duration-200 border-b border-white/[0.1] hover:border-[#C8A96E]/50 pb-1"
+              className="self-start lg:self-end flex items-center gap-2 typo-eyebrow text-[#9EAEA0] hover:text-[#8AC4FF] transition-colors duration-200 border-b border-white/[0.1] hover:border-[#8AC4FF]/50 pb-1"
             >
               <span>Read on LinkedIn</span>
               <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
@@ -82,13 +82,13 @@ export function ArticlesSection({ onSelectArticle }: ArticlesSectionProps) {
               <span className="font-mono text-[12px] uppercase tracking-wider text-[#627364]">
                 {featuredArticle.readTime} read
               </span>
-              <h3 className="typo-card-title text-[#F0F5F0] group-hover:text-[#C8A96E] transition-colors duration-300 text-[24px] sm:text-[28px]">
+              <h3 className="typo-card-title text-[#F0F5F0] group-hover:text-[#8AC4FF] transition-colors duration-300 text-[24px] sm:text-[28px]">
                 {featuredArticle.title}
               </h3>
               <p className="typo-body text-[16px] leading-[1.6]">
                 {featuredArticle.summary}
               </p>
-              <div className="mt-auto pt-4 border-t border-white/[0.08] flex items-center gap-2 text-[#C8A96E] typo-btn">
+              <div className="mt-auto pt-4 border-t border-white/[0.08] flex items-center gap-2 text-[#8AC4FF] typo-btn">
                 <span>Read Article</span>
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </div>
@@ -119,7 +119,7 @@ export function ArticlesSection({ onSelectArticle }: ArticlesSectionProps) {
                 {/* Text */}
                 <div className="flex flex-col gap-1.5 min-w-0">
                   <span className="typo-eyebrow text-[11px]">{article.category}</span>
-                  <h3 className="text-[17px] font-bold text-[#F0F5F0] group-hover:text-[#C8A96E] transition-colors duration-300 line-clamp-2 leading-snug">
+                  <h3 className="text-[17px] font-bold text-[#F0F5F0] group-hover:text-[#8AC4FF] transition-colors duration-300 line-clamp-2 leading-snug">
                     {article.title}
                   </h3>
                   <span className="font-mono text-[11px] text-[#627364] mt-auto">
@@ -131,7 +131,7 @@ export function ArticlesSection({ onSelectArticle }: ArticlesSectionProps) {
 
             {/* Inline Quote Block */}
             <div className="mt-auto p-6 sm:p-8 bg-[#0E110E] border-t border-white/[0.08] flex flex-col gap-3">
-              <span className="text-[#C8A96E]/20 text-[40px] font-extrabold leading-none select-none">
+              <span className="text-[#8AC4FF]/20 text-[40px] font-extrabold leading-none select-none">
                 “
               </span>
               <p className="text-[16px] font-semibold text-[#9EAEA0] leading-snug">

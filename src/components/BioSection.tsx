@@ -15,9 +15,9 @@ export function BioSection() {
           {/* LEFT: Statement + Bio Paragraphs (7 cols) */}
           <div className="lg:col-span-7 flex flex-col gap-8">
             
-            {/* Statement with vertical brown/gold accent bar */}
+            {/* Statement with vertical light blue accent bar */}
             <GsapScrollReveal>
-              <div className="border-l-2 border-[#C8A96E] pl-6 sm:pl-8">
+              <div className="border-l-2 border-[#8AC4FF] pl-6 sm:pl-8">
                 <h2
                   id="bio-heading"
                   className="text-[clamp(28px,3.8vw,44px)] font-bold text-white leading-[1.2] tracking-tight font-sans"

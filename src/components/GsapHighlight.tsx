@@ -17,7 +17,7 @@ export function GsapHighlight({
   children,
   className = '',
   delay = 0.2,
-  gradient = 'from-amber-500/30 via-yellow-500/25 to-amber-600/30 border-amber-400/40',
+  gradient = 'from-sky-500/30 via-sky-500/25 to-sky-600/30 border-sky-400/40',
 }: GsapHighlightProps) {
   const containerRef = useRef<HTMLSpanElement>(null);
   const highlightRef = useRef<HTMLSpanElement>(null);
@@ -55,7 +55,7 @@ export function GsapHighlight({
 
   return (
     <span ref={containerRef} className={`relative inline-block px-1.5 py-0.5 my-0.5 rounded ${className}`}>
-      {/* GSAP animated gold-accented background span */}
+      {/* GSAP animated blue-accented background span */}
       <span
         ref={highlightRef}
         className={`absolute inset-0 rounded bg-gradient-to-r ${gradient} border backdrop-blur-[2px] pointer-events-none z-0`}

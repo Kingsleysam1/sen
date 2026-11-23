@@ -53,14 +53,14 @@ export function HeroSection({ onNavClick, onOpenBooking }: HeroSectionProps) {
         <div className="site-container w-full">
           <div className="flex flex-col items-start max-w-6xl">
 
-            {/* Eyebrow: Warm Brown/Gold Uppercase */}
+            {/* Eyebrow: Light Blue Uppercase */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
               className="mb-3 sm:mb-4"
             >
-              <span className="text-[#C8A96E] font-bold text-[13px] sm:text-[15px] tracking-[0.2em] uppercase">
+              <span className="text-[#8AC4FF] font-bold text-[13px] sm:text-[15px] tracking-[0.2em] uppercase">
                 MANAGEMENT CONSULTANT • STRATEGIC ADVISOR • INSTITUTION BUILDER
               </span>
             </motion.div>
@@ -96,7 +96,7 @@ export function HeroSection({ onNavClick, onOpenBooking }: HeroSectionProps) {
         onClick={() => onNavClick('bio')}
         className="relative z-10 flex flex-col items-center pb-8 cursor-pointer group"
       >
-        <div className="w-[3px] h-7 bg-[#C8A96E] rounded-full group-hover:scale-y-110 transition-transform shadow-[0_0_12px_rgba(200,169,110,0.8)]" />
+        <div className="w-[3px] h-7 bg-[#8AC4FF] rounded-full group-hover:scale-y-110 transition-transform shadow-[0_0_12px_rgba(138, 196, 255,0.8)]" />
         <span className="text-[12px] text-stone-400 font-medium tracking-wider mt-2.5 group-hover:text-white transition-colors">
           Scroll Down
         </span>

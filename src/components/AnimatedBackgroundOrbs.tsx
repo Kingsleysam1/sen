@@ -75,13 +75,13 @@ export function AnimatedBackgroundOrbs() {
 
   return (
     <div ref={containerRef} className="fixed inset-0 pointer-events-none z-0 overflow-hidden transition-opacity duration-500">
-      {/* Orb 1: Warm Amber / Gold */}
+      {/* Orb 1: Light blue */}
       <div
         ref={orb1Ref}
         className={`absolute top-[10%] left-[15%] w-[450px] h-[450px] rounded-full ${
           isLight
-            ? 'bg-gradient-to-r from-amber-300/20 via-yellow-200/20 to-orange-300/15 blur-[70px]'
-            : 'bg-gradient-to-r from-amber-600/12 via-yellow-500/8 to-orange-600/8 blur-[80px]'
+            ? 'bg-gradient-to-r from-sky-300/20 via-sky-200/20 to-sky-300/15 blur-[70px]'
+            : 'bg-gradient-to-r from-sky-600/12 via-sky-500/8 to-sky-600/8 blur-[80px]'
         } ${blendClass}`}
       />
 
@@ -110,8 +110,8 @@ export function AnimatedBackgroundOrbs() {
         ref={orb4Ref}
         className={`absolute top-[85%] right-[20%] w-[480px] h-[480px] rounded-full ${
           isLight
-            ? 'bg-gradient-to-r from-orange-300/15 via-amber-300/20 to-yellow-200/15 blur-[70px]'
-            : 'bg-gradient-to-r from-orange-600/12 via-amber-700/10 to-yellow-600/8 blur-[80px]'
+            ? 'bg-gradient-to-r from-sky-300/15 via-sky-300/20 to-sky-200/15 blur-[70px]'
+            : 'bg-gradient-to-r from-sky-600/12 via-sky-700/10 to-sky-600/8 blur-[80px]'
         } ${blendClass}`}
       />
     </div>

@@ -23,8 +23,8 @@ export function CTASection({ onOpenBooking }: CTASectionProps) {
         aria-hidden="true"
       />
 
-      {/* Gold top line */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#C8A96E]" />
+      {/* Accent top line */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#8AC4FF]" />
 
       <div className="site-container py-20 sm:py-28 lg:py-32 relative z-10">
         <div className="max-w-4xl mx-auto text-center flex flex-col items-center gap-8 sm:gap-10">
@@ -37,11 +37,11 @@ export function CTASection({ onOpenBooking }: CTASectionProps) {
             transition={{ duration: 0.6 }}
             className="flex items-center gap-3"
           >
-            <span className="block w-8 h-[2px] bg-[#C8A96E]" />
+            <span className="block w-8 h-[2px] bg-[#8AC4FF]" />
             <span className="typo-eyebrow text-[#080A08]">
               Start a Conversation
             </span>
-            <span className="block w-8 h-[2px] bg-[#C8A96E]" />
+            <span className="block w-8 h-[2px] bg-[#8AC4FF]" />
           </motion.div>
 
           {/* Headline: clamp(48px, 5vw, 76px), 800, -0.04em */}
@@ -79,7 +79,7 @@ export function CTASection({ onOpenBooking }: CTASectionProps) {
               className="btn-primary bg-[#080A08] text-[#F0F5F0] hover:bg-[#141714] py-4 px-8 typo-btn"
             >
               <span>Book a Consultation</span>
-              <span className="btn-arrow bg-[#C8A96E] text-[#080A08]">
+              <span className="btn-arrow bg-[#8AC4FF] text-[#080A08]">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                   <path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="#080A08" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
