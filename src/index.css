@@ -5,7 +5,7 @@
   --font-primary: 'Inter Tight Variable', 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
   --font-sans: 'Inter Tight Variable', 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
   --font-hero: 'Inter Tight Variable', 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
-  --font-mono: 'Space Mono', monospace;
+  --font-mono: 'Inter Tight Variable', 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
 
   /* Colors — Light Blue accent on warm ink */
   --color-bg: #0A0908;
@@ -24,7 +24,7 @@
 @theme {
   --font-sans: 'Inter Tight Variable', 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
   --font-hero: 'Inter Tight Variable', 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
-  --font-mono: 'Space Mono', monospace;
+  --font-mono: 'Inter Tight Variable', 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
   --color-accent: #8AC4FF;
   --color-accent-hover: #B9DCFF;
 }

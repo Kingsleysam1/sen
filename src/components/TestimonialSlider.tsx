@@ -102,8 +102,8 @@ export function TestimonialSlider() {
                 >
                   {initials(t.name)}
                 </span>
-                <span className={`text-[13px] font-semibold leading-tight ${isActive ? 'text-white' : 'text-white/60'}`}>{t.name}</span>
-                <span className="text-[11px] text-white/45 leading-tight">{t.role}</span>
+                <span className={`text-[13px] font-semibold leading-tight ${isActive ? 'text-white' : 'text-white/75'}`}>{t.name}</span>
+                <span className="text-[11px] text-white/65 leading-tight">{t.role}</span>
               </button>
             );
           })}

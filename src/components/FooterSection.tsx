@@ -137,20 +137,13 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
         </div>
 
         <div className="border-t border-white/[0.08] pt-14 pb-8 flex flex-col items-center text-center gap-5">
-          {/* Brand Name */}
-          <div className="flex items-center gap-1.5 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <span className="font-semibold text-[22px] tracking-[-0.02em] text-white">
-              SHALOM
-            </span>
-            <span className="font-medium text-[22px] tracking-[-0.02em] text-white/55">
-              ERNEST
-            </span>
-          </div>
-
-          {/* Subtitle */}
-          <p className="text-stone-400 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-medium max-w-xl">
-            MANAGEMENT CONSULTANT • STRATEGIC ADVISOR • INSTITUTION BUILDER
-          </p>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="min-h-[44px] text-white text-[22px] font-semibold tracking-[-0.02em] cursor-pointer"
+            aria-label="Back to top"
+          >
+            Shalom <span className="text-white/55 font-medium">C. Ernest</span>
+          </button>
 
           {/* Social Icons (Square bordered) */}
           <div className="flex items-center gap-3 pt-2">

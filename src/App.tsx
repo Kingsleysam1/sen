@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { MotionConfig } from 'framer-motion';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import Lenis from 'lenis';
@@ -20,32 +20,14 @@ import { PartnersMarquee }    from './components/PartnersMarquee';
 import { MilestonesSection }  from './components/MilestonesSection';
 import { EventsSection }      from './components/EventsSection';
 import { TestimonialSlider }  from './components/TestimonialSlider';
-import { ArticlesSection }    from './components/ArticlesSection';
 import { FAQSection }         from './components/FAQSection';
-import { CTASection }         from './components/CTASection';
 import { FooterSection }      from './components/FooterSection';
-import { GsapScrollReveal }   from './components/GsapScrollReveal';
 import { ArticleModal }       from './components/ArticleModal';
 import { BookingModal }       from './components/BookingModal';
 import { Chatbot }            from './components/Chatbot';
 import { Article }            from './data/shalomData';
-import { CurtainWipe, CurtainStage } from './components/CurtainWipe';
 
 // Dynamic SEO section map
-const SECTION_LABELS: Record<string, string> = {
-  hero:         'EXECUTIVE LEADERSHIP',
-  bio:          'ABOUT SHALOM ERNEST',
-  metrics:      'IMPACT METRICS',
-  initiatives:  'AREAS OF EXPERTISE',
-  programs:     'FEATURED PROGRAMS',
-  partners:     'PROFESSIONAL CREDIBILITY',
-  milestones:   'SELECTED ENGAGEMENTS',
-  events:       'HOSTED EVENTS',
-  testimonials: 'EXECUTIVE TESTIMONIALS',
-  articles:     'INSIGHTS & THINKING',
-  faq:          'ENGAGEMENT ENQUIRIES',
-};
-
 // The tab title and share text stay put while the visitor scrolls. Only the
 // booking form and an open article change them.
 const HOME_SEO = {
@@ -60,9 +42,7 @@ const prefersReducedMotion = () =>
 function MainContent() {
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
   const [isBookingOpen, setIsBookingOpen]     = useState(false);
-  const [curtainStage, setCurtainStage]       = useState<CurtainStage>('idle');
-  const [pendingTargetId, setPendingTargetId] = useState<string | null>(null);
-  const [targetLabel, setTargetLabel]         = useState<string>('');
+  const lenisRef = useRef<Lenis | null>(null);
 
   // Lenis smooth scroll — one loop, shared with GSAP's ticker. Skipped entirely
   // for visitors who ask their system for reduced motion.
@@ -75,6 +55,7 @@ function MainContent() {
       wheelMultiplier: 1,
     });
 
+    lenisRef.current = lenis;
     lenis.on('scroll', ScrollTrigger.update);
     const tick = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(tick);
@@ -83,32 +64,21 @@ function MainContent() {
     return () => {
       gsap.ticker.remove(tick);
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, []);
 
+  // Menu links scroll straight to the section, clear of the fixed header.
   const handleNavClick = (targetId: string) => {
-    if (curtainStage !== 'idle') return;
-    if (prefersReducedMotion()) {
-      document.getElementById(targetId)?.scrollIntoView({ behavior: 'auto' });
-      return;
+    const el = document.getElementById(targetId);
+    if (!el) return;
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(el, { offset: -88, duration: 1.1 });
+    } else {
+      el.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
     }
-    setPendingTargetId(targetId);
-    setTargetLabel(SECTION_LABELS[targetId] || targetId.toUpperCase());
-    setCurtainStage('covering');
   };
 
-  const handleCoverComplete = () => {
-    if (pendingTargetId) {
-      const el = document.getElementById(pendingTargetId);
-      if (el) el.scrollIntoView({ behavior: 'auto' });
-    }
-    setTimeout(() => { setCurtainStage('uncovering'); }, 40);
-  };
-
-  const handleUncoverComplete = () => {
-    setCurtainStage('idle');
-    setPendingTargetId(null);
-  };
 
   const currentSEO = isBookingOpen
     ? { title: 'Book a Consultation | Shalom C. Ernest', description: 'Reserve an executive consultation or strategy session with Shalom C. Ernest (CMC, FIMC), Management Consultant and Strategic Advisor.' }
@@ -153,14 +123,6 @@ function MainContent() {
           })}
         </script>
       </Helmet>
-
-      {/* Curtain transition */}
-      <CurtainWipe
-        stage={curtainStage}
-        targetLabel={targetLabel}
-        onCoverComplete={handleCoverComplete}
-        onUncoverComplete={handleUncoverComplete}
-      />
 
       <main className="w-full overflow-x-clip">
 

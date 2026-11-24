@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, Send, Bot, User, Sparkles, RefreshCw, Minimize2 } from 'lucide-react';
+import { MessageSquare, X, Send, Bot, User, Sparkles, RefreshCw } from 'lucide-react';
 import { triggerHaptic } from '../utils/haptics';
 import { PROFILE_DATA, SERVICES, EVENTS_DATA } from '../data/shalomData';
 

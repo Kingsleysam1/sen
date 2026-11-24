@@ -58,7 +58,7 @@ export function PartnersMarquee() {
 
             <GsapScrollReveal>
               <div className="space-y-4">
-                <span className="text-[12px] font-semibold tracking-[0.16em] uppercase text-[#777] block mb-4">Certifications</span>
+                <span className="text-[12px] font-semibold tracking-[0.16em] uppercase text-[#666] block mb-4">Certifications</span>
                 {CREDENTIALS.map((cred, i) => (
                   <motion.div
                     key={cred.code}
@@ -81,7 +81,7 @@ export function PartnersMarquee() {
 
             <GsapScrollReveal>
               <div className="space-y-2.5">
-                <span className="text-[12px] font-semibold tracking-[0.16em] uppercase text-[#777] block mb-4">Honours & Recognition</span>
+                <span className="text-[12px] font-semibold tracking-[0.16em] uppercase text-[#666] block mb-4">Honours & Recognition</span>
                 {HONOURS.map((h, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#111] mt-2 shrink-0" aria-hidden="true" />
@@ -96,7 +96,7 @@ export function PartnersMarquee() {
           <div className="lg:col-span-7 flex flex-col gap-10">
             <GsapScrollReveal>
               <div className="space-y-3">
-                <span className="text-[12px] font-semibold tracking-[0.16em] uppercase text-[#777] block mb-4">Institutional Affiliations</span>
+                <span className="text-[12px] font-semibold tracking-[0.16em] uppercase text-[#666] block mb-4">Institutional Affiliations</span>
                 {AFFILIATIONS.map((aff, i) => (
                   <motion.div
                     key={i}
@@ -117,7 +117,7 @@ export function PartnersMarquee() {
             {PARTNER_LOGOS.length > 0 && (
               <GsapScrollReveal>
                 <div>
-                  <span className="text-[12px] font-semibold tracking-[0.16em] uppercase text-[#777] block mb-6">Partner Organisations</span>
+                  <span className="text-[12px] font-semibold tracking-[0.16em] uppercase text-[#666] block mb-6">Partner Organisations</span>
                   <ul className="grid grid-cols-2 sm:grid-cols-4 gap-x-8 gap-y-6 items-center">
                     {PARTNER_LOGOS.map((logo) => (
                       <li key={logo.name} className="h-10 flex items-center">

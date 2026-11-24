@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  MapPin,
   ExternalLink,
   Download,
   CalendarPlus,
-  Clock,
   X,
   Check,
 } from 'lucide-react';
@@ -50,21 +48,6 @@ function getGoogleCalendarUrl(event: EventItem) {
     location: event.venue,
   });
   return `https://calendar.google.com/calendar/render?${params.toString()}`;
-}
-
-/* ─── Status badge ───────────────────────────────────────────────── */
-function StatusBadge({ status }: { status: string }) {
-  const isOpen = status === 'Registration Open';
-  return (
-    <span className={`inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border ${
-      isOpen
-        ? 'bg-[#8AC4FF]/15 text-[#B9DCFF] border-[#8AC4FF]/40'
-        : 'bg-white/[0.06] text-stone-400 border-white/[0.1]'
-    }`}>
-      <span className={`w-1.5 h-1.5 rounded-full ${isOpen ? 'bg-[#8AC4FF] animate-pulse' : 'bg-[#B9DCFF]'}`} />
-      {status}
-    </span>
-  );
 }
 
 /* ─── Registration modal ─────────────────────────────────────────── */
@@ -192,15 +175,15 @@ export function EventsSection() {
 
                 <div className="p-6 flex flex-col gap-4 flex-1">
                   <div>
-                    <p className="text-[12px] font-medium text-[#777]">{event.organizer} · {isPast ? 'Past event' : event.status}</p>
+                    <p className="text-[12px] font-medium text-[#666]">{event.organizer} · {isPast ? 'Past event' : event.status}</p>
                     <h3 className="mt-1.5 text-[21px] font-semibold leading-[1.15] tracking-[-0.02em]">{event.title}</h3>
                     <p className="mt-2 text-[14px] text-[#555] leading-[1.55]">{event.description}</p>
                   </div>
 
                   <dl className="text-[14px] divide-y divide-black/[0.07] border-y border-black/[0.07]">
-                    <div className="flex gap-4 py-2.5"><dt className="w-20 shrink-0 text-[#888]">Date</dt><dd className="text-[#111]">{event.dateDisplay} · {event.timeDisplay}</dd></div>
-                    <div className="flex gap-4 py-2.5"><dt className="w-20 shrink-0 text-[#888]">Place</dt><dd className="text-[#111]">{event.venue}</dd></div>
-                    <div className="flex gap-4 py-2.5"><dt className="w-20 shrink-0 text-[#888]">Investment</dt><dd className="text-[#111]">{event.fee}</dd></div>
+                    <div className="flex gap-4 py-2.5"><dt className="w-20 shrink-0 text-[#666]">Date</dt><dd className="text-[#111]">{event.dateDisplay} · {event.timeDisplay}</dd></div>
+                    <div className="flex gap-4 py-2.5"><dt className="w-20 shrink-0 text-[#666]">Place</dt><dd className="text-[#111]">{event.venue}</dd></div>
+                    <div className="flex gap-4 py-2.5"><dt className="w-20 shrink-0 text-[#666]">Investment</dt><dd className="text-[#111]">{event.fee}</dd></div>
                   </dl>
 
                   {!isPast && (
@@ -281,24 +264,34 @@ export function EventsSection() {
         </div>
 
         {past.length > 0 && (
-          <div className="mt-16 sm:mt-20">
-            <h3 className="text-[22px] sm:text-[26px] font-medium tracking-[-0.02em] mb-6">Past events</h3>
-            <div className="-mx-5 px-5 sm:mx-0 sm:px-0 overflow-x-auto no-scrollbar">
-              <div className="flex md:grid md:grid-cols-3 gap-4 sm:gap-5 items-stretch">
-                {past.map((event, i) => renderCard(event, i, true))}
-              </div>
-            </div>
+          <div className="mt-14 sm:mt-16">
+            <h3 className="text-[13px] font-semibold tracking-[0.16em] uppercase text-[#555] mb-4">Past events</h3>
+            <ul className="divide-y divide-black/10 border-y border-black/10">
+              {past.map((event) => (
+                <li key={event.id}>
+                  <button
+                    type="button"
+                    onClick={() => setFlyerOpen(event)}
+                    className="w-full min-h-[64px] py-3 flex items-center gap-4 text-left cursor-pointer group"
+                  >
+                    <img
+                      src={encodeURI(event.flyerImage)}
+                      alt=""
+                      className="w-12 h-12 rounded-xl object-cover shrink-0"
+                      loading="lazy"
+                    />
+                    <span className="flex-1 min-w-0">
+                      <span className="block text-[16px] font-semibold tracking-[-0.01em] text-[#111] group-hover:underline underline-offset-4">{event.title}</span>
+                      <span className="block text-[13px] text-[#666] truncate">{event.organizer}</span>
+                    </span>
+                    <span className="text-[13px] text-[#555] text-right shrink-0">{event.dateDisplay}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
           </div>
         )}
 
-        <GsapScrollReveal>
-          <figure className="mt-16 sm:mt-20 max-w-[820px]">
-            <blockquote className="text-[clamp(24px,3vw,38px)] font-medium leading-[1.2] tracking-[-0.03em]">
-              "Every great leader needs a room that challenges them to grow."
-            </blockquote>
-            <figcaption className="mt-4 text-[14px] text-[#666]">— Shalom C. Ernest, FIMC, CMC</figcaption>
-          </figure>
-        </GsapScrollReveal>
       </div>
 
       {/* ── Flyer Lightbox ── */}

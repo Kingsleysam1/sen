@@ -100,12 +100,6 @@ export function InitiativesSection({ onOpenBooking }: InitiativesSectionProps) {
                 Where Vision Meets Execution
               </h2>
             </div>
-            <button
-              onClick={() => { triggerHaptic('medium'); onOpenBooking(); }}
-              className="self-start lg:self-end px-6 py-3 rounded-full bg-white hover:bg-[#8AC4FF] text-black text-[14px] font-semibold transition-colors cursor-pointer"
-            >
-              Book a Session
-            </button>
           </div>
         </GsapScrollReveal>
 
