@@ -34,7 +34,7 @@ export function BioSection() {
 
             <GsapScrollReveal>
               <p className="text-[#222] text-[17px] sm:text-[18px] leading-[1.65]">
-                Shalom C. Ernest is a leadership strategist, management consultant (FIMC, CMC), certified trainer, coach and Principal Consultant at Leadview Consulting. Through a growing ecosystem of initiatives spanning leadership development trainings, executive advisory, corporate governance, and community transformation, he is raising leaders, building enduring institutions, and creating lasting impact across Africa and beyond.
+                Shalom C. Ernest is a leadership strategist, management consultant (FIMC, CMC, AILCS), certified trainer, coach and Principal Consultant at Leadview Consulting. Through a growing ecosystem of initiatives spanning leadership development trainings, executive advisory, corporate governance, and community transformation, he is raising leaders, building enduring institutions, and creating lasting impact across Africa and beyond.
               </p>
             </GsapScrollReveal>
 

@@ -60,7 +60,7 @@ function getLocalKnowledgeReply(query: string): string {
     return `Here are the featured upcoming programmes and masterclasses:\n\n${eventList}\n\nYou can register directly on the website under the **Events** section.`;
   }
 
-  return `Shalom C. Ernest (FIMC, CMC) is a Management Consultant and Strategic Advisor helping executives, boards, and institutions achieve clarity and build sustainable organizations.\n\nWould you like to know more about **Executive Advisory**, **Upcoming Events**, or **Booking a Consultation**?`;
+  return `Shalom C. Ernest (FIMC, CMC, AILCS) is a Management Consultant and Strategic Advisor helping executives, boards, and institutions achieve clarity and build sustainable organizations.\n\nWould you like to know more about **Executive Advisory**, **Upcoming Events**, or **Booking a Consultation**?`;
 }
 
 export function Chatbot({ onOpenBooking }: { onOpenBooking?: () => void }) {

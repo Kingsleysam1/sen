@@ -32,7 +32,7 @@ import { Article }            from './data/shalomData';
 // booking form and an open article change them.
 const HOME_SEO = {
   title: 'Shalom C. Ernest | Management Consultant & Executive Leadership Trainer',
-  description: 'Equipping leaders. Transforming organisations. Shalom C. Ernest (FIMC, CMC) — Strategic Advisor helping executives and institutions build strategic clarity and lasting impact across Africa.',
+  description: 'Equipping leaders. Transforming organisations. Shalom C. Ernest (FIMC, CMC, AILCS) — Strategic Advisor helping executives and institutions build strategic clarity and lasting impact across Africa.',
 };
 
 const prefersReducedMotion = () =>

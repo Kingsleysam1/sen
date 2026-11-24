@@ -138,7 +138,7 @@ export function ArticlesSection({ onSelectArticle }: ArticlesSectionProps) {
                 Slogans don't scale. Systems do.
               </p>
               <span className="typo-eyebrow text-[#627364]">
-                — Shalom C. Ernest, FIMC, CMC
+                — Shalom C. Ernest, FIMC, CMC, AILCS
               </span>
             </div>
           </div>

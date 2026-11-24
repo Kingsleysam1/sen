@@ -54,7 +54,7 @@ export function InsightsSection() {
               </div>
 
               <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs text-gray-500 font-mono">
-                <span>Shalom Ernest, FIMC, CMC</span>
+                <span>Shalom Ernest, FIMC, CMC, AILCS</span>
                 <span>Reflections</span>
               </div>
             </motion.div>
