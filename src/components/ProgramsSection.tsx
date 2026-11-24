@@ -11,19 +11,19 @@ interface ProgramsSectionProps {
 const PROGRAMS = [
   {
     number: '01',
-    name: 'Clarity Conclave',
-    tagline: 'Thought Leadership & Clarity Hub',
-    image: PHOTOS.worldMap,
-    alt: 'Shalom Ernest speaking at a wooden podium in front of a large world map',
-    position: '50% 42%',
-  },
-  {
-    number: '02',
     name: 'Leadview Consulting',
     tagline: 'Enterprise Training & Advisory Firm',
     image: PHOTOS.podiumBlue2,
     alt: 'Shalom Ernest speaking from a podium on stage',
     position: '50% 30%',
+  },
+  {
+    number: '02',
+    name: 'Clarity Conclave',
+    tagline: 'Thought Leadership & Clarity Hub',
+    image: PHOTOS.worldMap,
+    alt: 'Shalom Ernest speaking at a wooden podium in front of a large world map',
+    position: '50% 42%',
   },
   {
     number: '03',
@@ -84,8 +84,7 @@ export function ProgramsSection({ onOpenBooking }: ProgramsSectionProps) {
                   style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.35) 42%, rgba(0,0,0,0) 65%)' }}
                 />
                 <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7 flex flex-col items-center text-center">
-                  <span className="text-[10px] font-semibold tracking-[0.22em] uppercase text-white/75">Shalom Ernest</span>
-                  <h3 className="mt-2 text-[clamp(26px,2.6vw,34px)] font-extrabold uppercase leading-[0.95] tracking-[-0.02em] text-white">
+                  <h3 className="text-[clamp(26px,2.6vw,34px)] font-extrabold uppercase leading-[0.95] tracking-[-0.02em] text-white">
                     {program.name}
                   </h3>
                   <p className="mt-2.5 text-[14px] text-white/80">{program.tagline}</p>
