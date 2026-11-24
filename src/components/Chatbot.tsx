@@ -185,7 +185,7 @@ export function Chatbot({ onOpenBooking }: { onOpenBooking?: () => void }) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.92, y: 15 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="w-[92vw] sm:w-[390px] h-[530px] max-h-[82vh] bg-[#141210] border border-white/[0.1] rounded-2xl shadow-2xl flex flex-col overflow-hidden mb-3 text-white font-sans"
+            className="w-[calc(100vw-2.5rem)] sm:w-[360px] h-[460px] max-h-[70vh] bg-[#141210] border border-white/[0.1] rounded-2xl shadow-2xl flex flex-col overflow-hidden mb-3 text-white font-sans"
           >
             {/* Header */}
             <div className="px-4 py-3.5 bg-[#1C1916] border-b border-white/[0.08] flex items-center justify-between shrink-0">
@@ -208,16 +208,18 @@ export function Chatbot({ onOpenBooking }: { onOpenBooking?: () => void }) {
                 <button
                   onClick={handleResetChat}
                   title="Reset Conversation"
+                  aria-label="Reset conversation"
                   className="p-1.5 rounded-lg text-stone-400 hover:text-white hover:bg-white/[0.06] transition-colors cursor-pointer"
                 >
                   <RefreshCw className="w-3.5 h-3.5" />
                 </button>
                 <button
                   onClick={() => setIsOpen(false)}
-                  title="Minimize"
-                  className="p-1.5 rounded-lg text-stone-400 hover:text-white hover:bg-white/[0.06] transition-colors cursor-pointer"
+                  title="Close chat"
+                  aria-label="Close chat"
+                  className="p-2 rounded-lg text-stone-400 hover:text-white hover:bg-white/[0.06] transition-colors cursor-pointer"
                 >
-                  <Minimize2 className="w-3.5 h-3.5" />
+                  <X className="w-4 h-4" />
                 </button>
               </div>
             </div>
@@ -281,12 +283,12 @@ export function Chatbot({ onOpenBooking }: { onOpenBooking?: () => void }) {
 
             {/* Quick Prompt Suggestions */}
             {messages.length < 4 && !isLoading && (
-              <div className="px-3 py-2 bg-[#0E0D0C] border-t border-white/[0.06] flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0">
+              <div className="px-3 py-2.5 bg-[#0E0D0C] border-t border-white/[0.06] flex flex-wrap gap-1.5 shrink-0 max-h-[96px] overflow-y-auto">
                 {SUGGESTED_QUESTIONS.map((q, i) => (
                   <button
                     key={i}
                     onClick={() => handleSend(q)}
-                    className="shrink-0 text-[11px] bg-[#1C1916] hover:bg-[#8AC4FF]/20 hover:text-[#B9DCFF] border border-white/[0.08] hover:border-[#8AC4FF]/50 text-stone-300 px-3 py-1 rounded-full transition-colors whitespace-nowrap cursor-pointer"
+                    className="text-left text-[12px] leading-snug bg-[#1C1916] hover:bg-[#8AC4FF]/20 hover:text-[#B9DCFF] border border-white/[0.08] hover:border-[#8AC4FF]/50 text-stone-300 px-3 py-1.5 rounded-full transition-colors cursor-pointer"
                   >
                     {q}
                   </button>

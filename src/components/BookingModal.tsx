@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SERVICES } from '../data/shalomData';
 import { X, Check } from 'lucide-react';
 import { triggerHaptic } from '../utils/haptics';
+import { openEnquiryEmail, CONTACT } from '../utils/enquiry';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -19,16 +20,26 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
   });
   const [submitted, setSubmitted] = useState(false);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     triggerHaptic('medium');
+    openEnquiryEmail(`Consultation request: ${formData.service}`, {
+      Name: formData.name,
+      Email: formData.email,
+      Phone: formData.phone,
+      'Interested in': formData.service,
+      Message: formData.message,
+    });
     setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      onClose();
-    }, 4000);
   };
 
   return (
@@ -50,6 +61,9 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 15 }}
           transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="booking-title"
           className="relative w-full max-w-lg bg-[#141210] border border-white/[0.08] rounded-2xl p-6 sm:p-8 shadow-2xl z-10 max-h-[90vh] overflow-y-auto"
         >
           {/* Close button */}
@@ -66,7 +80,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
             <span className="text-[#8AC4FF] font-bold text-[11px] sm:text-[12px] tracking-[0.2em] uppercase block mb-1">
               GET IN TOUCH
             </span>
-            <h2 className="text-[24px] sm:text-[28px] font-bold text-white tracking-tight font-sans">
+            <h2 id="booking-title" className="text-[24px] sm:text-[28px] font-bold text-white tracking-tight font-sans">
               Book a Consultation
             </h2>
           </div>
@@ -76,8 +90,13 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
               <div className="w-12 h-12 rounded-full bg-[#8AC4FF]/15 border border-[#8AC4FF]/40 flex items-center justify-center text-[#8AC4FF]">
                 <Check size={24} />
               </div>
-              <h3 className="text-[20px] font-bold text-white">Consultation Request Sent</h3>
-              <p className="text-stone-400 text-[14px]">Thank you, {formData.name}. We will review your request and get back to you within 24 hours.</p>
+              <h3 className="text-[20px] font-bold text-white">One last step: press Send</h3>
+              <p className="text-stone-300 text-[14px] leading-relaxed">
+                Thank you, {formData.name}. Your email app has opened with your request addressed to {CONTACT.email}. Press Send to deliver it.
+              </p>
+              <p className="text-stone-400 text-[13px] leading-relaxed">
+                Nothing opened? Email <a className="underline text-white" href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a> or call <a className="underline text-white" href={CONTACT.phoneHref}>{CONTACT.phone}</a>.
+              </p>
               <button
                 onClick={onClose}
                 className="mt-3 px-6 py-2.5 rounded-full bg-[#8AC4FF] text-[#0A0908] font-bold text-[13px] cursor-pointer"

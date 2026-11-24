@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Linkedin, Instagram, Facebook, Globe, Check } from 'lucide-react';
 import { PROFILE_DATA } from '../data/shalomData';
 import { triggerHaptic } from '../utils/haptics';
+import { openEnquiryEmail, CONTACT } from '../utils/enquiry';
 import { GsapScrollReveal } from './GsapScrollReveal';
 
 interface FooterSectionProps {
@@ -16,11 +17,12 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     triggerHaptic('medium');
+    openEnquiryEmail('Please add me to the Shalom Ernest community', {
+      'First name': formData.firstName,
+      'Last name': formData.lastName,
+      Email: formData.email,
+    });
     setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ firstName: '', lastName: '', email: '' });
-    }, 4000);
   };
 
   return (
@@ -47,8 +49,8 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
                 <div className="w-12 h-12 rounded-full bg-[#8AC4FF]/15 border border-[#8AC4FF]/40 flex items-center justify-center text-[#8AC4FF]">
                   <Check size={24} />
                 </div>
-                <h3 className="text-[20px] font-bold text-white">Welcome to the Community</h3>
-                <p className="text-stone-400 text-[14px]">You've been successfully subscribed to executive briefings and updates.</p>
+                <h3 className="text-[20px] font-bold text-white">One last step: press Send</h3>
+                <p className="text-stone-400 text-[14px] max-w-md">Your email app has opened with your request to join, addressed to {CONTACT.email}. Press Send and you're on the list.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
@@ -107,6 +109,33 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
         </GsapScrollReveal>
 
         {/* ── 2. MINIMALIST CENTERED FOOTER ── */}
+        <nav aria-label="Footer" className="border-t border-white/[0.08] py-8 flex flex-wrap justify-center gap-x-6 gap-y-3">
+          {[
+            ['About', 'bio'], ['Services', 'initiatives'], ['Programs', 'programs'],
+            ['Engagements', 'milestones'], ['Events', 'events'], ['FAQ', 'faq'],
+          ].map(([label, id]) => (
+            <button key={id} onClick={() => _onNavClick?.(id)} className="min-h-[44px] px-2 text-[14px] font-medium text-white/65 hover:text-white transition-colors cursor-pointer">
+              {label}
+            </button>
+          ))}
+        </nav>
+
+        {/* Direct contact: real text, not inside an image */}
+        <div id="contact" className="border-t border-white/[0.08] py-14 grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6 text-center sm:text-left">
+          <div>
+            <p className="text-[12px] font-semibold tracking-[0.16em] uppercase text-white/50 mb-2">Email</p>
+            <a href={`mailto:${CONTACT.email}`} className="inline-flex items-center min-h-[44px] text-[18px] sm:text-[20px] font-medium text-white hover:text-[#8AC4FF] break-all transition-colors">{CONTACT.email}</a>
+          </div>
+          <div>
+            <p className="text-[12px] font-semibold tracking-[0.16em] uppercase text-white/50 mb-2">Phone</p>
+            <a href={CONTACT.phoneHref} className="inline-flex items-center min-h-[44px] text-[18px] sm:text-[20px] font-medium text-white hover:text-[#8AC4FF] transition-colors">{CONTACT.phone}</a>
+          </div>
+          <div>
+            <p className="text-[12px] font-semibold tracking-[0.16em] uppercase text-white/50 mb-2">Based in</p>
+            <p className="text-[18px] sm:text-[20px] font-medium text-white">{CONTACT.city}</p>
+          </div>
+        </div>
+
         <div className="border-t border-white/[0.08] pt-14 pb-8 flex flex-col items-center text-center gap-5">
           {/* Brand Name */}
           <div className="flex items-center gap-1.5 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
@@ -137,7 +166,7 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="w-11 h-11 bg-white/[0.08] hover:bg-white flex items-center justify-center text-white/80 hover:text-black transition-all rounded-full"
+                className="w-11 h-11 min-w-[44px] min-h-[44px] bg-white/[0.08] hover:bg-white flex items-center justify-center text-white/80 hover:text-black transition-all rounded-full"
               >
                 <Icon className="w-4 h-4" />
               </a>

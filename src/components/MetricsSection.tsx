@@ -15,8 +15,11 @@ function AnimatedCounter({ value, suffix = '', prefix = '', decimals = 0, classN
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
 
+  // The markup carries the final value; the count-up only runs when motion is allowed.
+  const reduce = typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+
   useEffect(() => {
-    if (isInView && ref.current) {
+    if (isInView && ref.current && !reduce) {
       const controls = animate(0, value, {
         duration: 1.6,
         ease: 'easeOut',
@@ -28,11 +31,11 @@ function AnimatedCounter({ value, suffix = '', prefix = '', decimals = 0, classN
       });
       return () => controls.stop();
     }
-  }, [isInView, value, prefix, suffix, decimals]);
+  }, [isInView, value, prefix, suffix, decimals, reduce]);
 
   return (
     <span ref={ref} className={className}>
-      {prefix}0{suffix}
+      {prefix}{value.toFixed(decimals)}{suffix}
     </span>
   );
 }

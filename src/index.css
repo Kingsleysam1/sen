@@ -287,3 +287,13 @@ html.lenis, html.lenis body { height: auto; }
 /* Sideways photo rails: scroll without a visible bar */
 .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Menu jumps land with the heading clear of the fixed header (72px + breathing room) */
+section[id], footer[id], div[id="contact"] { scroll-margin-top: 88px; }
+
+/* Visible keyboard focus on every interactive element */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid #8AC4FF;
+  outline-offset: 3px;
+  border-radius: 6px;
+}

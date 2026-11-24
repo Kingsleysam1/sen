@@ -86,11 +86,20 @@ export function HeroSection({ onNavClick, onOpenBooking }: HeroSectionProps) {
                 </button>
                 <button
                   onClick={() => onNavClick('bio')}
-                  className="px-6 py-3 sm:px-7 sm:py-3.5 rounded-full border border-white/35 hover:border-white text-white text-[14px] sm:text-[15px] font-semibold transition-colors cursor-pointer"
+                  className="px-5 py-3 sm:py-3.5 rounded-full text-white/85 hover:text-white underline-offset-4 hover:underline text-[14px] sm:text-[15px] font-semibold transition-colors cursor-pointer"
                 >
                   Meet Shalom
                 </button>
               </motion.div>
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.7, delay: 0.8 }}
+                className="mt-6 text-white/70 text-[13px] sm:text-[14px] font-medium"
+              >
+                10,000+ trained <span aria-hidden="true" className="mx-2 text-white/35">·</span> FIMC, CMC <span aria-hidden="true" className="mx-2 text-white/35">·</span> John Maxwell Team certified
+              </motion.p>
             </div>
           </div>
         </div>

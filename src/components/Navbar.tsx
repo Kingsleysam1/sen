@@ -59,7 +59,7 @@ export function Navbar({ onNavClick, onOpenBooking }: NavbarProps) {
         <div className="site-container h-[64px] sm:h-[72px] flex items-center justify-between gap-4">
           <button
             onClick={() => handleItemClick('hero')}
-            className="shrink-0 cursor-pointer text-white text-[17px] sm:text-[19px] font-semibold tracking-[-0.02em]"
+            className="shrink-0 min-h-[44px] cursor-pointer text-white text-[17px] sm:text-[19px] font-semibold tracking-[-0.02em]"
             aria-label="Shalom C. Ernest, home"
           >
             Shalom <span className="text-white/55 font-medium">C. Ernest</span>
@@ -70,7 +70,7 @@ export function Navbar({ onNavClick, onOpenBooking }: NavbarProps) {
               <button
                 key={item.target}
                 onClick={() => handleItemClick(item.target)}
-                className="px-4 py-2 text-[14px] font-medium text-white/75 hover:text-white rounded-full hover:bg-white/[0.08] transition-colors cursor-pointer"
+                className="min-h-[44px] px-4 py-2 text-[14px] font-medium text-white/75 hover:text-white rounded-full hover:bg-white/[0.08] transition-colors cursor-pointer"
               >
                 {item.label}
               </button>
@@ -80,7 +80,7 @@ export function Navbar({ onNavClick, onOpenBooking }: NavbarProps) {
           <div className="flex items-center gap-2">
             <button
               onClick={handleBooking}
-              className="px-5 py-2 sm:py-2.5 rounded-full bg-white hover:bg-[#8AC4FF] text-black text-[13px] sm:text-[14px] font-semibold transition-colors cursor-pointer"
+              className="min-h-[44px] px-5 py-2 rounded-full bg-white hover:bg-[#8AC4FF] text-black text-[13px] sm:text-[14px] font-semibold transition-colors cursor-pointer"
             >
               Book Shalom
             </button>
@@ -88,7 +88,7 @@ export function Navbar({ onNavClick, onOpenBooking }: NavbarProps) {
               onClick={handleToggle}
               aria-label={isOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isOpen}
-              className="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-[5px] cursor-pointer"
+              className="lg:hidden w-11 h-11 flex flex-col items-center justify-center gap-[5px] cursor-pointer"
             >
               <span className="block h-[1.5px] w-5 bg-white" />
               <span className="block h-[1.5px] w-5 bg-white" />

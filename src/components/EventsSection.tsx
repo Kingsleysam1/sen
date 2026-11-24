@@ -155,26 +155,16 @@ export function EventsSection() {
   const [registerEvent, setRegisterEvent] = useState<EventItem | null>(null);
   const [flyerOpen, setFlyerOpen]         = useState<EventItem | null>(null);
 
-  return (
-    <section id="events" className="bg-[#F4F4F2] text-[#111]" aria-labelledby="events-heading">
-      <div className="site-container section-padding">
-        <GsapScrollReveal>
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12 sm:mb-14">
-            <div>
-              <p className="flex items-center gap-2 text-[11px] sm:text-[12px] font-semibold tracking-[0.16em] uppercase text-[#555] mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#111]" aria-hidden="true" />
-                Hosted Events &amp; Calendar
-              </p>
-              <h2 id="events-heading" className="text-[clamp(36px,5.2vw,68px)] font-medium leading-[1.02] tracking-[-0.04em]">
-                Ideas That Move People
-              </h2>
-            </div>
-          </div>
-        </GsapScrollReveal>
+  // One data source; anything that has ended moves to the archive automatically.
+  const now = Date.now();
+  const upcoming = EVENTS_DATA.filter((e) => new Date(e.isoEndDate).getTime() >= now)
+    .sort((a, b) => +new Date(a.isoStartDate) - +new Date(b.isoStartDate));
+  const past = EVENTS_DATA.filter((e) => new Date(e.isoEndDate).getTime() < now)
+    .sort((a, b) => +new Date(b.isoStartDate) - +new Date(a.isoStartDate));
 
-        <div className="-mx-5 px-5 sm:mx-0 sm:px-0 overflow-x-auto no-scrollbar">
-          <div className="flex md:grid md:grid-cols-3 gap-4 sm:gap-5 items-stretch">
-            {EVENTS_DATA.map((event, i) => (
+  const goTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  const renderCard = (event: EventItem, i: number, isPast: boolean) => (
               <motion.article
                 key={event.id}
                 initial={{ opacity: 0, y: 24 }}
@@ -202,7 +192,7 @@ export function EventsSection() {
 
                 <div className="p-6 flex flex-col gap-4 flex-1">
                   <div>
-                    <p className="text-[12px] font-medium text-[#777]">{event.organizer} · {event.status}</p>
+                    <p className="text-[12px] font-medium text-[#777]">{event.organizer} · {isPast ? 'Past event' : event.status}</p>
                     <h3 className="mt-1.5 text-[21px] font-semibold leading-[1.15] tracking-[-0.02em]">{event.title}</h3>
                     <p className="mt-2 text-[14px] text-[#555] leading-[1.55]">{event.description}</p>
                   </div>
@@ -213,6 +203,7 @@ export function EventsSection() {
                     <div className="flex gap-4 py-2.5"><dt className="w-20 shrink-0 text-[#888]">Investment</dt><dd className="text-[#111]">{event.fee}</dd></div>
                   </dl>
 
+                  {!isPast && (
                   <div className="mt-auto flex items-center gap-2 pt-1">
                     <button
                       onClick={() => { triggerHaptic('medium'); setRegisterEvent(event); }}
@@ -249,11 +240,56 @@ export function EventsSection() {
                       </AnimatePresence>
                     </div>
                   </div>
+                  )}
                 </div>
               </motion.article>
-            ))}
+  );
+
+  return (
+    <section id="events" className="bg-[#F4F4F2] text-[#111]" aria-labelledby="events-heading">
+      <div className="site-container section-padding">
+        <GsapScrollReveal>
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12 sm:mb-14">
+            <div>
+              <p className="flex items-center gap-2 text-[11px] sm:text-[12px] font-semibold tracking-[0.16em] uppercase text-[#555] mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#111]" aria-hidden="true" />
+                Hosted Events &amp; Calendar
+              </p>
+              <h2 id="events-heading" className="text-[clamp(36px,5.2vw,68px)] font-medium leading-[1.02] tracking-[-0.04em]">
+                Ideas That Move People
+              </h2>
+            </div>
+          </div>
+        </GsapScrollReveal>
+
+        <div className="-mx-5 px-5 sm:mx-0 sm:px-0 overflow-x-auto no-scrollbar">
+          <div className="flex md:grid md:grid-cols-3 gap-4 sm:gap-5 items-stretch">
+            {upcoming.map((event, i) => renderCard(event, i, false))}
+            {upcoming.length === 0 && (
+              <div className="shrink-0 w-[82vw] sm:w-[60vw] md:w-auto md:col-span-3 bg-black text-white rounded-[22px] p-8 sm:p-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+                <div className="max-w-[560px]">
+                  <p className="text-[12px] font-semibold tracking-[0.16em] uppercase text-white/55 mb-3">Next event</p>
+                  <h3 className="text-[clamp(24px,3vw,36px)] font-medium leading-[1.1] tracking-[-0.03em]">The next date is being set.</h3>
+                  <p className="mt-3 text-white/70 text-[16px] leading-[1.6]">Join the community to hear first when registration opens, or book Shalom for your own team.</p>
+                </div>
+                <button onClick={() => goTo('inquiries')} className="self-start sm:self-end shrink-0 px-6 py-3 rounded-full bg-white hover:bg-[#8AC4FF] text-black text-[14px] font-semibold transition-colors cursor-pointer">
+                  Join the waitlist
+                </button>
+              </div>
+            )}
           </div>
         </div>
+
+        {past.length > 0 && (
+          <div className="mt-16 sm:mt-20">
+            <h3 className="text-[22px] sm:text-[26px] font-medium tracking-[-0.02em] mb-6">Past events</h3>
+            <div className="-mx-5 px-5 sm:mx-0 sm:px-0 overflow-x-auto no-scrollbar">
+              <div className="flex md:grid md:grid-cols-3 gap-4 sm:gap-5 items-stretch">
+                {past.map((event, i) => renderCard(event, i, true))}
+              </div>
+            </div>
+          </div>
+        )}
 
         <GsapScrollReveal>
           <figure className="mt-16 sm:mt-20 max-w-[820px]">
@@ -291,14 +327,14 @@ export function EventsSection() {
                 alt={flyerOpen.title}
                 className="w-full rounded-2xl border border-white/[0.1] shadow-2xl"
               />
-              <div className="mt-4 flex gap-3 justify-center">
+              {new Date(flyerOpen.isoEndDate).getTime() >= now && <div className="mt-4 flex gap-3 justify-center">
                 <button
                   onClick={() => { setRegisterEvent(flyerOpen); setFlyerOpen(null); }}
                   className="px-6 py-2.5 bg-[#8AC4FF] hover:bg-[#B9DCFF] text-[#0A0908] font-bold text-[13px] rounded-full transition-colors cursor-pointer"
                 >
                   Register Now →
                 </button>
-              </div>
+              </div>}
             </motion.div>
           </motion.div>
         )}

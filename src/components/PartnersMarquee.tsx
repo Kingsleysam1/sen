@@ -1,17 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { PARTNERS } from '../data/shalomData';
+// Partner names live in shalomData PARTNERS; logos are added here as they are supplied.
+const PARTNER_LOGOS: { name: string; src: string }[] = [];
 import { GsapScrollReveal } from './GsapScrollReveal';
 
-function PartnerItem({ name }: { key?: React.Key; name: string }) {
-  return (
-    <div className="shrink-0 flex items-center px-8 border-r border-black/10">
-      <span className="text-[16px] font-semibold text-[#333] hover:text-black transition-colors whitespace-nowrap">
-        {name}
-      </span>
-    </div>
-  );
-}
 
 const CREDENTIALS = [
   { code: 'FIMC', full: 'Fellow, Institute of Management Consultants' },
@@ -120,18 +112,22 @@ export function PartnersMarquee() {
               </div>
             </GsapScrollReveal>
 
-            <GsapScrollReveal>
-              <div>
-                <span className="text-[12px] font-semibold tracking-[0.16em] uppercase text-[#777] block mb-6">Partner Organisations</span>
-                <div className="overflow-hidden border-y border-black/10 py-4">
-                  <div className="flex w-max animate-marquee-slow">
-                    {[...PARTNERS, ...PARTNERS].map((partner, i) => (
-                      <PartnerItem key={`${partner}-${i}`} name={partner} />
+            {/* Partner logos: shown only as real artwork. Add files to PARTNER_LOGOS when supplied;
+                names without a logo are not shown as plain text. */}
+            {PARTNER_LOGOS.length > 0 && (
+              <GsapScrollReveal>
+                <div>
+                  <span className="text-[12px] font-semibold tracking-[0.16em] uppercase text-[#777] block mb-6">Partner Organisations</span>
+                  <ul className="grid grid-cols-2 sm:grid-cols-4 gap-x-8 gap-y-6 items-center">
+                    {PARTNER_LOGOS.map((logo) => (
+                      <li key={logo.name} className="h-10 flex items-center">
+                        <img src={logo.src} alt={logo.name} className="max-h-10 w-auto grayscale opacity-70" loading="lazy" />
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
-              </div>
-            </GsapScrollReveal>
+              </GsapScrollReveal>
+            )}
           </div>
         </div>
       </div>
