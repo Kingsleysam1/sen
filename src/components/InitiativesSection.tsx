@@ -49,6 +49,16 @@ const EXPERTISE_ROWS = [
     image: PHOTOS.conference,
     pos: '55% 40%',
   },
+  {
+    number: '05',
+    title: 'Public Sector & Governance Engagement',
+    subtitle: 'Government & Public Institutions',
+    description:
+      'Advisory and training engagements with government agencies and public institutions, supporting governance, policy delivery, institutional capacity and public-sector leadership development.',
+    tags: ['Governance', 'Public Institutions'],
+    image: PHOTOS.handshake,
+    pos: '50% 30%',
+  },
 ];
 
 type Row = typeof EXPERTISE_ROWS[number];
