@@ -59,10 +59,10 @@ export function Navbar({ onNavClick, onOpenBooking }: NavbarProps) {
         <div className="site-container h-[64px] sm:h-[72px] flex items-center justify-between gap-4">
           <button
             onClick={() => handleItemClick('hero')}
-            className="shrink-0 min-h-[44px] cursor-pointer text-white text-[17px] sm:text-[19px] font-semibold tracking-[-0.02em]"
+            className="shrink-0 min-h-[44px] flex items-center cursor-pointer"
             aria-label="Shalom C. Ernest, home"
           >
-            Shalom <span className="text-white/55 font-medium">C. Ernest</span>
+            <img src="/logo-signature-white.png" alt="Shalom Ernest" width={521} height={186} className="h-10 sm:h-12 w-auto" />
           </button>
 
           <nav className="hidden lg:flex items-center gap-1" aria-label="Primary navigation">
@@ -108,9 +108,7 @@ export function Navbar({ onNavClick, onOpenBooking }: NavbarProps) {
             className="fixed inset-0 z-[60] bg-black flex flex-col px-6 pb-8 pt-24"
           >
             <div className="flex justify-between items-center absolute top-4 left-6 right-6">
-              <span className="text-white text-[17px] font-semibold tracking-[-0.02em]">
-                Shalom <span className="text-white/55 font-medium">C. Ernest</span>
-              </span>
+              <img src="/logo-signature-white.png" alt="Shalom Ernest" width={521} height={186} className="h-10 w-auto" />
               <button onClick={handleToggle} className="text-white/70 hover:text-white p-2" aria-label="Close menu">
                 <X size={24} />
               </button>

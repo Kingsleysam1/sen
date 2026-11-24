@@ -139,10 +139,10 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
         <div className="border-t border-white/[0.08] pt-14 pb-8 flex flex-col items-center text-center gap-5">
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="min-h-[44px] text-white text-[22px] font-semibold tracking-[-0.02em] cursor-pointer"
+            className="min-h-[44px] cursor-pointer"
             aria-label="Back to top"
           >
-            Shalom <span className="text-white/55 font-medium">C. Ernest</span>
+            <img src="/logo-signature-white.png" alt="Shalom Ernest" width={521} height={186} className="h-14 sm:h-16 w-auto" loading="lazy" />
           </button>
 
           {/* Social Icons (Square bordered) */}

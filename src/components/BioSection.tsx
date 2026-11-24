@@ -41,6 +41,17 @@ export function BioSection() {
             </GsapScrollReveal>
 
             <GsapScrollReveal>
+              <img
+                src="/logo-signature-dark.png"
+                alt="Signed, Shalom Ernest"
+                width={521}
+                height={186}
+                className="h-14 sm:h-16 w-auto -mt-1"
+                loading="lazy"
+              />
+            </GsapScrollReveal>
+
+            <GsapScrollReveal>
               <ul className="flex flex-wrap gap-2 pt-1" aria-label="Credentials">
                 {CREDENTIALS.map((tag) => (
                   <li key={tag} className="text-[13px] font-medium text-[#111] bg-[#F2F2F0] px-3.5 py-1.5 rounded-full">
