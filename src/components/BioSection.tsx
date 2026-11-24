@@ -3,7 +3,7 @@ import { GsapScrollReveal } from './GsapScrollReveal';
 import { BlurUpImage } from './BlurUpImage';
 import { PHOTOS } from '../data/photos';
 
-const CREDENTIALS = ['FIMC', 'CMC', 'Lateef Jakande Fellow', 'Tony Elumelu Foundation Mentor', 'John Maxwell Team'];
+const CREDENTIALS = ['FIMC', 'CMC', 'Lateef Jakande Fellow', 'Tony Elumelu Foundation Mentor'];
 
 export function BioSection() {
   return (

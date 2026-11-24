@@ -52,7 +52,7 @@ function getLocalKnowledgeReply(query: string): string {
   }
 
   if (q.includes('certif') || q.includes('credential') || q.includes('qualification') || q.includes('who is')) {
-    return `**Shalom C. Ernest** is a Certified Management Consultant (CMC, FIMC) with distinctions in management specialist training. He is a **Fellow of the Institute of Management Consultants (FIMC)**, a **Lateef Jakande Leadership Fellow**, a **Tony Elumelu Foundation Mentor**, and a **John Maxwell Certified Trainer**.`;
+    return `**Shalom C. Ernest** is a Certified Management Consultant (CMC, FIMC) with distinctions in management specialist training. He is a **Fellow of the Institute of Management Consultants (FIMC)**, a **Lateef Jakande Leadership Fellow** and a **Tony Elumelu Foundation Mentor**.`;
   }
 
   if (q.includes('event') || q.includes('upcoming') || q.includes('masterclass') || q.includes('summit')) {

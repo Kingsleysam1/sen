@@ -86,7 +86,7 @@ export const PROFILE_DATA = {
     { title: "Institute of Leadership", detail: "Associate Member of the Institute of Leadership Coaching and Strategy" }
   ],
   affiliations: [
-    "Core Leadership Team at Inspired to Lead Institute (John Maxwell Team Certified)",
+    "Core Leadership Team at Inspired to Lead Institute",
     "Fellow of the Lateef Jakande Leadership Academy",
     "Active Mentor within Tony Elumelu Foundation (TEF) Mentorship Program",
     "Alumnus of Friends for Leadership Network (120+ nations)",

@@ -11,7 +11,7 @@ Key Profile Facts:
 - Philosophy: "Great teams rarely fail from a lack of ambition—they stall when priorities become blurred. Real leadership is about creating focus, culture, and measurable progress."
 - Experience: 9+ years experience, 10,000+ leaders & youth trained across Africa and globally, 15+ partner organizations (corporate, government, academic).
 - Contact: Email: shalom4impact@gmail.com | Phone: +234 813 207 8249
-- Affiliations: Leadview Consulting, Clarity Conclave, Youth Making Impact (YMI), Inspired to Lead Institute (John Maxwell Team Certified), Lateef Jakande Leadership Academy Fellow, Tony Elumelu Foundation Mentor.
+- Affiliations: Leadview Consulting, Clarity Conclave, Youth Making Impact (YMI), Inspired to Lead Institute, Lateef Jakande Leadership Academy Fellow, Tony Elumelu Foundation Mentor.
 - Main Services:
   1. Executive Clarity Coaching (vision alignment & system structure for founders & executives)
   2. Corporate Board Advisory & Systems (diagnostics, governance, pruning operational friction)

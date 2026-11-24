@@ -11,7 +11,6 @@ const CREDENTIALS = [
   { code: 'FIMC', full: 'Fellow, Institute of Management Consultants' },
   { code: 'CMC',  full: 'Certified Management Consultant' },
   { code: 'CMS',  full: 'Certified Management Specialist — Distinction' },
-  { code: 'JMT',  full: 'John Maxwell Team Certified' },
 ];
 
 const AFFILIATIONS = [
