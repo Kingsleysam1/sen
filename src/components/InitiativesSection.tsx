@@ -56,7 +56,7 @@ type Row = typeof EXPERTISE_ROWS[number];
 function Detail({ item, onOpenBooking }: { item: Row; onOpenBooking: () => void }) {
   return (
     <div className="flex flex-col gap-5">
-      <div className="aspect-[4/3] rounded-[22px] overflow-hidden bg-white/5">
+      <div className="aspect-[4/3] lg:aspect-[16/10] rounded-[22px] overflow-hidden bg-white/5">
         <img
           src={item.image}
           alt={item.title}
@@ -66,18 +66,20 @@ function Detail({ item, onOpenBooking }: { item: Row; onOpenBooking: () => void 
         />
       </div>
       <p className="text-[12px] font-semibold tracking-[0.16em] uppercase text-[#8AC4FF]">{item.subtitle}</p>
-      <p className="text-white/75 text-[16px] leading-[1.65]">{item.description}</p>
-      <div className="flex flex-wrap gap-2">
+      <p className="text-white/75 text-[16px] leading-[1.65] lg:min-h-[8.25em] xl:min-h-[6.6em]">{item.description}</p>
+      <div className="flex flex-wrap items-center gap-2">
         {item.tags.map((tag) => (
           <span key={tag} className="text-[12px] font-medium text-white/80 bg-white/[0.08] px-3 py-1 rounded-full">{tag}</span>
         ))}
+        {/* Between lg and xl the button always takes its own line, so every area has the same height */}
+        <span className="hidden lg:block xl:hidden basis-full h-0" aria-hidden="true" />
+        <button
+          onClick={(e) => { e.stopPropagation(); triggerHaptic('medium'); onOpenBooking(); }}
+          className="lg:mt-2 xl:mt-0 ml-auto lg:ml-0 xl:ml-auto px-6 py-3 rounded-full bg-white hover:bg-[#8AC4FF] text-black text-[14px] font-semibold transition-colors cursor-pointer"
+        >
+          Enquire About This
+        </button>
       </div>
-      <button
-        onClick={(e) => { e.stopPropagation(); triggerHaptic('medium'); onOpenBooking(); }}
-        className="self-start mt-1 px-6 py-3 rounded-full bg-white hover:bg-[#8AC4FF] text-black text-[14px] font-semibold transition-colors cursor-pointer"
-      >
-        Enquire About This
-      </button>
     </div>
   );
 }
@@ -103,13 +105,13 @@ export function InitiativesSection({ onOpenBooking }: InitiativesSectionProps) {
           </div>
         </GsapScrollReveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 lg:items-stretch">
           {/* Titles */}
-          <ul className="lg:col-span-7" role="tablist" aria-label="Areas of expertise">
+          <ul className="lg:col-span-7 lg:flex lg:flex-col" role="tablist" aria-label="Areas of expertise">
             {EXPERTISE_ROWS.map((item, i) => {
               const isActive = i === active;
               return (
-                <li key={item.number} className="border-t border-white/10 last:border-b">
+                <li key={item.number} className="border-t border-white/10 last:border-b lg:flex-1 lg:flex lg:flex-col lg:justify-center">
                   <button
                     role="tab"
                     aria-selected={isActive}
@@ -150,7 +152,7 @@ export function InitiativesSection({ onOpenBooking }: InitiativesSectionProps) {
 
           {/* Desktop: the photo and details follow the active title */}
           <div className="hidden lg:block lg:col-span-5">
-            <div className="sticky top-28">
+            <div>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={current.number}
