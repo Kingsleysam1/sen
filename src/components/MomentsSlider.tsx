@@ -149,7 +149,6 @@ export function MomentsSlider() {
                 draggable={false}
               />
             </div>
-            <p className="mt-3 text-[14px] font-semibold text-[#111]">{s.caption}</p>
           </li>
         ))}
       </ul>
