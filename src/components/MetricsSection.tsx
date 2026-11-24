@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { motion, useInView, animate } from 'motion/react';
 import { GsapScrollReveal } from './GsapScrollReveal';
-import { PHOTOS } from '../data/photos';
+import { MomentsSlider } from './MomentsSlider';
 
 interface AnimatedCounterProps {
   value: number;
@@ -47,15 +47,6 @@ const IMPACT_STATS = [
   { value: 15, suffix: '+', decimals: 0, label: 'Affiliate Organizations', description: 'Public & corporate institutions' },
 ];
 
-// Moments from the work. Captions describe the photo only; confirm names of events before adding them.
-const MOMENTS = [
-  { src: PHOTOS.podiumBlue,  alt: 'Shalom C. Ernest speaking from a podium', caption: 'On stage', pos: '50% 25%' },
-  { src: PHOTOS.whiteboard,  alt: 'Shalom C. Ernest teaching at a flipchart', caption: 'Training session', pos: '40% 40%' },
-  { src: PHOTOS.roscongress, alt: 'Shalom C. Ernest outdoors at a conference in Russia', caption: 'Russian conference', pos: '45% 50%' },
-  { src: PHOTOS.award,       alt: 'Shalom C. Ernest with dignitaries at a ceremony', caption: 'Recognition', pos: '50% 40%' },
-  { src: PHOTOS.classroom,   alt: 'Shalom C. Ernest presenting in a classroom', caption: 'Workshop', pos: '35% 40%' },
-];
-
 export function MetricsSection() {
   return (
     <section id="metrics" className="bg-[#F4F4F2] text-[#111] py-24 sm:py-32" aria-labelledby="metrics-heading">
@@ -94,32 +85,7 @@ export function MetricsSection() {
         </div>
       </div>
 
-      {/* Moments strip: real photographs, scrolls sideways on small screens */}
-      <div className="mt-16 sm:mt-24 overflow-x-auto no-scrollbar">
-        <ul className="site-container flex lg:grid lg:grid-cols-5 gap-4 min-w-max lg:min-w-0">
-          {MOMENTS.map((m, i) => (
-            <motion.li
-              key={m.caption}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.7, delay: i * 0.07, ease: [0.22, 1, 0.36, 1] }}
-              className="w-[62vw] sm:w-[34vw] lg:w-auto"
-            >
-              <div className="aspect-[3/4] rounded-[20px] overflow-hidden bg-[#E5E5E2] group">
-                <img
-                  src={m.src}
-                  alt={m.alt}
-                  style={{ objectPosition: m.pos }}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                  loading="lazy"
-                />
-              </div>
-              <p className="mt-3 text-[14px] font-semibold text-[#111]">{m.caption}</p>
-            </motion.li>
-          ))}
-        </ul>
-      </div>
+      <MomentsSlider />
     </section>
   );
 }
