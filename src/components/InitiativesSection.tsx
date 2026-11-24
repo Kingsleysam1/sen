@@ -36,8 +36,8 @@ const EXPERTISE_ROWS = [
     description:
       'Hands-on advisory and management for strategic projects: scoping, planning, stakeholder alignment and delivery oversight, built around a clear execution roadmap and regular progress reviews.',
     tags: ['Execution Roadmaps', 'Delivery Oversight'],
-    image: PHOTOS.classroom,
-    pos: '40% 30%',
+    image: PHOTOS.projectPodium,
+    pos: '45% 35%',
   },
   {
     number: '04',
