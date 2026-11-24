@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { SERVICES } from '../data/shalomData';
 import { X, Check } from 'lucide-react';
 import { triggerHaptic } from '../utils/haptics';
-import { openEnquiryEmail, CONTACT } from '../utils/enquiry';
+import { sendEnquiry, enquiryMailto, CONTACT } from '../utils/enquiry';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -18,7 +18,10 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
     service: SERVICES[0].title,
     message: '',
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'failed'>('idle');
+
+  // A fresh form each time the modal opens
+  useEffect(() => { if (isOpen) setStatus('idle'); }, [isOpen]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -29,18 +32,23 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const fields = () => ({
+    Name: formData.name,
+    Email: formData.email,
+    Phone: formData.phone,
+    'Interested in': formData.service,
+    Message: formData.message,
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (status === 'sending') return;
     triggerHaptic('medium');
-    openEnquiryEmail(`Consultation request: ${formData.service}`, {
-      Name: formData.name,
-      Email: formData.email,
-      Phone: formData.phone,
-      'Interested in': formData.service,
-      Message: formData.message,
-    });
-    setSubmitted(true);
+    setStatus('sending');
+    const result = await sendEnquiry(`Consultation request from ${formData.name}: ${formData.service}`, fields(), formData.email);
+    setStatus(result.ok ? 'sent' : 'failed');
   };
+
 
   return (
     <AnimatePresence>
@@ -85,24 +93,27 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
             </h2>
           </div>
 
-          {submitted ? (
-            <div className="py-8 text-center flex flex-col items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-[#8AC4FF]/15 border border-[#8AC4FF]/40 flex items-center justify-center text-[#8AC4FF]">
+          {status === 'sent' ? (
+            <div className="py-8 text-center flex flex-col items-center gap-3" role="status" aria-live="polite">
+              <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-black">
                 <Check size={24} />
               </div>
-              <h3 className="text-[20px] font-bold text-white">One last step: press Send</h3>
-              <p className="text-stone-300 text-[14px] leading-relaxed">
-                Thank you, {formData.name}. Your email app has opened with your request addressed to {CONTACT.email}. Press Send to deliver it.
+              <h3 className="text-[22px] font-medium tracking-[-0.02em] text-white">Request received, {formData.name.split(' ')[0]}.</h3>
+              <p className="text-stone-300 text-[15px] leading-relaxed">
+                Your consultation request for <span className="text-white">{formData.service}</span> is with Shalom's team. They'll reply to {formData.email}.
               </p>
-              <p className="text-stone-400 text-[13px] leading-relaxed">
-                Nothing opened? Email <a className="underline text-white" href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a> or call <a className="underline text-white" href={CONTACT.phoneHref}>{CONTACT.phone}</a>.
+              <p className="text-stone-400 text-[13px]">
+                Need to talk sooner? Call <a className="underline text-white" href={CONTACT.phoneHref}>{CONTACT.phone}</a>.
               </p>
-              <button
-                onClick={onClose}
-                className="mt-3 px-6 py-2.5 rounded-full bg-[#8AC4FF] text-[#0A0908] font-bold text-[13px] cursor-pointer"
-              >
-                Close
-              </button>
+              <button onClick={onClose} className="mt-3 px-6 py-2.5 rounded-full bg-white text-black font-semibold text-[13px] cursor-pointer">Close</button>
+            </div>
+          ) : status === 'failed' ? (
+            <div className="py-8 text-center flex flex-col items-center gap-3" role="alert">
+              <h3 className="text-[22px] font-medium tracking-[-0.02em] text-white">That didn't go through.</h3>
+              <p className="text-stone-300 text-[15px] leading-relaxed">
+                Your details are still here. Try again, email <a className="underline text-white" href={enquiryMailto(`Consultation request: ${formData.service}`, fields())}>{CONTACT.email}</a>, or call <a className="underline text-white" href={CONTACT.phoneHref}>{CONTACT.phone}</a>.
+              </p>
+              <button onClick={() => setStatus('idle')} className="mt-3 px-6 py-2.5 rounded-full bg-white text-black font-semibold text-[13px] cursor-pointer">Try again</button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-4 text-left">
@@ -175,10 +186,11 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
               {/* Pill Submit Button */}
               <button
                 type="submit"
-                className="w-full py-3.5 mt-2 rounded-full bg-[#8AC4FF] hover:bg-[#B9DCFF] text-[#0A0908] font-bold text-[14px] tracking-wide inline-flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer shadow-lg hover:shadow-[0_0_20px_rgba(138, 196, 255,0.25)]"
+                disabled={status === 'sending'}
+                className="disabled:opacity-60 disabled:cursor-wait w-full py-3.5 mt-2 rounded-full bg-[#8AC4FF] hover:bg-[#B9DCFF] text-[#0A0908] font-bold text-[14px] tracking-wide inline-flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer shadow-lg hover:shadow-[0_0_20px_rgba(138, 196, 255,0.25)]"
               >
-                <span>Send Consultation Request</span>
-                <span className="text-[16px]">→</span>
+                <span>{status === 'sending' ? 'Sending…' : 'Send Consultation Request'}</span>
+                {status !== 'sending' && <span className="text-[16px]" aria-hidden="true">→</span>}
               </button>
             </form>
           )}

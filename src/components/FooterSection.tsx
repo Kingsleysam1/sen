@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Linkedin, Instagram, Facebook, Globe, Check } from 'lucide-react';
 import { PROFILE_DATA } from '../data/shalomData';
 import { triggerHaptic } from '../utils/haptics';
-import { openEnquiryEmail, CONTACT } from '../utils/enquiry';
+import { sendEnquiry, enquiryMailto, CONTACT } from '../utils/enquiry';
 import { GsapScrollReveal } from './GsapScrollReveal';
 
 interface FooterSectionProps {
@@ -12,17 +12,19 @@ interface FooterSectionProps {
 
 export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenBooking }: FooterSectionProps) {
   const [formData, setFormData] = useState({ firstName: '', lastName: '', email: '' });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'failed'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (status === 'sending') return;
     triggerHaptic('medium');
-    openEnquiryEmail('Please add me to the Shalom Ernest community', {
+    setStatus('sending');
+    const result = await sendEnquiry('New community member: ' + `${formData.firstName} ${formData.lastName}`.trim(), {
       'First name': formData.firstName,
       'Last name': formData.lastName,
       Email: formData.email,
-    });
-    setSubmitted(true);
+    }, formData.email);
+    setStatus(result.ok ? 'sent' : 'failed');
   };
 
   return (
@@ -44,13 +46,23 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
         {/* ── Form Card ── */}
         <GsapScrollReveal>
           <div className="max-w-2xl mx-auto bg-[#111] rounded-[24px] p-6 sm:p-10 mb-24 sm:mb-32">
-            {submitted ? (
-              <div className="text-center py-8 flex flex-col items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-[#8AC4FF]/15 border border-[#8AC4FF]/40 flex items-center justify-center text-[#8AC4FF]">
+            {status === 'sent' ? (
+              <div className="text-center py-8 flex flex-col items-center gap-3" role="status" aria-live="polite">
+                <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-black">
                   <Check size={24} />
                 </div>
-                <h3 className="text-[20px] font-bold text-white">One last step: press Send</h3>
-                <p className="text-stone-400 text-[14px] max-w-md">Your email app has opened with your request to join, addressed to {CONTACT.email}. Press Send and you're on the list.</p>
+                <h3 className="text-[24px] font-medium tracking-[-0.02em] text-white">Welcome to the community, {formData.firstName || 'friend'}.</h3>
+                <p className="text-white/70 text-[15px] leading-relaxed max-w-md">
+                  You're on the list. Shalom's team will be in touch at {formData.email} with upcoming events, programmes and leadership notes.
+                </p>
+              </div>
+            ) : status === 'failed' ? (
+              <div className="text-center py-8 flex flex-col items-center gap-3" role="alert">
+                <h3 className="text-[22px] font-medium tracking-[-0.02em] text-white">That didn't go through.</h3>
+                <p className="text-white/70 text-[15px] leading-relaxed max-w-md">
+                  Please try again, or join by emailing <a className="underline text-white" href={enquiryMailto('Please add me to the Shalom Ernest community', { 'First name': formData.firstName, 'Last name': formData.lastName, Email: formData.email })}>{CONTACT.email}</a>.
+                </p>
+                <button onClick={() => setStatus('idle')} className="mt-2 px-6 py-3 rounded-full bg-white text-black text-[14px] font-semibold cursor-pointer">Try again</button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
@@ -97,10 +109,11 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
                 <div className="flex justify-center pt-3">
                   <button
                     type="submit"
-                    className="w-full sm:w-auto min-w-[220px] py-3.5 px-8 rounded-full bg-white hover:bg-[#8AC4FF] text-black font-semibold text-[14px] tracking-wide inline-flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer shadow-lg hover:shadow-[0_0_25px_rgba(138, 196, 255,0.25)]"
+                    disabled={status === 'sending'}
+                    className="disabled:opacity-60 disabled:cursor-wait w-full sm:w-auto min-w-[220px] py-3.5 px-8 rounded-full bg-white hover:bg-[#8AC4FF] text-black font-semibold text-[14px] tracking-wide inline-flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer shadow-lg hover:shadow-[0_0_25px_rgba(138, 196, 255,0.25)]"
                   >
-                    <span>Join Community</span>
-                    <span className="text-[16px]">→</span>
+                    <span>{status === 'sending' ? 'Joining…' : 'Join Community'}</span>
+                    {status !== 'sending' && <span className="text-[16px]" aria-hidden="true">→</span>}
                   </button>
                 </div>
               </form>
