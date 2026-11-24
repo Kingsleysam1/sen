@@ -393,11 +393,12 @@ export const FAQS: FAQItem[] = [
   }
 ];
 
-export const SERVICES = [
+export const SERVICES: { id: string; title: string; duration?: string; format?: string }[] = [
+  { id: "clarity-coaching", title: "Clarity & Purpose Coaching", format: "Individuals & Organizations" },
+  { id: "leadership-training", title: "Executive Leadership Training", duration: "Custom Retreats", format: "On-ground & On-site" },
   { id: "strategic-discovery", title: "Strategic Discovery Session", duration: "90 Mins", format: "Virtual / On-site" },
-  { id: "leadership-training", title: "Executive Leadership Training", duration: "Custom Retreats", format: "On-site / Corporate" },
   { id: "corporate-advisory", title: "Corporate Alignment Advisory", duration: "2 - 12 Weeks", format: "Systemic Consulting" },
-  { id: "clarity-coaching", title: "Clarity & Legacy Coaching", duration: "1-on-1 Retainer", format: "Executive Retainer" }
+  { id: "project-management", title: "Project Management" }
 ];
 
 export const EVENTS_DATA: EventItem[] = [

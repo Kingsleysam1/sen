@@ -35,7 +35,7 @@ function getLocalKnowledgeReply(query: string): string {
   }
 
   if (q.includes('service') || q.includes('offer') || q.includes('advisory') || q.includes('training')) {
-    const serviceList = SERVICES.map(s => `• **${s.title}** (${s.duration}, ${s.format})`).join('\n');
+    const serviceList = SERVICES.map(s => { const d = [s.duration, s.format].filter(Boolean).join(', '); return `• **${s.title}**${d ? ` (${d})` : ''}`; }).join('\n');
     return `Shalom C. Ernest provides specialized executive advisory through Leadview Consulting:\n\n${serviceList}\n\nEach engagement is customized to eliminate operational friction and align organizational strategy with execution.`;
   }
 

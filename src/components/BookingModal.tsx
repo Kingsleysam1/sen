@@ -165,7 +165,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                 >
                   {SERVICES.map((s) => (
                     <option key={s.id} value={s.title} className="bg-[#141210] text-white">
-                      {s.title} ({s.format})
+                      {s.format ? `${s.title} (${s.format})` : s.title}
                     </option>
                   ))}
                 </select>
