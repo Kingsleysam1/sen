@@ -3,7 +3,11 @@ import { GsapScrollReveal } from './GsapScrollReveal';
 import { BlurUpImage } from './BlurUpImage';
 import { PHOTOS } from '../data/photos';
 
-const CREDENTIALS = ['FIMC', 'CMC', 'Lateef Jakande Fellow', 'Tony Elumelu Foundation Mentor'];
+const CREDENTIALS = [
+  { tag: 'FIMC', full: 'Fellow, Institute of Management Consultants' },
+  { tag: 'CMC', full: 'Certified Management Consultant' },
+  { tag: 'AILCS', full: 'Associate, Institute of Leadership Coaching and Strategy' },
+];
 
 export function BioSection() {
   return (
@@ -53,9 +57,9 @@ export function BioSection() {
 
             <GsapScrollReveal>
               <ul className="flex flex-wrap gap-2 pt-1" aria-label="Credentials">
-                {CREDENTIALS.map((tag) => (
-                  <li key={tag} className="text-[13px] font-medium text-[#111] bg-[#F2F2F0] px-3.5 py-1.5 rounded-full">
-                    {tag}
+                {CREDENTIALS.map((c) => (
+                  <li key={c.tag} title={c.full} className="text-[13px] font-semibold text-[#111] bg-[#F2F2F0] px-3.5 py-1.5 rounded-full">
+                    <abbr title={c.full} className="no-underline">{c.tag}</abbr>
                   </li>
                 ))}
               </ul>
