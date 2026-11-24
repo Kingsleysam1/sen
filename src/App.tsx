@@ -171,53 +171,35 @@ function MainContent() {
         <MarqueeStrip />
 
         {/* 3. BIO — What do they stand for? */}
-        <GsapScrollReveal>
-          <BioSection />
-        </GsapScrollReveal>
+        <BioSection />
 
         {/* 4. IMPACT METRICS — Why should I trust them? */}
-        <GsapScrollReveal>
-          <MetricsSection />
-        </GsapScrollReveal>
+        <MetricsSection />
 
         {/* 5. EXPERTISE — What do they do? */}
-        <GsapScrollReveal>
-          <InitiativesSection onOpenBooking={() => setIsBookingOpen(true)} />
-        </GsapScrollReveal>
+        <InitiativesSection onOpenBooking={() => setIsBookingOpen(true)} />
 
         {/* 6. PROGRAMS — How can they help me? */}
-        <GsapScrollReveal>
-          <ProgramsSection onOpenBooking={() => setIsBookingOpen(true)} />
-        </GsapScrollReveal>
+        <ProgramsSection onOpenBooking={() => setIsBookingOpen(true)} />
 
         {/* 7. CREDIBILITY — Why trust them? */}
-        <GsapScrollReveal>
-          <PartnersMarquee />
-        </GsapScrollReveal>
+        <PartnersMarquee />
 
         {/* 8. MILESTONES — What impact have they made? */}
         <MilestonesSection onOpenBooking={() => setIsBookingOpen(true)} />
 
         {/* 9. EVENTS — Active programmes */}
-        <GsapScrollReveal>
-          <EventsSection />
-        </GsapScrollReveal>
+        <EventsSection />
 
         {/* 10. TESTIMONIALS — What have others said? */}
-        <GsapScrollReveal>
-          <TestimonialSlider />
-        </GsapScrollReveal>
+        <TestimonialSlider />
 
         {/* 11. FAQ — Engagement enquiries */}
-        <GsapScrollReveal>
-          <FAQSection />
-        </GsapScrollReveal>
+        <FAQSection />
       </main>
 
       {/* Footer */}
-      <GsapScrollReveal>
-        <FooterSection onNavClick={handleNavClick} onOpenBooking={() => setIsBookingOpen(true)} />
-      </GsapScrollReveal>
+      <FooterSection onNavClick={handleNavClick} onOpenBooking={() => setIsBookingOpen(true)} />
 
       {/* Modals */}
       <ArticleModal

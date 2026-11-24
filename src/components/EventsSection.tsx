@@ -155,180 +155,114 @@ export function EventsSection() {
   const [registerEvent, setRegisterEvent] = useState<EventItem | null>(null);
   const [flyerOpen, setFlyerOpen]         = useState<EventItem | null>(null);
 
-  const featured  = EVENTS_DATA[0];
-  const sideItems = EVENTS_DATA.slice(1);
-
   return (
-    <section
-      id="events"
-      className="bg-[#0A0908] border-t border-white/[0.08]"
-      aria-labelledby="events-heading"
-    >
+    <section id="events" className="bg-[#F4F4F2] text-[#111]" aria-labelledby="events-heading">
       <div className="site-container section-padding">
-
-        {/* ── Header (mirrors ArticlesSection) ── */}
         <GsapScrollReveal>
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12 sm:mb-14">
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="block w-8 h-[2px] bg-[#8AC4FF]" />
-                <span className="font-mono text-[11px] font-semibold tracking-[0.16em] uppercase text-[#8AC4FF]">
-                  Hosted Events &amp; Calendar
-                </span>
-              </div>
-              <h2
-                id="events-heading"
-                className="text-[36px] sm:text-[50px] text-white font-bold leading-tight tracking-tight font-sans"
-              >
-                Ideas That <span className="text-[#8AC4FF]">Move</span> People
+              <p className="flex items-center gap-2 text-[11px] sm:text-[12px] font-semibold tracking-[0.16em] uppercase text-[#555] mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#111]" aria-hidden="true" />
+                Hosted Events &amp; Calendar
+              </p>
+              <h2 id="events-heading" className="text-[clamp(36px,5.2vw,68px)] font-medium leading-[1.02] tracking-[-0.04em]">
+                Ideas That Move People
               </h2>
             </div>
           </div>
         </GsapScrollReveal>
 
-        {/* ── Editorial Grid ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-px bg-white/[0.06] rounded-2xl overflow-hidden border border-white/[0.08]">
-
-          {/* Featured Event (7 cols) */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-7 bg-[#0A0908] flex flex-col group cursor-pointer"
-            onClick={() => setFlyerOpen(featured)}
-          >
-            {/* Image */}
-            <div className="relative overflow-hidden aspect-[16/10]">
-              <img
-                src={featured.flyerImage}
-                alt={featured.title}
-                className="w-full h-full object-cover brightness-80 group-hover:scale-105 transition-transform duration-700"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0908] via-transparent to-transparent opacity-80" />
-              <div className="absolute top-4 left-4">
-                <StatusBadge status={featured.status} />
-              </div>
-              <div className="absolute top-4 right-4">
-                <span className="font-mono text-[10px] uppercase tracking-widest text-[#B9DCFF] bg-[#1C1916]/90 px-2.5 py-1 rounded border border-[#8AC4FF]/25 backdrop-blur-md">
-                  {featured.organizer}
-                </span>
-              </div>
-            </div>
-
-            {/* Content */}
-            <div className="p-7 sm:p-8 flex flex-col gap-4 flex-1">
-              <div className="flex items-center gap-2 text-stone-500 text-[12px] font-mono">
-                <Clock className="w-3.5 h-3.5 text-[#8AC4FF]" />
-                <span>{featured.dateDisplay} · {featured.timeDisplay}</span>
-              </div>
-              <h3 className="text-[24px] sm:text-[28px] font-bold text-white leading-tight tracking-tight group-hover:text-[#8AC4FF] transition-colors">
-                {featured.title}
-              </h3>
-              <p className="text-stone-400 text-[15px] leading-[1.6]">
-                {featured.description}
-              </p>
-
-              {/* Location */}
-              <div className="flex items-start gap-2 text-stone-500 text-[13px]">
-                <MapPin className="w-4 h-4 text-[#8AC4FF] shrink-0 mt-0.5" />
-                <span>{featured.venue}</span>
-              </div>
-
-              {/* Actions */}
-              <div className="flex items-center gap-3 mt-auto pt-4 border-t border-white/[0.08]">
-                {/* Calendar dropdown */}
-                <div className="relative" onClick={(e) => e.stopPropagation()}>
-                  <button
-                    onClick={() => setCalendarMenu(calendarMenu === featured.id ? null : featured.id)}
-                    className="inline-flex items-center gap-1.5 bg-white/[0.05] hover:bg-white/[0.09] border border-white/[0.1] text-stone-300 hover:text-white font-mono text-[12px] px-3.5 py-2 rounded-full transition-all cursor-pointer"
-                  >
-                    <CalendarPlus className="w-3.5 h-3.5 text-[#8AC4FF]" />
-                    Calendar
-                  </button>
-                  <AnimatePresence>
-                    {calendarMenu === featured.id && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 6 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 6 }}
-                        className="absolute left-0 top-full mt-2 w-48 bg-[#1C1916] rounded-xl border border-white/[0.1] p-1 shadow-2xl z-30"
-                      >
-                        <a href={getGoogleCalendarUrl(featured)} target="_blank" rel="noopener noreferrer"
-                          onClick={() => setCalendarMenu(null)}
-                          className="flex items-center gap-2 text-[12px] text-stone-300 hover:text-white px-3 py-2 rounded-lg hover:bg-white/[0.06] transition-colors">
-                          <ExternalLink className="w-3.5 h-3.5 text-[#8AC4FF]" /> Google Calendar
-                        </a>
-                        <button onClick={() => { downloadICS(featured); setCalendarMenu(null); }}
-                          className="w-full flex items-center gap-2 text-[12px] text-stone-300 hover:text-white px-3 py-2 rounded-lg hover:bg-white/[0.06] transition-colors cursor-pointer text-left">
-                          <Download className="w-3.5 h-3.5 text-[#8AC4FF]" /> Apple / Outlook (.ics)
-                        </button>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-
-                <button
-                  onClick={(e) => { e.stopPropagation(); triggerHaptic('medium'); setRegisterEvent(featured); }}
-                  className="inline-flex items-center gap-1.5 bg-[#8AC4FF] hover:bg-[#B9DCFF] text-[#0A0908] font-bold text-[12px] px-5 py-2 rounded-full transition-colors cursor-pointer"
-                >
-                  Register →
-                </button>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Side Events (5 cols) */}
-          <div className="lg:col-span-5 bg-[#0A0908] flex flex-col divide-y divide-white/[0.06]">
-            {sideItems.map((event, i) => (
-              <motion.div
+        <div className="-mx-5 px-5 sm:mx-0 sm:px-0 overflow-x-auto no-scrollbar">
+          <div className="flex md:grid md:grid-cols-3 gap-4 sm:gap-5 items-stretch">
+            {EVENTS_DATA.map((event, i) => (
+              <motion.article
                 key={event.id}
-                initial={{ opacity: 0, x: 16 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                className="flex gap-4 p-5 cursor-pointer group hover:bg-[#141210] transition-colors"
-                onClick={() => setFlyerOpen(event)}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                className="shrink-0 w-[82vw] sm:w-[60vw] md:w-auto bg-white rounded-[22px] overflow-hidden flex flex-col shadow-[0_1px_0_rgba(0,0,0,0.04)]"
               >
-                {/* Thumbnail */}
-                <div className="w-24 h-20 shrink-0 overflow-hidden rounded-xl border border-white/[0.07]">
+                <button
+                  type="button"
+                  onClick={() => setFlyerOpen(event)}
+                  className="relative block aspect-[4/5] overflow-hidden cursor-zoom-in group"
+                  aria-label={`View the ${event.title} flyer`}
+                >
                   <img
-                    src={event.flyerImage}
+                    src={encodeURI(event.flyerImage)}
                     alt={event.title}
-                    className="w-full h-full object-cover brightness-80 group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                     loading="lazy"
                   />
-                </div>
+                  <span className="absolute top-4 left-4 text-[11px] font-semibold bg-white text-black px-3 py-1 rounded-full">
+                    {event.type}
+                  </span>
+                </button>
 
-                {/* Info */}
-                <div className="flex flex-col justify-between gap-1 min-w-0 flex-1">
+                <div className="p-6 flex flex-col gap-4 flex-1">
                   <div>
-                    <StatusBadge status={event.status} />
-                    <h3 className="text-[16px] font-bold text-white mt-1.5 line-clamp-2 leading-snug group-hover:text-[#8AC4FF] transition-colors">
-                      {event.title}
-                    </h3>
+                    <p className="text-[12px] font-medium text-[#777]">{event.organizer} · {event.status}</p>
+                    <h3 className="mt-1.5 text-[21px] font-semibold leading-[1.15] tracking-[-0.02em]">{event.title}</h3>
+                    <p className="mt-2 text-[14px] text-[#555] leading-[1.55]">{event.description}</p>
                   </div>
-                  <div className="flex items-center gap-1.5 text-stone-500 text-[11px] font-mono">
-                    <Clock className="w-3 h-3 text-[#8AC4FF]" />
-                    <span>{event.dateDisplay}</span>
+
+                  <dl className="text-[14px] divide-y divide-black/[0.07] border-y border-black/[0.07]">
+                    <div className="flex gap-4 py-2.5"><dt className="w-20 shrink-0 text-[#888]">Date</dt><dd className="text-[#111]">{event.dateDisplay} · {event.timeDisplay}</dd></div>
+                    <div className="flex gap-4 py-2.5"><dt className="w-20 shrink-0 text-[#888]">Place</dt><dd className="text-[#111]">{event.venue}</dd></div>
+                    <div className="flex gap-4 py-2.5"><dt className="w-20 shrink-0 text-[#888]">Investment</dt><dd className="text-[#111]">{event.fee}</dd></div>
+                  </dl>
+
+                  <div className="mt-auto flex items-center gap-2 pt-1">
+                    <button
+                      onClick={() => { triggerHaptic('medium'); setRegisterEvent(event); }}
+                      className="px-5 py-2.5 rounded-full bg-black hover:bg-[#1d3a5c] text-white text-[13px] font-semibold transition-colors cursor-pointer"
+                    >
+                      Register
+                    </button>
+                    <div className="relative">
+                      <button
+                        onClick={() => setCalendarMenu(calendarMenu === event.id ? null : event.id)}
+                        className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-[#F2F2F0] hover:bg-[#E8E8E5] text-[#111] text-[13px] font-semibold transition-colors cursor-pointer"
+                      >
+                        <CalendarPlus className="w-3.5 h-3.5" /> Calendar
+                      </button>
+                      <AnimatePresence>
+                        {calendarMenu === event.id && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 6 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 6 }}
+                            className="absolute left-0 bottom-full mb-2 w-52 bg-white rounded-xl p-1 shadow-[0_12px_40px_rgba(0,0,0,0.15)] z-30"
+                          >
+                            <a href={getGoogleCalendarUrl(event)} target="_blank" rel="noopener noreferrer"
+                              onClick={() => setCalendarMenu(null)}
+                              className="flex items-center gap-2 text-[13px] text-[#333] hover:text-black px-3 py-2 rounded-lg hover:bg-[#F2F2F0]">
+                              <ExternalLink className="w-3.5 h-3.5" /> Google Calendar
+                            </a>
+                            <button onClick={() => { downloadICS(event); setCalendarMenu(null); }}
+                              className="w-full flex items-center gap-2 text-[13px] text-[#333] hover:text-black px-3 py-2 rounded-lg hover:bg-[#F2F2F0] cursor-pointer text-left">
+                              <Download className="w-3.5 h-3.5" /> Apple / Outlook (.ics)
+                            </button>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
                   </div>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
-
-            {/* Bottom CTA block (mirrors quote block in ArticlesSection) */}
-            <div className="mt-auto p-6 sm:p-7 bg-[#141210] flex flex-col gap-3">
-              <span className="text-[#8AC4FF]/20 text-[40px] font-extrabold leading-none select-none">"</span>
-              <p className="text-[16px] font-semibold text-stone-300 leading-snug">
-                Every great leader needs a room that challenges them to grow.
-              </p>
-              <span className="font-mono text-[11px] uppercase tracking-wider text-stone-600">
-                — Shalom C. Ernest, FIMC, CMC
-              </span>
-            </div>
           </div>
         </div>
+
+        <GsapScrollReveal>
+          <figure className="mt-16 sm:mt-20 max-w-[820px]">
+            <blockquote className="text-[clamp(24px,3vw,38px)] font-medium leading-[1.2] tracking-[-0.03em]">
+              "Every great leader needs a room that challenges them to grow."
+            </blockquote>
+            <figcaption className="mt-4 text-[14px] text-[#666]">— Shalom C. Ernest, FIMC, CMC</figcaption>
+          </figure>
+        </GsapScrollReveal>
       </div>
 
       {/* ── Flyer Lightbox ── */}
@@ -353,7 +287,7 @@ export function EventsSection() {
                 <X size={22} />
               </button>
               <img
-                src={flyerOpen.flyerImage}
+                src={encodeURI(flyerOpen.flyerImage)}
                 alt={flyerOpen.title}
                 className="w-full rounded-2xl border border-white/[0.1] shadow-2xl"
               />

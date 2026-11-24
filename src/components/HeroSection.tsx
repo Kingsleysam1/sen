@@ -1,106 +1,100 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Navbar } from './Navbar';
+import { PHOTOS } from '../data/photos';
 
 interface HeroSectionProps {
   onNavClick: (targetId: string) => void;
   onOpenBooking: () => void;
 }
 
+const EASE = [0.16, 1, 0.3, 1] as const;
+
 export function HeroSection({ onNavClick, onOpenBooking }: HeroSectionProps) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const v = videoRef.current;
-    if (v) {
-      v.playbackRate = 0.75;
-    }
-  }, []);
-
   return (
-    <section
-      id="hero"
-      className="relative w-full min-h-screen flex flex-col justify-between bg-[#0A0908] overflow-hidden"
-      aria-label="Hero"
-    >
-      {/* ── Background Video with Overlay ── */}
-      <video
-        ref={videoRef}
-        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0 brightness-[0.42] contrast-110 motion-reduce:hidden"
-        aria-hidden="true"
-      />
-
-      {/* ── Vignette / Gradient Overlays ── */}
-      <div
-        className="absolute inset-0 z-[1] pointer-events-none"
-        style={{
-          background:
-            'linear-gradient(to bottom, rgba(10,9,8,0.7) 0%, rgba(10,9,8,0.25) 40%, rgba(10,9,8,0.75) 80%, #0A0908 100%)',
-        }}
-        aria-hidden="true"
-      />
-
-      {/* ── Floating Header ── */}
+    <section id="hero" className="relative w-full bg-black pt-[64px] sm:pt-[72px]" aria-label="Hero">
       <Navbar onNavClick={onNavClick} onOpenBooking={onOpenBooking} />
 
-      {/* ── Hero Main Content ── */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center pt-28 sm:pt-36 pb-16">
-        <div className="site-container w-full">
-          <div className="flex flex-col items-start max-w-6xl">
+      <div className="px-3 sm:px-5 pb-3 sm:pb-5">
+        <div className="relative overflow-hidden rounded-[22px] sm:rounded-[28px] h-[calc(100svh-76px)] sm:h-[calc(100svh-92px)] min-h-[560px] max-h-[920px] bg-[#0B1626]">
+          {/* Photo: Shalom on stage. Portrait crop on phones, wide on desktop. */}
+          <motion.picture
+            initial={{ scale: 1.06, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1.4, ease: EASE }}
+            className="absolute inset-0 block"
+          >
+            <source media="(min-width: 768px)" srcSet={PHOTOS.stageWide} />
+            <img
+              src={PHOTOS.stagePodium}
+              alt="Shalom C. Ernest speaking on stage at a leadership summit"
+              className="w-full h-full object-cover object-[50%_22%] md:object-[60%_35%]"
+              fetchPriority="high"
+            />
+          </motion.picture>
 
-            {/* Eyebrow: Light Blue Uppercase */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="mb-3 sm:mb-4"
-            >
-              <span className="text-[#8AC4FF] font-semibold text-[10px] sm:text-[12px] tracking-[0.18em] uppercase">
-                MANAGEMENT CONSULTANT • STRATEGIC ADVISOR • INSTITUTION BUILDER
-              </span>
-            </motion.div>
+          {/* Legibility: dark from the bottom and the left, photo stays bright on the right */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                'linear-gradient(to top, rgba(5,10,20,0.92) 0%, rgba(5,10,20,0.55) 38%, rgba(5,10,20,0) 65%), linear-gradient(to right, rgba(5,10,20,0.75) 0%, rgba(5,10,20,0.25) 45%, rgba(5,10,20,0) 70%)',
+            }}
+            aria-hidden="true"
+          />
 
-            {/* Giant Dominant Headline: SHALOM ERNEST */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="font-hero text-white text-[clamp(68px,15vw,190px)] font-normal tracking-[-0.01em] leading-[0.92] uppercase select-none"
-            >
-              SHALOM ERNEST
-            </motion.h1>
+          <div className="absolute inset-x-0 bottom-0 p-6 sm:p-10 lg:p-14">
+            <div className="max-w-[720px]">
+              <motion.p
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.25, ease: EASE }}
+                className="text-white/80 font-semibold text-[10px] sm:text-[12px] tracking-[0.18em] uppercase mb-4"
+              >
+                Management Consultant • Strategic Advisor • Institution Builder
+              </motion.p>
 
-            {/* Description on the left */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.35 }}
-              className="mt-6 sm:mt-8 text-stone-200 text-[16px] sm:text-[18px] leading-[1.65] max-w-[540px] font-normal"
-            >
-              I inspire and facilitate purposeful transformation in individuals &amp; organizations to create meaningful impact &amp; maximize potential.
-            </motion.p>
+              <motion.h1
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.35, ease: EASE }}
+                className="text-white font-medium tracking-[-0.045em] leading-[0.95] text-[clamp(54px,9vw,128px)]"
+              >
+                Shalom Ernest
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.5, ease: EASE }}
+                className="mt-5 sm:mt-6 text-white/85 text-[16px] sm:text-[19px] leading-[1.55] max-w-[560px]"
+              >
+                I inspire and facilitate purposeful transformation in individuals &amp; organizations to create meaningful impact &amp; maximize potential.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.65, ease: EASE }}
+                className="mt-7 sm:mt-8 flex flex-wrap items-center gap-3"
+              >
+                <button
+                  onClick={onOpenBooking}
+                  className="px-6 py-3 sm:px-7 sm:py-3.5 rounded-full bg-white hover:bg-[#8AC4FF] text-black text-[14px] sm:text-[15px] font-semibold transition-colors cursor-pointer"
+                >
+                  Book Shalom Ernest
+                </button>
+                <button
+                  onClick={() => onNavClick('bio')}
+                  className="px-6 py-3 sm:px-7 sm:py-3.5 rounded-full border border-white/35 hover:border-white text-white text-[14px] sm:text-[15px] font-semibold transition-colors cursor-pointer"
+                >
+                  Meet Shalom
+                </button>
+              </motion.div>
+            </div>
           </div>
         </div>
       </div>
-
-      {/* ── Center Bottom Scroll Indicator ── */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.7, duration: 0.6 }}
-        onClick={() => onNavClick('bio')}
-        className="relative z-10 flex flex-col items-center pb-8 cursor-pointer group"
-      >
-        <div className="w-[3px] h-7 bg-[#8AC4FF] rounded-full group-hover:scale-y-110 transition-transform shadow-[0_0_12px_rgba(138, 196, 255,0.8)]" />
-        <span className="text-[12px] text-stone-400 font-medium tracking-wider mt-2.5 group-hover:text-white transition-colors">
-          Scroll Down
-        </span>
-      </motion.div>
     </section>
   );
 }

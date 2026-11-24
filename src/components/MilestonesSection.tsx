@@ -75,7 +75,7 @@ export function MilestonesSection({ onOpenBooking: _onOpenBooking }: MilestonesS
       id="milestones"
       ref={trackRef}
       aria-labelledby="milestones-heading"
-      className="stage-track relative bg-[#0E110E] border-t border-white/[0.08]"
+      className="stage-track relative bg-black"
       style={{ '--travel': Math.round((COUNT - 1) * SCREENS_PER_CARD * 100) } as React.CSSProperties}
     >
       <div className="stage-sticky flex flex-col justify-center gap-4 sm:gap-6 overflow-hidden pt-[84px] pb-5 sm:pb-8">
@@ -83,15 +83,15 @@ export function MilestonesSection({ onOpenBooking: _onOpenBooking }: MilestonesS
         {/* ── Header ── */}
         <div className="site-container w-full flex flex-col lg:flex-row lg:items-end lg:justify-between gap-3 lg:gap-10">
           <div>
-            <div className="flex items-center gap-3 mb-3">
-              <span className="block w-8 h-[2px] bg-[#8AC4FF]" />
-              <span className="typo-eyebrow">Selected Engagements</span>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#8AC4FF]" aria-hidden="true" />
+              <span className="text-[11px] sm:text-[12px] font-semibold tracking-[0.16em] uppercase text-white/60">Selected Engagements</span>
             </div>
             <h2
               id="milestones-heading"
-              className="typo-section-heading text-[#F0F5F0] text-[clamp(26px,3.4vw,46px)]"
+              className="text-white font-medium tracking-[-0.04em] leading-[1.04] text-[clamp(28px,3.6vw,50px)]"
             >
-              Milestone <span className="text-[#8AC4FF]">Engagements</span> &amp; Policy Advisory
+              Milestone Engagements &amp; Policy Advisory
             </h2>
           </div>
           <p className="typo-body hidden sm:block max-w-[380px] text-[15px]">

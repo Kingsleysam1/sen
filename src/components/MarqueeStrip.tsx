@@ -14,10 +14,10 @@ function MarqueeContent() {
     <div className="flex shrink-0 items-center gap-10 pr-10" aria-hidden="true">
       {MARQUEE_ITEMS.map((item, i) => (
         <React.Fragment key={i}>
-          <span className="whitespace-nowrap text-[13px] font-semibold uppercase tracking-[0.16em] text-stone-300">
+          <span className="whitespace-nowrap text-[22px] sm:text-[30px] font-medium tracking-[-0.02em] text-white">
             {item}
           </span>
-          <span className="block w-2 h-2 rounded-full shrink-0 bg-[#8AC4FF]" aria-hidden="true" />
+          <span className="block w-2.5 h-2.5 rounded-full shrink-0 bg-[#8AC4FF]" aria-hidden="true" />
         </React.Fragment>
       ))}
     </div>
@@ -27,7 +27,7 @@ function MarqueeContent() {
 export function MarqueeStrip() {
   return (
     <section
-      className="w-full overflow-hidden border-y border-white/[0.08] bg-[#141210] py-4"
+      className="w-full overflow-hidden bg-black py-6 sm:py-8"
       aria-label="Credentials and expertise"
     >
       <div className="flex w-max animate-marquee" aria-hidden="true">

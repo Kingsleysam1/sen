@@ -1,81 +1,79 @@
 import React from 'react';
 import { GsapScrollReveal } from './GsapScrollReveal';
 import { BlurUpImage } from './BlurUpImage';
+import { PHOTOS } from '../data/photos';
+
+const CREDENTIALS = ['FIMC', 'CMC', 'Lateef Jakande Fellow', 'Tony Elumelu Foundation Mentor', 'John Maxwell Team'];
 
 export function BioSection() {
   return (
-    <section
-      id="bio"
-      className="bg-[#0A0908] py-24 sm:py-32"
-      aria-labelledby="bio-heading"
-    >
+    <section id="bio" className="bg-white text-[#111] py-24 sm:py-32" aria-labelledby="bio-heading">
       <div className="site-container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
-          {/* LEFT: Statement + Bio Paragraphs (7 cols) */}
-          <div className="lg:col-span-7 flex flex-col gap-8">
-            
-            {/* Statement with vertical light blue accent bar */}
+          <div className="lg:col-span-7 flex flex-col gap-7">
             <GsapScrollReveal>
-              <div className="border-l-2 border-[#8AC4FF] pl-6 sm:pl-8">
-                <h2
-                  id="bio-heading"
-                  className="text-[clamp(28px,3.8vw,44px)] font-bold text-white leading-[1.2] tracking-tight font-sans"
-                >
-                  I build and strengthen ecosystems for transformational Leadership
-                </h2>
-              </div>
+              <p className="flex items-center gap-2 text-[11px] sm:text-[12px] font-semibold tracking-[0.16em] uppercase text-[#555]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#111]" aria-hidden="true" />
+                About Shalom
+              </p>
             </GsapScrollReveal>
 
-            {/* Paragraph 1: High Contrast */}
             <GsapScrollReveal>
-              <p className="text-white text-[16px] sm:text-[17px] leading-[1.7] font-normal">
+              <h2
+                id="bio-heading"
+                className="text-[clamp(36px,5.2vw,68px)] font-medium text-[#111] leading-[1.02] tracking-[-0.04em]"
+              >
+                I build and strengthen ecosystems for transformational Leadership
+              </h2>
+            </GsapScrollReveal>
+
+            <GsapScrollReveal>
+              <p className="text-[#222] text-[17px] sm:text-[18px] leading-[1.65]">
                 Shalom C. Ernest is a leadership strategist, management consultant (FIMC, CMC), certified trainer, coach and Principal Consultant at Leadview Consulting. Through a growing ecosystem of initiatives spanning leadership development trainings, executive advisory, corporate governance, and community transformation, he is raising leaders, building enduring institutions, and creating lasting impact across Africa and beyond.
               </p>
             </GsapScrollReveal>
 
-            {/* Paragraph 2: Muted Secondary Text */}
             <GsapScrollReveal>
-              <p className="text-stone-400 text-[15px] sm:text-[16px] leading-[1.7] font-normal">
+              <p className="text-[#555] text-[16px] sm:text-[17px] leading-[1.65]">
                 As the chief steward at Clarity Conclave, CEO of Leadview Management Consulting and Founder of Youth Making Impact Initiative, Shalom has trained over 10,000 professionals and young leaders across Africa. He helps corporate boards, founders, and innovators tackle complex challenges with clear structures, focused execution, and resilient leadership.
               </p>
             </GsapScrollReveal>
 
-            {/* Credential Tags */}
             <GsapScrollReveal>
-              <div className="flex flex-wrap items-center gap-2 pt-2">
-                {['FIMC', 'CMC', 'Lateef Jakande Fellow', 'Tony Elumelu Foundation Mentor', 'John Maxwell Team'].map((tag) => (
-                  <span
-                    key={tag}
-                    className="font-mono text-[11px] text-stone-400 border border-white/[0.1] px-3 py-1 uppercase bg-[#141210] rounded-full"
-                  >
+              <ul className="flex flex-wrap gap-2 pt-1" aria-label="Credentials">
+                {CREDENTIALS.map((tag) => (
+                  <li key={tag} className="text-[13px] font-medium text-[#111] bg-[#F2F2F0] px-3.5 py-1.5 rounded-full">
                     {tag}
-                  </span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </GsapScrollReveal>
           </div>
 
-          {/* RIGHT: Rounded Executive Portrait (5 cols) */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+          <div className="lg:col-span-5">
             <GsapScrollReveal>
-              <div className="relative w-full max-w-[460px] aspect-[4/5] rounded-[32px] overflow-hidden border border-white/[0.08] shadow-[0_20px_60px_rgba(0,0,0,0.6)] group">
-                <BlurUpImage
-                  src="/src/assets/images/LLS_2026-124.jpg"
-                  alt="Shalom C. Ernest — Management Consultant & Leadership Strategist"
-                  containerClassName="w-full h-full"
-                  className="w-full h-full object-cover object-top contrast-105 brightness-95 group-hover:scale-105 transition-transform duration-700"
-                />
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background: 'linear-gradient(to top, rgba(10,9,8,0.7) 0%, rgba(10,9,8,0.05) 50%, transparent 100%)',
-                  }}
-                />
+              <div className="relative max-w-[480px] mx-auto lg:ml-auto">
+                <div className="aspect-[4/5] rounded-[28px] overflow-hidden bg-[#EEE]">
+                  <BlurUpImage
+                    src={PHOTOS.relaxed}
+                    alt="Shalom C. Ernest smiling, seated in a white shirt and tie"
+                    containerClassName="w-full h-full"
+                    className="w-full h-full object-cover object-[50%_30%]"
+                  />
+                </div>
+                {/* Second, smaller photo: on stage, for a sense of the work */}
+                <div className="hidden sm:block absolute -left-10 -bottom-10 w-[42%] aspect-square rounded-[22px] overflow-hidden border-[6px] border-white shadow-[0_20px_50px_rgba(0,0,0,0.18)]">
+                  <img
+                    src={PHOTOS.worldMap}
+                    alt="Shalom C. Ernest at a podium in front of a world map"
+                    className="w-full h-full object-cover object-[50%_45%]"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </GsapScrollReveal>
           </div>
-
         </div>
       </div>
     </section>

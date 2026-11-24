@@ -416,7 +416,7 @@ export const EVENTS_DATA: EventItem[] = [
     venue: "Favoured Place, Beside UP ASSO Building, 25 Ikorodu Road, Maryland, Lagos",
     fee: "Free Entry (Registration Compulsory)",
     registrationUrl: "https://bit.ly/TCEbyClarityConclave",
-    flyerImage: "/src/assets/images/WhatsApp Image 2026-07-31 at 22.50.33 (1).jpeg",
+    flyerImage: "/src/assets/images/WhatsApp Image 2026-07-31 at 22.50.34 (1).jpeg",
     description: "A curated experience for you to discover purpose, find direction and unlock your next phase with clarity.",
     highlights: [],
     host: "Shalom Ernest (Convener)"
@@ -437,7 +437,7 @@ export const EVENTS_DATA: EventItem[] = [
     fee: "₦35,000 (Was ₦50,000)",
     originalFee: "₦50,000",
     registrationUrl: "https://bit.ly/elevate-your-edge",
-    flyerImage: "/src/assets/images/WhatsApp Image 2026-07-31 at 22.50.34 (1).jpeg",
+    flyerImage: "/src/assets/images/WhatsApp Image 2026-07-31 at 22.50.33 (1).jpeg",
     description: "A two months accountability, support, and strategic growth program hosted by Shalom Ernest.",
     highlights: [],
     host: "Shalom Ernest (Host)"

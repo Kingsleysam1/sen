@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { GsapScrollReveal } from './GsapScrollReveal';
+import { PHOTOS } from '../data/photos';
 
 export interface Testimonial {
   id: number;
@@ -37,116 +37,76 @@ const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
+const initials = (name: string) => name.split(' ').map((w) => w[0]).slice(0, 2).join('');
+
 export function TestimonialSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
-
   const current = TESTIMONIALS[currentIndex];
 
-  const go = (dir: 1 | -1) => {
-    setDirection(dir);
-    setCurrentIndex((prev) => (prev + dir + TESTIMONIALS.length) % TESTIMONIALS.length);
-  };
-
   return (
-    <section
-      id="testimonials"
-      className="bg-[#080A08] border-t border-white/[0.08]"
-      aria-labelledby="testimonials-heading"
-    >
-      <div className="site-container section-padding">
+    <section id="testimonials" className="relative bg-black text-white overflow-hidden" aria-labelledby="testimonials-heading">
+      <img
+        src={PHOTOS.podiumBlue}
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover object-[50%_25%] opacity-45"
+        loading="lazy"
+      />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'linear-gradient(to top, #000 0%, rgba(0,0,0,0.75) 45%, rgba(0,0,0,0.45) 100%)' }}
+        aria-hidden="true"
+      />
 
-        {/* ── Header ── */}
-        <GsapScrollReveal>
-          <div className="flex items-center gap-3 mb-16 md:mb-20">
-            <span className="block w-8 h-[2px] bg-[#8AC4FF]" />
-            <span className="typo-eyebrow">Executive Testimonials</span>
-          </div>
-        </GsapScrollReveal>
+      <div className="relative site-container py-24 sm:py-36">
+        <p className="flex items-center gap-2 text-[11px] sm:text-[12px] font-semibold tracking-[0.16em] uppercase text-white/70 mb-8">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#8AC4FF]" aria-hidden="true" />
+          <span id="testimonials-heading">Executive Testimonials</span>
+        </p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-
-          {/* LEFT: Controls (3 cols) */}
-          <div className="lg:col-span-3 flex flex-col items-start gap-8">
-            {/* Quote Mark */}
-            <div
-              className="text-[#8AC4FF]/20 select-none leading-none text-[90px] sm:text-[120px] font-extrabold"
-              aria-hidden="true"
+        <div className="min-h-[300px] sm:min-h-[260px] max-w-[980px]">
+          <AnimatePresence mode="wait">
+            <motion.figure
+              key={current.id}
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             >
-              “
-            </div>
+              <blockquote className="text-[clamp(22px,2.9vw,38px)] font-medium leading-[1.28] tracking-[-0.025em]">
+                "{current.quote}"
+              </blockquote>
+              <figcaption className="mt-7 text-[15px]">
+                <span className="font-semibold">{current.name}</span>
+                <span className="text-white/65"> · {current.role}, {current.organisation}</span>
+              </figcaption>
+            </motion.figure>
+          </AnimatePresence>
+        </div>
 
-            {/* Navigation Controls */}
-            <div className="flex items-center gap-3">
+        <div className="mt-12 flex flex-wrap gap-6 sm:gap-10" role="tablist" aria-label="Choose a testimonial">
+          {TESTIMONIALS.map((t, i) => {
+            const isActive = i === currentIndex;
+            return (
               <button
-                onClick={() => go(-1)}
-                aria-label="Previous testimonial"
-                className="w-12 h-12 rounded-full border border-white/[0.1] hover:border-[#8AC4FF]/50 flex items-center justify-center text-[#9EAEA0] hover:text-[#8AC4FF] transition-colors cursor-pointer"
+                key={t.id}
+                role="tab"
+                aria-selected={isActive}
+                onClick={() => setCurrentIndex(i)}
+                className="flex flex-col items-center text-center gap-2 cursor-pointer group w-[110px]"
               >
-                ←
-              </button>
-              <button
-                onClick={() => go(1)}
-                aria-label="Next testimonial"
-                className="w-12 h-12 rounded-full border border-white/[0.1] hover:border-[#8AC4FF]/50 flex items-center justify-center text-[#9EAEA0] hover:text-[#8AC4FF] transition-colors cursor-pointer"
-              >
-                →
-              </button>
-            </div>
-
-            {/* Dot Indicators */}
-            <div className="flex gap-2">
-              {TESTIMONIALS.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => { setDirection(idx > currentIndex ? 1 : -1); setCurrentIndex(idx); }}
-                  aria-label={`Testimonial ${idx + 1}`}
-                  className={`block h-[3px] rounded-full transition-all duration-300 cursor-pointer ${
-                    idx === currentIndex ? 'w-8 bg-[#8AC4FF]' : 'w-3 bg-white/20 hover:bg-white/40'
+                <span
+                  className={`w-14 h-14 rounded-full flex items-center justify-center text-[15px] font-semibold transition-all ${
+                    isActive ? 'bg-white text-black ring-2 ring-[#8AC4FF] ring-offset-4 ring-offset-black' : 'bg-white/10 text-white/80 group-hover:bg-white/20'
                   }`}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* RIGHT: Quote Text (9 cols) */}
-          <div className="lg:col-span-9">
-            <AnimatePresence mode="wait" custom={direction}>
-              <motion.div
-                key={currentIndex}
-                custom={direction}
-                initial={{ opacity: 0, x: direction * 35 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: direction * -25 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="flex flex-col gap-8"
-              >
-                {/* Quote: clamp(28px, 3.5vw, 48px), 500-600, 1.25, -0.025em */}
-                <blockquote>
-                  <p className="typo-testimonial-quote text-[#F0F5F0]">
-                    "{current.quote}"
-                  </p>
-                </blockquote>
-
-                {/* Author Info */}
-                <footer className="flex items-center gap-4 border-t border-white/[0.08] pt-6">
-                  <div className="w-12 h-12 rounded-full bg-[#8AC4FF]/15 border border-[#8AC4FF]/30 flex items-center justify-center shrink-0">
-                    <span className="text-[18px] font-bold text-[#8AC4FF]">
-                      {current.name.charAt(0)}
-                    </span>
-                  </div>
-                  <div className="flex flex-col gap-0.5">
-                    <span className="typo-testimonial-author">
-                      {current.name}
-                    </span>
-                    <span className="typo-testimonial-role">
-                      {current.role} · {current.organisation}
-                    </span>
-                  </div>
-                </footer>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+                >
+                  {initials(t.name)}
+                </span>
+                <span className={`text-[13px] font-semibold leading-tight ${isActive ? 'text-white' : 'text-white/60'}`}>{t.name}</span>
+                <span className="text-[11px] text-white/45 leading-tight">{t.role}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
     </section>

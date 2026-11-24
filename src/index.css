@@ -2,9 +2,9 @@
 
 :root {
   /* Fonts — 100% Sans-Serif System */
-  --font-primary: 'Manrope', Arial, sans-serif;
-  --font-sans: 'Manrope', Arial, sans-serif;
-  --font-hero: 'Anton', 'Impact', sans-serif;
+  --font-primary: 'Inter Tight Variable', 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
+  --font-sans: 'Inter Tight Variable', 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
+  --font-hero: 'Inter Tight Variable', 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
   --font-mono: 'Space Mono', monospace;
 
   /* Colors — Light Blue accent on warm ink */
@@ -22,8 +22,8 @@
 }
 
 @theme {
-  --font-sans: 'Manrope', Arial, sans-serif;
-  --font-hero: 'Anton', 'Impact', sans-serif;
+  --font-sans: 'Inter Tight Variable', 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
+  --font-hero: 'Inter Tight Variable', 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
   --font-mono: 'Space Mono', monospace;
   --color-accent: #8AC4FF;
   --color-accent-hover: #B9DCFF;
@@ -283,3 +283,7 @@ html.lenis, html.lenis body { height: auto; }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-accent);
 }
+
+/* Sideways photo rails: scroll without a visible bar */
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }

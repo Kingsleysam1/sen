@@ -52,119 +52,85 @@ export function Navbar({ onNavClick, onOpenBooking }: NavbarProps) {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? 'bg-[#0A0908]/90 backdrop-blur-xl border-b border-white/[0.08] py-4'
-            : 'bg-transparent py-6 sm:py-8'
+        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+          scrolled ? 'bg-black/95 backdrop-blur-xl' : 'bg-black'
         }`}
       >
-        <div className="site-container flex items-center justify-between gap-4">
-          
-          {/* Logo */}
+        <div className="site-container h-[64px] sm:h-[72px] flex items-center justify-between gap-4">
           <button
             onClick={() => handleItemClick('hero')}
-            className="flex items-center gap-1.5 shrink-0 group cursor-pointer"
-            aria-label="Home"
+            className="shrink-0 cursor-pointer text-white text-[17px] sm:text-[19px] font-semibold tracking-[-0.02em]"
+            aria-label="Shalom C. Ernest, home"
           >
-            <span className="font-extrabold text-[20px] sm:text-[22px] tracking-tight text-white uppercase font-sans">
-              SHALOM
-            </span>
-            <span className="font-extrabold text-[20px] sm:text-[22px] tracking-tight text-[#8AC4FF] uppercase font-sans">
-              ERNEST
-            </span>
+            Shalom <span className="text-white/55 font-medium">C. Ernest</span>
           </button>
 
-          {/* Center Floating Pill Navbar */}
-          <nav
-            className="hidden lg:flex items-center gap-1 rounded-full border border-white/[0.12] bg-[#1C1916]/60 backdrop-blur-md px-6 py-2 shadow-2xl"
-            aria-label="Primary navigation"
-          >
-            {NAV_ITEMS.map((item, idx) => (
+          <nav className="hidden lg:flex items-center gap-1" aria-label="Primary navigation">
+            {NAV_ITEMS.map((item) => (
               <button
                 key={item.target}
                 onClick={() => handleItemClick(item.target)}
-                className={`px-4 py-1.5 text-[14px] font-medium transition-colors duration-200 cursor-pointer rounded-full ${
-                  idx === 0
-                    ? 'text-white font-semibold'
-                    : 'text-stone-300 hover:text-white'
-                }`}
+                className="px-4 py-2 text-[14px] font-medium text-white/75 hover:text-white rounded-full hover:bg-white/[0.08] transition-colors cursor-pointer"
               >
                 {item.label}
               </button>
             ))}
           </nav>
 
-          {/* Right CTA Button: Pill with light blue accent */}
-          <div className="hidden lg:flex items-center">
+          <div className="flex items-center gap-2">
             <button
               onClick={handleBooking}
-              className="px-6 py-2.5 rounded-full border border-[#8AC4FF]/60 hover:border-[#8AC4FF] bg-[#8AC4FF]/10 hover:bg-[#8AC4FF]/20 text-[#8AC4FF] hover:text-[#B9DCFF] text-[13px] font-semibold tracking-wide transition-all duration-200 cursor-pointer shadow-[0_0_20px_rgba(138, 196, 255,0.15)]"
+              className="px-5 py-2 sm:py-2.5 rounded-full bg-white hover:bg-[#8AC4FF] text-black text-[13px] sm:text-[14px] font-semibold transition-colors cursor-pointer"
             >
-              Get In Touch
+              Book Shalom
             </button>
-          </div>
-
-          {/* Mobile Hamburger */}
-          <div className="lg:hidden flex items-center gap-3">
-            <button
-              onClick={handleBooking}
-              className="px-4 py-1.5 rounded-full border border-[#8AC4FF]/60 bg-[#8AC4FF]/10 text-[#8AC4FF] text-[12px] font-semibold"
-            >
-              Contact
-            </button>
-
             <button
               onClick={handleToggle}
               aria-label={isOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isOpen}
-              className="w-10 h-10 flex flex-col items-center justify-center gap-[5px] cursor-pointer"
+              className="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-[5px] cursor-pointer"
             >
-              <span className={`block h-[2px] bg-white transition-all duration-300 ${isOpen ? 'w-5 rotate-45 translate-y-[7px]' : 'w-5'}`} />
-              <span className={`block h-[2px] bg-white transition-all duration-300 ${isOpen ? 'opacity-0 w-0' : 'w-5'}`} />
-              <span className={`block h-[2px] bg-white transition-all duration-300 ${isOpen ? 'w-5 -rotate-45 -translate-y-[7px]' : 'w-5'}`} />
+              <span className="block h-[1.5px] w-5 bg-white" />
+              <span className="block h-[1.5px] w-5 bg-white" />
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Fullscreen Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             key="mobile-menu"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[60] bg-[#0A0908] flex flex-col p-6 pt-24 justify-between"
+            className="fixed inset-0 z-[60] bg-black flex flex-col px-6 pb-8 pt-24"
           >
-            <div className="flex justify-between items-center absolute top-6 left-6 right-6">
-              <div className="flex items-center gap-1.5">
-                <span className="font-extrabold text-[20px] text-white">SHALOM</span>
-                <span className="font-extrabold text-[20px] text-[#8AC4FF]">ERNEST</span>
-              </div>
-              <button onClick={handleToggle} className="text-stone-300 hover:text-white p-2">
+            <div className="flex justify-between items-center absolute top-4 left-6 right-6">
+              <span className="text-white text-[17px] font-semibold tracking-[-0.02em]">
+                Shalom <span className="text-white/55 font-medium">C. Ernest</span>
+              </span>
+              <button onClick={handleToggle} className="text-white/70 hover:text-white p-2" aria-label="Close menu">
                 <X size={24} />
               </button>
             </div>
-
-            <nav className="flex flex-col gap-4 mt-6">
+            <nav className="flex flex-col mt-4">
               {NAV_ITEMS.map((item) => (
                 <button
                   key={item.target}
                   onClick={() => handleItemClick(item.target)}
-                  className="text-left text-[28px] font-bold text-stone-200 hover:text-[#8AC4FF] py-2 border-b border-white/[0.08]"
+                  className="text-left text-[34px] font-medium tracking-[-0.03em] text-white/85 hover:text-white py-2"
                 >
                   {item.label}
                 </button>
               ))}
             </nav>
-
             <button
               onClick={handleBooking}
-              className="w-full py-4 rounded-full bg-[#8AC4FF] text-[#0A0908] font-bold text-[15px] tracking-wide"
+              className="mt-auto w-full py-4 rounded-full bg-white text-black font-semibold text-[15px]"
             >
-              Get In Touch
+              Book Shalom
             </button>
           </motion.div>
         )}

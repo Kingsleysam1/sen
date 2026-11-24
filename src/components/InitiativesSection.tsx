@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GsapScrollReveal } from './GsapScrollReveal';
 import { triggerHaptic } from '../utils/haptics';
+import { PHOTOS } from '../data/photos';
 
 interface InitiativesSectionProps {
   onOpenBooking: () => void;
@@ -15,7 +16,8 @@ const EXPERTISE_ROWS = [
     description:
       'A structured diagnostic process to eliminate operational noise, identify the single point of impact, and create a 90-day execution roadmap aligned to your core strategic objectives.',
     tags: ['90-min Virtual', 'On-site Available'],
-    image: '/src/assets/images/shalom_ernest_hero_1782810399094.jpg',
+    image: PHOTOS.conference,
+    pos: '50% 40%',
   },
   {
     number: '02',
@@ -24,7 +26,8 @@ const EXPERTISE_ROWS = [
     description:
       'Immersive executive training programmes designed for C-suite leaders, management teams, and high-potential professionals. Custom retreats, cohort programmes, and modular workshops.',
     tags: ['Custom Retreats', 'On-site / Virtual'],
-    image: '/src/assets/images/LLS_2026-92.jpg',
+    image: PHOTOS.stageWide,
+    pos: '55% 35%',
   },
   {
     number: '03',
@@ -33,7 +36,8 @@ const EXPERTISE_ROWS = [
     description:
       'Multi-week governance and alignment engagements addressing strategic drift, team velocity, decision-making infrastructure, and cross-functional execution discipline.',
     tags: ['2–12 Week Engagements', 'Systemic'],
-    image: '/src/assets/images/_DSC0794.jpg',
+    image: PHOTOS.whiteboard,
+    pos: '40% 40%',
   },
   {
     number: '04',
@@ -42,181 +46,136 @@ const EXPERTISE_ROWS = [
     description:
       'Sustained 1-on-1 advisory for founders, directors, and executives navigating inflection points in their personal leadership trajectory, organisational legacy, and life purpose.',
     tags: ['Monthly Retainer', 'Private'],
-    image: '/src/assets/images/20260629_070734.jpg',
+    image: PHOTOS.withGuest,
+    pos: '50% 30%',
   },
 ];
 
-function ExpertiseRow({
-  item,
-  index,
-  onOpenBooking,
-}: {
-  key?: React.Key;
-  item: typeof EXPERTISE_ROWS[0];
-  index: number;
-  onOpenBooking: () => void;
-}) {
-  const [isOpen, setIsOpen] = useState(false);
+type Row = typeof EXPERTISE_ROWS[number];
 
+function Detail({ item, onOpenBooking }: { item: Row; onOpenBooking: () => void }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.55, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-      className={`border-t border-white/[0.08] cursor-pointer group transition-colors duration-300 ${
-        isOpen ? 'bg-[#0E110E]' : 'hover:bg-white/[0.02]'
-      }`}
-      onClick={() => setIsOpen((prev) => !prev)}
-    >
-      {/* Row Header */}
-      <div className="py-6 sm:py-8 px-2 sm:px-4 flex items-start gap-5 sm:gap-8">
-        {/* Number */}
-        <span className="font-mono text-[18px] sm:text-[22px] font-bold text-[#8AC4FF]/50 group-hover:text-[#8AC4FF] transition-colors shrink-0 mt-1">
-          {item.number}
-        </span>
-
-        {/* Title block */}
-        <div className="flex-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div className="flex flex-col gap-1">
-            <h3 className="typo-card-title text-[#F0F5F0] group-hover:text-[#8AC4FF] transition-colors">
-              {item.title}
-            </h3>
-            <span className="typo-eyebrow text-[#627364] group-hover:text-[#9EAEA0] transition-colors">
-              {item.subtitle}
-            </span>
-          </div>
-
-          {/* Tags + Arrow */}
-          <div className="flex items-center gap-4">
-            <div className="hidden md:flex items-center gap-2 flex-wrap">
-              {item.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="font-mono text-[11px] uppercase tracking-[0.1em] border border-white/[0.08] text-[#627364] px-2.5 py-1"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <motion.span
-              animate={{ rotate: isOpen ? 45 : 0 }}
-              transition={{ duration: 0.3 }}
-              className="w-8 h-8 rounded-full border border-white/[0.1] group-hover:border-[#8AC4FF]/50 flex items-center justify-center shrink-0 text-[#9EAEA0] group-hover:text-[#8AC4FF] transition-colors duration-300"
-            >
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M6 2v8M2 6h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-              </svg>
-            </motion.span>
-          </div>
-        </div>
+    <div className="flex flex-col gap-5">
+      <div className="aspect-[4/3] rounded-[22px] overflow-hidden bg-white/5">
+        <img
+          src={item.image}
+          alt={item.title}
+          style={{ objectPosition: item.pos }}
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
       </div>
-
-      {/* Expandable Content */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden"
-          >
-            <div className="pb-8 px-2 sm:px-4 pl-10 sm:pl-16 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-              <div className="md:col-span-7 flex flex-col gap-5">
-                <p className="typo-card-desc">
-                  {item.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {item.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="font-mono text-[11px] uppercase tracking-[0.1em] border border-white/[0.08] text-[#627364] px-2.5 py-1"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    triggerHaptic('medium');
-                    onOpenBooking();
-                  }}
-                  className="self-start btn-primary py-2.5 px-5 typo-btn mt-2"
-                >
-                  <span>Enquire About This</span>
-                  <span className="btn-arrow">→</span>
-                </button>
-              </div>
-              <div className="md:col-span-5 overflow-hidden aspect-[16/9] rounded-sm border border-white/[0.08]">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover grayscale-[30%] contrast-105 brightness-85"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
+      <p className="text-[12px] font-semibold tracking-[0.16em] uppercase text-[#8AC4FF]">{item.subtitle}</p>
+      <p className="text-white/75 text-[16px] leading-[1.65]">{item.description}</p>
+      <div className="flex flex-wrap gap-2">
+        {item.tags.map((tag) => (
+          <span key={tag} className="text-[12px] font-medium text-white/80 bg-white/[0.08] px-3 py-1 rounded-full">{tag}</span>
+        ))}
+      </div>
+      <button
+        onClick={(e) => { e.stopPropagation(); triggerHaptic('medium'); onOpenBooking(); }}
+        className="self-start mt-1 px-6 py-3 rounded-full bg-white hover:bg-[#8AC4FF] text-black text-[14px] font-semibold transition-colors cursor-pointer"
+      >
+        Enquire About This
+      </button>
+    </div>
   );
 }
 
 export function InitiativesSection({ onOpenBooking }: InitiativesSectionProps) {
-  return (
-    <section
-      id="initiatives"
-      className="bg-[#080A08]"
-      aria-labelledby="expertise-heading"
-    >
-      <div className="site-container section-padding">
+  const [active, setActive] = useState(0);
+  const current = EXPERTISE_ROWS[active];
 
-        {/* ── Header ── */}
+  return (
+    <section id="initiatives" className="bg-black text-white" aria-labelledby="expertise-heading">
+      <div className="site-container section-padding">
         <GsapScrollReveal>
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16 md:mb-20">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12 md:mb-16">
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="block w-8 h-[2px] bg-[#8AC4FF]" />
-                <span className="typo-eyebrow">Areas of Expertise</span>
-              </div>
-              <h2
-                id="expertise-heading"
-                className="typo-section-heading text-[#F0F5F0]"
-              >
-                Where Vision Meets{' '}
-                <span className="text-[#8AC4FF]">Execution</span>
+              <p className="flex items-center gap-2 text-[11px] sm:text-[12px] font-semibold tracking-[0.16em] uppercase text-white/60 mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#8AC4FF]" aria-hidden="true" />
+                Areas of Expertise
+              </p>
+              <h2 id="expertise-heading" className="text-[clamp(36px,5.2vw,68px)] font-medium leading-[1.02] tracking-[-0.04em]">
+                Where Vision Meets Execution
               </h2>
             </div>
             <button
               onClick={() => { triggerHaptic('medium'); onOpenBooking(); }}
-              className="self-start lg:self-end btn-primary py-3 px-6 typo-btn"
+              className="self-start lg:self-end px-6 py-3 rounded-full bg-white hover:bg-[#8AC4FF] text-black text-[14px] font-semibold transition-colors cursor-pointer"
             >
-              <span>Book a Session</span>
-              <span className="btn-arrow">→</span>
+              Book a Session
             </button>
           </div>
         </GsapScrollReveal>
 
-        {/* ── Expertise Rows ── */}
-        <div className="border-b border-white/[0.08]">
-          {EXPERTISE_ROWS.map((item, index) => (
-            <ExpertiseRow
-              key={item.number}
-              item={item}
-              index={index}
-              onOpenBooking={onOpenBooking}
-            />
-          ))}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+          {/* Titles */}
+          <ul className="lg:col-span-7" role="tablist" aria-label="Areas of expertise">
+            {EXPERTISE_ROWS.map((item, i) => {
+              const isActive = i === active;
+              return (
+                <li key={item.number} className="border-t border-white/10 last:border-b">
+                  <button
+                    role="tab"
+                    aria-selected={isActive}
+                    onClick={() => { triggerHaptic('selection'); setActive(i); }}
+                    onMouseEnter={() => setActive(i)}
+                    className="w-full flex items-baseline gap-4 sm:gap-6 py-5 sm:py-7 text-left cursor-pointer group"
+                  >
+                    <span className={`text-[13px] font-semibold tabular-nums transition-colors ${isActive ? 'text-[#8AC4FF]' : 'text-white/35'}`}>
+                      {item.number}
+                    </span>
+                    <span
+                      className={`text-[clamp(26px,3.6vw,48px)] font-medium leading-[1.05] tracking-[-0.035em] transition-colors duration-300 ${
+                        isActive ? 'text-white' : 'text-white/35 group-hover:text-white/70'
+                      }`}
+                    >
+                      {item.title}
+                    </span>
+                  </button>
+
+                  {/* Phones: open inline under the title */}
+                  <AnimatePresence initial={false}>
+                    {isActive && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                        className="lg:hidden overflow-hidden"
+                      >
+                        <div className="pb-8"><Detail item={item} onOpenBooking={onOpenBooking} /></div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* Desktop: the photo and details follow the active title */}
+          <div className="hidden lg:block lg:col-span-5">
+            <div className="sticky top-28">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={current.number}
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <Detail item={current} onOpenBooking={onOpenBooking} />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
         </div>
 
-        {/* ── Philosophy Statement ── */}
         <GsapScrollReveal>
-          <div className="mt-16 md:mt-20 flex flex-col md:flex-row gap-6 md:gap-16 border-t border-white/[0.08] pt-10">
-            <span className="typo-eyebrow shrink-0">The Approach</span>
-            <p className="typo-statement text-[#9EAEA0]">
+          <div className="mt-20 md:mt-28 max-w-[900px]">
+            <p className="text-[12px] font-semibold tracking-[0.16em] uppercase text-white/50 mb-5">The Approach</p>
+            <p className="text-[clamp(24px,3vw,38px)] font-medium leading-[1.2] tracking-[-0.03em] text-white/90">
               "Real leadership is not a title — it is a discipline of clarity, a culture of alignment, and a commitment to measurable progress."
             </p>
           </div>

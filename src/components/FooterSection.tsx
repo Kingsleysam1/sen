@@ -24,24 +24,24 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
   };
 
   return (
-    <footer id="inquiries" className="bg-[#0A0908] pt-20 sm:pt-28 pb-12" aria-label="Footer & Community">
+    <footer id="inquiries" className="bg-black pt-20 sm:pt-28 pb-12" aria-label="Footer & Community">
       <div className="site-container">
 
         {/* ── 1. JOIN COMMUNITY CARD ── */}
         <GsapScrollReveal>
           <div className="flex flex-col items-center text-center mb-10 sm:mb-12">
-            <span className="text-[#8AC4FF] font-bold text-[12px] sm:text-[13px] tracking-[0.22em] uppercase mb-3">
+            <span className="text-white/60 font-semibold text-[11px] sm:text-[12px] tracking-[0.16em] uppercase mb-4">
               JOIN COMMUNITY
             </span>
-            <h2 className="text-[34px] sm:text-[46px] font-bold text-white tracking-tight leading-tight font-sans">
-              Join <span className="text-[#8AC4FF]">Shalom Ernest</span> Community
+            <h2 className="text-[clamp(34px,5vw,64px)] font-medium text-white tracking-[-0.04em] leading-[1.02]">
+              Join Shalom Ernest Community
             </h2>
           </div>
         </GsapScrollReveal>
 
         {/* ── Form Card ── */}
         <GsapScrollReveal>
-          <div className="max-w-2xl mx-auto bg-[#141210] border border-white/[0.08] rounded-2xl p-6 sm:p-10 mb-24 sm:mb-32 shadow-2xl">
+          <div className="max-w-2xl mx-auto bg-[#111] rounded-[24px] p-6 sm:p-10 mb-24 sm:mb-32">
             {submitted ? (
               <div className="text-center py-8 flex flex-col items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-[#8AC4FF]/15 border border-[#8AC4FF]/40 flex items-center justify-center text-[#8AC4FF]">
@@ -62,7 +62,7 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
                       placeholder="Enter your first name"
                       value={formData.firstName}
                       onChange={(e) => setFormData((p) => ({ ...p, firstName: e.target.value }))}
-                      className="bg-[#0A0908] border border-white/[0.08] focus:border-[#8AC4FF]/60 rounded-xl px-4 py-3 text-white text-[14px] outline-none transition-colors placeholder:text-stone-600"
+                      className="bg-black border border-white/[0.12] focus:border-white/60 rounded-xl px-4 py-3 text-white text-[14px] outline-none transition-colors placeholder:text-stone-600"
                     />
                   </div>
                   <div className="flex flex-col gap-1.5 text-left">
@@ -73,7 +73,7 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
                       placeholder="Enter last name"
                       value={formData.lastName}
                       onChange={(e) => setFormData((p) => ({ ...p, lastName: e.target.value }))}
-                      className="bg-[#0A0908] border border-white/[0.08] focus:border-[#8AC4FF]/60 rounded-xl px-4 py-3 text-white text-[14px] outline-none transition-colors placeholder:text-stone-600"
+                      className="bg-black border border-white/[0.12] focus:border-white/60 rounded-xl px-4 py-3 text-white text-[14px] outline-none transition-colors placeholder:text-stone-600"
                     />
                   </div>
                 </div>
@@ -87,7 +87,7 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
                     placeholder="Enter your email"
                     value={formData.email}
                     onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))}
-                    className="bg-[#0A0908] border border-white/[0.08] focus:border-[#8AC4FF]/60 rounded-xl px-4 py-3 text-white text-[14px] outline-none transition-colors placeholder:text-stone-600"
+                    className="bg-black border border-white/[0.12] focus:border-white/60 rounded-xl px-4 py-3 text-white text-[14px] outline-none transition-colors placeholder:text-stone-600"
                   />
                 </div>
 
@@ -95,7 +95,7 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
                 <div className="flex justify-center pt-3">
                   <button
                     type="submit"
-                    className="w-full sm:w-auto min-w-[220px] py-3.5 px-8 rounded-full bg-[#8AC4FF] hover:bg-[#B9DCFF] text-[#0A0908] font-bold text-[14px] tracking-wide inline-flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer shadow-lg hover:shadow-[0_0_25px_rgba(138, 196, 255,0.25)]"
+                    className="w-full sm:w-auto min-w-[220px] py-3.5 px-8 rounded-full bg-white hover:bg-[#8AC4FF] text-black font-semibold text-[14px] tracking-wide inline-flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer shadow-lg hover:shadow-[0_0_25px_rgba(138, 196, 255,0.25)]"
                   >
                     <span>Join Community</span>
                     <span className="text-[16px]">→</span>
@@ -110,10 +110,10 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
         <div className="border-t border-white/[0.08] pt-14 pb-8 flex flex-col items-center text-center gap-5">
           {/* Brand Name */}
           <div className="flex items-center gap-1.5 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <span className="font-extrabold text-[22px] tracking-tight text-white uppercase font-sans">
+            <span className="font-semibold text-[22px] tracking-[-0.02em] text-white">
               SHALOM
             </span>
-            <span className="font-extrabold text-[22px] tracking-tight text-[#8AC4FF] uppercase font-sans">
+            <span className="font-medium text-[22px] tracking-[-0.02em] text-white/55">
               ERNEST
             </span>
           </div>
@@ -137,7 +137,7 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="w-11 h-11 border border-white/[0.1] hover:border-[#8AC4FF]/60 bg-[#141210] hover:bg-[#1C1916] flex items-center justify-center text-stone-400 hover:text-[#8AC4FF] transition-all rounded-lg"
+                className="w-11 h-11 bg-white/[0.08] hover:bg-white flex items-center justify-center text-white/80 hover:text-black transition-all rounded-full"
               >
                 <Icon className="w-4 h-4" />
               </a>
