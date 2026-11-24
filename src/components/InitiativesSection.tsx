@@ -11,43 +11,43 @@ interface InitiativesSectionProps {
 const EXPERTISE_ROWS = [
   {
     number: '01',
-    title: 'Strategic Discovery & Clarity',
-    subtitle: 'Executive Clarity Consulting',
-    description:
-      'A structured diagnostic process to eliminate operational noise, identify the single point of impact, and create a 90-day execution roadmap aligned to your core strategic objectives.',
-    tags: ['90-min Virtual', 'On-site Available'],
-    image: PHOTOS.conference,
-    pos: '50% 40%',
-  },
-  {
-    number: '02',
     title: 'Executive Leadership Training',
     subtitle: 'Corporate & Institutional',
     description:
       'Immersive executive training programmes designed for C-suite leaders, management teams, and high-potential professionals. Custom retreats, cohort programmes, and modular workshops.',
-    tags: ['Custom Retreats', 'On-site / Virtual'],
-    image: PHOTOS.stageWide,
-    pos: '55% 35%',
+    tags: ['Custom Retreats', 'On-ground & On-site'],
+    image: PHOTOS.whiteboard,
+    pos: '30% 35%',
+  },
+  {
+    number: '02',
+    title: 'Clarity & Purpose Coaching',
+    subtitle: 'Individuals & Organizations',
+    description:
+      'Coaching for individuals and organizations at an inflection point: getting clear on direction, purpose and leadership priorities, then turning that clarity into decisions and action that last.',
+    tags: ['Individuals', 'Organizations'],
+    image: PHOTOS.withGuest,
+    pos: '45% 22%',
   },
   {
     number: '03',
-    title: 'Corporate Alignment Advisory',
+    title: 'Project Advisory & Management',
+    subtitle: 'Planning & Delivery',
+    description:
+      'Hands-on advisory and management for strategic projects: scoping, planning, stakeholder alignment and delivery oversight, built around a clear execution roadmap and regular progress reviews.',
+    tags: ['Execution Roadmaps', 'Delivery Oversight'],
+    image: PHOTOS.classroom,
+    pos: '40% 30%',
+  },
+  {
+    number: '04',
+    title: 'Management Consulting & Advisory',
     subtitle: 'Systemic Consulting',
     description:
       'Multi-week governance and alignment engagements addressing strategic drift, team velocity, decision-making infrastructure, and cross-functional execution discipline.',
     tags: ['2–12 Week Engagements', 'Systemic'],
-    image: PHOTOS.whiteboard,
-    pos: '40% 40%',
-  },
-  {
-    number: '04',
-    title: 'Clarity & Legacy Coaching',
-    subtitle: 'Executive Retainer',
-    description:
-      'Sustained 1-on-1 advisory for founders, directors, and executives navigating inflection points in their personal leadership trajectory, organisational legacy, and life purpose.',
-    tags: ['Monthly Retainer', 'Private'],
-    image: PHOTOS.withGuest,
-    pos: '50% 30%',
+    image: PHOTOS.conference,
+    pos: '55% 40%',
   },
 ];
 
@@ -123,7 +123,7 @@ export function InitiativesSection({ onOpenBooking }: InitiativesSectionProps) {
                       {item.number}
                     </span>
                     <span
-                      className={`text-[clamp(26px,3.6vw,48px)] font-medium leading-[1.05] tracking-[-0.035em] transition-colors duration-300 ${
+                      className={`text-[clamp(24px,2.5vw,36px)] font-medium leading-[1.1] tracking-[-0.03em] transition-colors duration-300 ${
                         isActive ? 'text-white' : 'text-white/35 group-hover:text-white/70'
                       }`}
                     >
