@@ -18,4 +18,6 @@ export const PHOTOS = {
   classroom:    p('_DSC0988.jpg'),                            // presenting in a classroom
   outdoors:     p('_DSC9895.jpg'),                            // standing beside a guest outdoors
   conference:   p('shalom_ernest_hero_1782810399094.jpg'),    // seated at an international conference
+  trainingRoom: p('executive-training-room.jpg'),             // leading a session with executives
+  purposeStage: p('clarity-purpose-stage.jpg'),               // on stage, "Introduction to Purpose"
 };

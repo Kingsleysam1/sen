@@ -16,8 +16,8 @@ const EXPERTISE_ROWS = [
     description:
       'Immersive executive training programmes designed for C-suite leaders, management teams, and high-potential professionals. Custom retreats, cohort programmes, and modular workshops.',
     tags: ['Custom Retreats', 'On-ground & On-site'],
-    image: PHOTOS.whiteboard,
-    pos: '30% 35%',
+    image: PHOTOS.trainingRoom,
+    pos: '0% 45%',
   },
   {
     number: '02',
@@ -26,8 +26,8 @@ const EXPERTISE_ROWS = [
     description:
       'Coaching for individuals and organizations at an inflection point: getting clear on direction, purpose and leadership priorities, then turning that clarity into decisions and action that last.',
     tags: ['Individuals', 'Organizations'],
-    image: PHOTOS.withGuest,
-    pos: '45% 22%',
+    image: PHOTOS.purposeStage,
+    pos: '62% 35%',
   },
   {
     number: '03',
