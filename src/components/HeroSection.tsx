@@ -60,7 +60,7 @@ export function HeroSection({ onNavClick, onOpenBooking }: HeroSectionProps) {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="mb-3 sm:mb-4"
             >
-              <span className="text-[#8AC4FF] font-bold text-[13px] sm:text-[15px] tracking-[0.2em] uppercase">
+              <span className="text-[#8AC4FF] font-semibold text-[10px] sm:text-[12px] tracking-[0.18em] uppercase">
                 MANAGEMENT CONSULTANT • STRATEGIC ADVISOR • INSTITUTION BUILDER
               </span>
             </motion.div>
@@ -82,7 +82,7 @@ export function HeroSection({ onNavClick, onOpenBooking }: HeroSectionProps) {
               transition={{ duration: 0.7, delay: 0.35 }}
               className="mt-6 sm:mt-8 text-stone-200 text-[16px] sm:text-[18px] leading-[1.65] max-w-[540px] font-normal"
             >
-              Building generational legacies, shaping the next generation of African leaders, and redefining what's possible at the intersection of vision and execution.
+              I inspire and facilitate purposeful transformation in individuals &amp; organizations to create meaningful impact &amp; maximize potential.
             </motion.p>
           </div>
         </div>

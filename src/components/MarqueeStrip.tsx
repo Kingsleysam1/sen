@@ -1,16 +1,12 @@
 import React from 'react';
 
 const MARQUEE_ITEMS = [
-  'Management Consultant',
   'Executive Leadership Trainer',
+  'Certified Management Consultant',
+  'Clarity Coach',
+  'Youth Development Professional',
+  'Public Speaker',
   'Strategic Advisor',
-  'CMC · FIMC Certified',
-  'Clarity Conclave',
-  'Leadview Consulting',
-  'Youth Making Impact',
-  'Corporate Governance',
-  'Organisational Development',
-  'Pan-African Leadership',
 ];
 
 function MarqueeContent() {

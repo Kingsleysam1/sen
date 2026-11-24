@@ -37,34 +37,10 @@ function AnimatedCounter({ value, suffix = '', prefix = '', decimals = 0, classN
 }
 
 const IMPACT_STATS = [
-  {
-    value: 10000,
-    suffix: '+',
-    decimals: 0,
-    label: 'Leaders & Youth Trained',
-    description: 'Across Africa and international cohorts',
-  },
-  {
-    value: 9,
-    suffix: '+',
-    decimals: 0,
-    label: 'Years Executive Advisory',
-    description: 'Governance & corporate advisory',
-  },
-  {
-    value: 95,
-    suffix: '%',
-    decimals: 0,
-    label: 'Client Satisfaction Rate',
-    description: 'Executive post-session audits',
-  },
-  {
-    value: 15,
-    suffix: '+',
-    decimals: 0,
-    label: 'Partner Organisations',
-    description: 'Public & corporate institutions',
-  },
+  { value: 10000, suffix: '+', decimals: 0, label: 'Leaders & Youths Trained', description: 'Across Africa and international cohorts' },
+  { value: 8, suffix: '+', decimals: 0, label: 'Years Public Speaking and Training', description: 'Across different sectors & platforms' },
+  { value: 4, suffix: '+', decimals: 0, label: 'Government Engagements', description: 'Governance, corporate advisory and project management' },
+  { value: 15, suffix: '+', decimals: 0, label: 'Affiliate Organizations', description: 'Public & corporate institutions' },
 ];
 
 export function MetricsSection() {

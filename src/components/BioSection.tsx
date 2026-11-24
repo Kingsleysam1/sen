@@ -22,7 +22,7 @@ export function BioSection() {
                   id="bio-heading"
                   className="text-[clamp(28px,3.8vw,44px)] font-bold text-white leading-[1.2] tracking-tight font-sans"
                 >
-                  I don't just build companies, I build the leaders who will run them.
+                  I build and strengthen ecosystems for transformational Leadership
                 </h2>
               </div>
             </GsapScrollReveal>
@@ -30,14 +30,14 @@ export function BioSection() {
             {/* Paragraph 1: High Contrast */}
             <GsapScrollReveal>
               <p className="text-white text-[16px] sm:text-[17px] leading-[1.7] font-normal">
-                Shalom C. Ernest is a leadership strategist, management consultant (FIMC, CMC), certified advisor, and Principal Consultant at Leadview Consulting. Through a growing ecosystem of initiatives spanning executive advisory, leadership development, corporate governance, and community transformation, he is raising leaders, building enduring institutions, and creating lasting impact across Africa and beyond.
+                Shalom C. Ernest is a leadership strategist, management consultant (FIMC, CMC), certified trainer, coach and Principal Consultant at Leadview Consulting. Through a growing ecosystem of initiatives spanning leadership development trainings, executive advisory, corporate governance, and community transformation, he is raising leaders, building enduring institutions, and creating lasting impact across Africa and beyond.
               </p>
             </GsapScrollReveal>
 
             {/* Paragraph 2: Muted Secondary Text */}
             <GsapScrollReveal>
               <p className="text-stone-400 text-[15px] sm:text-[16px] leading-[1.7] font-normal">
-                As the executive force behind Clarity Conclave and Youth Making Impact, Shalom has trained over 10,000 professionals and young leaders across Africa, bringing together corporate boards, founders, and innovators to solve complex organizational challenges with structural competence, execution velocity, and deep character resilience.
+                As the chief steward at Clarity Conclave, CEO of Leadview Management Consulting and Founder of Youth Making Impact Initiative, Shalom has trained over 10,000 professionals and young leaders across Africa. He helps corporate boards, founders, and innovators tackle complex challenges with clear structures, focused execution, and resilient leadership.
               </p>
             </GsapScrollReveal>
 
