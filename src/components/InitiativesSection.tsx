@@ -44,7 +44,7 @@ const EXPERTISE_ROWS = [
     title: 'Management Consulting & Advisory',
     subtitle: 'Systemic Consulting',
     description:
-      'Multi-week governance and alignment engagements addressing strategic drift, team velocity, decision-making infrastructure, and cross-functional execution discipline.',
+      'Helping organizations make clearer decisions, solve complex challenges, and turn strategy into action, with tailored guidance to support sustainable growth and stronger performance.',
     tags: ['2–12 Week Engagements', 'Systemic'],
     image: PHOTOS.conference,
     pos: '55% 40%',
@@ -54,7 +54,7 @@ const EXPERTISE_ROWS = [
     title: 'Public Sector & Governance Engagement',
     subtitle: 'Government & Public Institutions',
     description:
-      'Advisory and training engagements with government agencies and public institutions, supporting governance, policy delivery, institutional capacity and public-sector leadership development.',
+      'Engagements with government agencies and public institutions, supporting governance, policy delivery, institutional capacity and public-sector leadership development.',
     tags: ['Governance', 'Public Institutions'],
     image: PHOTOS.handshake,
     pos: '50% 30%',
