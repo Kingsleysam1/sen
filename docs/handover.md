@@ -9,7 +9,7 @@
 - **Menu jumps** land with the heading clear of the fixed header (`scroll-margin-top: 88px`), checked at 360, 390, 768 and 1440px.
 - **Chatbot panel** is now 360 × 460px (about 13% of a desktop screen), the suggestion chips wrap with none clipped, and it has a labelled close button. It never auto-opens.
 - **Partner names** are no longer shown as plain text. Logos appear automatically once files are added to `PARTNER_LOGOS` in `PartnersMarquee.tsx`.
-- **Hero proof line:** 10,000+ trained · FIMC, CMC · John Maxwell Team certified. The second button is now a quiet text link.
+- **Hero proof line:** 10,000+ trained · FIMC, CMC. The second button is now a quiet text link.
 - **Counters** carry their final values in the markup and skip the count-up under reduced motion.
 - **Accessibility:** visible focus rings, a labelled booking dialog that closes with Escape, and tap targets of 40–44px or more. No horizontal overflow at 360, 390 or 768px.
 - **SEO:** `robots.txt`, `sitemap.xml`, canonical link.
@@ -17,7 +17,7 @@
 
 ## Not done: needs facts or files from Shalom
 
-1. **The brief's facts don't match the site.** It lists clients such as Microsoft, Coca-Cola and the major banks, awards such as the Naija Achievers Award 2023 and the John Maxwell Gold and Platinum awards, "4+ countries", "15+ strategic partnerships", a S.M.A.R.T. Goals programme and a 6-week Elevate Your Edge cohort. None of these appear in the site's data. The site says Elevate runs for two months, and this morning Shalom set the metrics to "4+ Government engagements" and "15+ Affiliate organizations". The brief also says Wema Bank, AIICO and Stanbic IBTC appear twice in the partner strip, but those names aren't in it at all. Nothing from the brief's fact list was added. Shalom should confirm each one before it goes on the site.
+1. **The brief's facts don't match the site.** It lists clients such as Microsoft, Coca-Cola and the major banks, awards such as the Naija Achievers Award 2023, "4+ countries", "15+ strategic partnerships", a S.M.A.R.T. Goals programme and a 6-week Elevate Your Edge cohort. None of these appear in the site's data. The site says Elevate runs for two months, and this morning Shalom set the metrics to "4+ Government engagements" and "15+ Affiliate organizations". The brief also says Wema Bank, AIICO and Stanbic IBTC appear twice in the partner strip, but those names aren't in it at all. Nothing from the brief's fact list was added. Shalom should confirm each one before it goes on the site.
 2. **Elevate Your Edge price:** the site says ₦35,000 (was ₦50,000); the flyer shows ₦60,000 and ₦35,000. Shalom needs to confirm the correct "was" price, then the flyer should be re-issued.
 3. **Partner logos:** logo files for the organisations Shalom wants shown, with permission to show them.
 4. **Testimonials:** photos, and at least three more real testimonials with name, role, organisation and a specific result.
