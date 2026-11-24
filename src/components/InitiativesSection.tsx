@@ -182,7 +182,7 @@ export function InitiativesSection({ onOpenBooking }: InitiativesSectionProps) {
           <div className="mt-20 md:mt-28 max-w-[900px]">
             <p className="text-[12px] font-semibold tracking-[0.16em] uppercase text-white/50 mb-5">The Approach</p>
             <p className="text-[clamp(24px,3vw,38px)] font-medium leading-[1.2] tracking-[-0.03em] text-white/90">
-              "Real leadership is not a title — it is a discipline of clarity, a culture of alignment, and a commitment to measurable progress."
+              "We don’t rise by motivation alone, we rise by clarity, character, contribution and a commitment to measurable progress."
             </p>
           </div>
         </GsapScrollReveal>
