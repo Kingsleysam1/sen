@@ -51,7 +51,7 @@ const IMPACT_STATS = [
 const MOMENTS = [
   { src: PHOTOS.podiumBlue,  alt: 'Shalom C. Ernest speaking from a podium', caption: 'On stage', pos: '50% 25%' },
   { src: PHOTOS.whiteboard,  alt: 'Shalom C. Ernest teaching at a flipchart', caption: 'Training session', pos: '40% 40%' },
-  { src: PHOTOS.roscongress, alt: 'Shalom C. Ernest outdoors beside a Roscongress sign', caption: 'Roscongress', pos: '45% 50%' },
+  { src: PHOTOS.roscongress, alt: 'Shalom C. Ernest outdoors at a conference in Russia', caption: 'Russian conference', pos: '45% 50%' },
   { src: PHOTOS.award,       alt: 'Shalom C. Ernest with dignitaries at a ceremony', caption: 'Recognition', pos: '50% 40%' },
   { src: PHOTOS.classroom,   alt: 'Shalom C. Ernest presenting in a classroom', caption: 'Workshop', pos: '35% 40%' },
 ];
