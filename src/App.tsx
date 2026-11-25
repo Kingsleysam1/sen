@@ -17,7 +17,7 @@ import { MetricsSection }     from './components/MetricsSection';
 import { InitiativesSection } from './components/InitiativesSection';
 import { ProgramsSection }    from './components/ProgramsSection';
 import { PartnersMarquee }    from './components/PartnersMarquee';
-import { MilestonesSection }  from './components/MilestonesSection';
+import { VideoSection }       from './components/VideoSection';
 import { EventsSection }      from './components/EventsSection';
 import { TestimonialSlider }  from './components/TestimonialSlider';
 import { FAQSection }         from './components/FAQSection';
@@ -148,7 +148,7 @@ function MainContent() {
         <PartnersMarquee />
 
         {/* 8. MILESTONES — What impact have they made? */}
-        <MilestonesSection onOpenBooking={() => setIsBookingOpen(true)} />
+        <VideoSection />
 
         {/* 9. EVENTS — Active programmes */}
         <EventsSection />
