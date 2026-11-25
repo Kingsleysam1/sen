@@ -11,6 +11,7 @@ const LOGOS = [
   { slug: 'icmci', name: "International Council of Management Consulting Institutes", w: 148, h: 178 },
   { slug: 'ilcs', name: "Institute of Leadership Coaching and Strategy", w: 350, h: 170 },
   { slug: 'lbs', name: "Lagos Business School", w: 346, h: 140 },
+  { slug: 'london-graduate-school', name: "London Graduate School", w: 570, h: 162 },
   { slug: 'lagos-state', name: "Lagos State Government", w: 172, h: 170 },
   { slug: 'mwce', name: "Lagos State Ministry of Wealth Creation and Employment", w: 196, h: 168 },
   { slug: 'lascopa', name: "Lagos State Consumer Protection Agency", w: 160, h: 182 },
@@ -32,6 +33,7 @@ const LOGOS = [
   { slug: 'hand-of-favor', name: "Hand of Favor Foundation", w: 222, h: 130 },
   { slug: 'pannyword', name: "Pannyword", w: 204, h: 124 },
   { slug: 'itr', name: "ITR", w: 174, h: 138 },
+  { slug: 'platform-bootcamp', name: "The Platform Public Service Bootcamp", w: 232, h: 327 },
   { slug: 'tef', name: "The Tony Elumelu Foundation", w: 362, h: 80 },
 ];
 
