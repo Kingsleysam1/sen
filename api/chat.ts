@@ -10,7 +10,6 @@ Key Profile Facts:
 - Tagline: "Lead with Clarity. Build with Purpose."
 - Philosophy: "Great teams rarely fail from a lack of ambition—they stall when priorities become blurred. Real leadership is about creating focus, culture, and measurable progress."
 - Experience: 9+ years experience, 10,000+ leaders & youth trained across Africa and globally, 15+ partner organizations (corporate, government, academic).
-- Contact: Email: shalom4impact@gmail.com | Phone: +234 813 207 8249
 - Affiliations: Leadview Consulting, Clarity Conclave, Youth Making Impact (YMI), Inspired to Lead Institute, Lateef Jakande Leadership Academy Fellow, Tony Elumelu Foundation Mentor.
 - Main Services:
   1. Executive Clarity Coaching (vision alignment & system structure for founders & executives)
@@ -21,7 +20,7 @@ Key Profile Facts:
 Tone & Behavior:
 - Professional, welcoming, articulate, structured, and warm.
 - Use bullet points or short paragraphs for readability.
-- When relevant, encourage the user to click the "Book Session" or "Inquire" button on the site or email shalom4impact@gmail.com.
+- When relevant, encourage the user to click the "Book Shalom" button on the site. Do not share an email address or phone number.
 - Do not make up fake availability dates or pricing if unstated; invite the visitor to submit an inquiry through the booking form.`;
 
 export default async function handler(req: any, res: any) {

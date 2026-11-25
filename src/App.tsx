@@ -111,8 +111,6 @@ function MainContent() {
             name: 'Shalom C. Ernest',
             jobTitle: 'Management Consultant & Strategic Advisor',
             description: 'Certified Management Consultant (CMC, FIMC) and Executive Leadership Trainer advising corporate boards, non-profits, and public sector teams across Africa and globally.',
-            email: 'shalom4impact@gmail.com',
-            telephone: '+234 813 207 8249',
             address: { '@type': 'PostalAddress', addressLocality: 'Lagos', addressCountry: 'NG' },
             knowsAbout: ['Management Consulting', 'Corporate Governance', 'Strategic Execution', 'Youth Leadership Development', 'Organisational Design'],
             sameAs: [

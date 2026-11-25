@@ -31,7 +31,7 @@ function getLocalKnowledgeReply(query: string): string {
   const q = query.toLowerCase();
 
   if (q.includes('book') || q.includes('hire') || q.includes('consultation') || q.includes('contact') || q.includes('price') || q.includes('cost')) {
-    return `To book **Shalom C. Ernest** for executive advisory, board retreats, or speaking engagements:\n\n- **Email:** ${PROFILE_DATA.email}\n- **Phone:** ${PROFILE_DATA.phone}\n- **Format:** Virtual or On-site across Africa & internationally.\n\nYou can also click **"Book a Consultation"** in the navigation or modal to send a direct request.`;
+    return `To book **Shalom C. Ernest** for executive advisory, board retreats, or speaking engagements:\n\n- **Format:** Virtual or On-site across Africa & internationally.\n\nClick **"Book Shalom"** in the navigation to send a request; his team will reply by email.`;
   }
 
   if (q.includes('service') || q.includes('offer') || q.includes('advisory') || q.includes('training')) {

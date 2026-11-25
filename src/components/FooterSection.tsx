@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Linkedin, Instagram, Facebook, Globe, Check } from 'lucide-react';
 import { PROFILE_DATA } from '../data/shalomData';
 import { triggerHaptic } from '../utils/haptics';
-import { sendEnquiry, enquiryMailto, CONTACT } from '../utils/enquiry';
+import { sendEnquiry } from '../utils/enquiry';
 import { GsapScrollReveal } from './GsapScrollReveal';
 
 interface FooterSectionProps {
@@ -19,7 +19,7 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
     if (status === 'sending') return;
     triggerHaptic('medium');
     setStatus('sending');
-    const result = await sendEnquiry('New community member: ' + `${formData.firstName} ${formData.lastName}`.trim(), {
+    const result = await sendEnquiry('New newsletter subscriber: ' + `${formData.firstName} ${formData.lastName}`.trim(), {
       'First name': formData.firstName,
       'Last name': formData.lastName,
       Email: formData.email,
@@ -38,7 +38,7 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
               JOIN COMMUNITY
             </span>
             <h2 className="text-[clamp(34px,5vw,64px)] font-medium text-white tracking-[-0.04em] leading-[1.02]">
-              Join Shalom Ernest Community
+              Sign Up for Newsletter
             </h2>
           </div>
         </GsapScrollReveal>
@@ -51,16 +51,16 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
                 <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-black">
                   <Check size={24} />
                 </div>
-                <h3 className="text-[24px] font-medium tracking-[-0.02em] text-white">Welcome to the community, {formData.firstName || 'friend'}.</h3>
+                <h3 className="text-[24px] font-medium tracking-[-0.02em] text-white">You're subscribed, {formData.firstName || 'friend'}.</h3>
                 <p className="text-white/70 text-[15px] leading-relaxed max-w-md">
-                  You're on the list. Shalom's team will be in touch at {formData.email} with upcoming events, programmes and leadership notes.
+                  Shalom's newsletter will arrive at {formData.email}, with upcoming events, programmes and leadership notes.
                 </p>
               </div>
             ) : status === 'failed' ? (
               <div className="text-center py-8 flex flex-col items-center gap-3" role="alert">
                 <h3 className="text-[22px] font-medium tracking-[-0.02em] text-white">That didn't go through.</h3>
                 <p className="text-white/70 text-[15px] leading-relaxed max-w-md">
-                  Please try again, or join by emailing <a className="underline text-white" href={enquiryMailto('Please add me to the Shalom Ernest community', { 'First name': formData.firstName, 'Last name': formData.lastName, Email: formData.email })}>{CONTACT.email}</a>.
+                  Please check your connection and try again in a moment.
                 </p>
                 <button onClick={() => setStatus('idle')} className="mt-2 px-6 py-3 rounded-full bg-white text-black text-[14px] font-semibold cursor-pointer">Try again</button>
               </div>
@@ -112,7 +112,7 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
                     disabled={status === 'sending'}
                     className="disabled:opacity-60 disabled:cursor-wait w-full sm:w-auto min-w-[220px] py-3.5 px-8 rounded-full bg-white hover:bg-[#8AC4FF] text-black font-semibold text-[14px] tracking-wide inline-flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer shadow-lg hover:shadow-[0_0_25px_rgba(138, 196, 255,0.25)]"
                   >
-                    <span>{status === 'sending' ? 'Joining…' : 'Join Community'}</span>
+                    <span>{status === 'sending' ? 'Subscribing…' : 'Subscribe'}</span>
                     {status !== 'sending' && <span className="text-[16px]" aria-hidden="true">→</span>}
                   </button>
                 </div>
@@ -132,22 +132,6 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
             </button>
           ))}
         </nav>
-
-        {/* Direct contact: real text, not inside an image */}
-        <div id="contact" className="border-t border-white/[0.08] py-14 grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6 text-center sm:text-left">
-          <div>
-            <p className="text-[12px] font-semibold tracking-[0.16em] uppercase text-white/50 mb-2">Email</p>
-            <a href={`mailto:${CONTACT.email}`} className="inline-flex items-center min-h-[44px] text-[18px] sm:text-[20px] font-medium text-white hover:text-[#8AC4FF] break-all transition-colors">{CONTACT.email}</a>
-          </div>
-          <div>
-            <p className="text-[12px] font-semibold tracking-[0.16em] uppercase text-white/50 mb-2">Phone</p>
-            <a href={CONTACT.phoneHref} className="inline-flex items-center min-h-[44px] text-[18px] sm:text-[20px] font-medium text-white hover:text-[#8AC4FF] transition-colors">{CONTACT.phone}</a>
-          </div>
-          <div>
-            <p className="text-[12px] font-semibold tracking-[0.16em] uppercase text-white/50 mb-2">Based in</p>
-            <p className="text-[18px] sm:text-[20px] font-medium text-white">{CONTACT.city}</p>
-          </div>
-        </div>
 
         <div className="border-t border-white/[0.08] pt-14 pb-8 flex flex-col items-center text-center gap-5">
           <button

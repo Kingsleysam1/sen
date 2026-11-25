@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { SERVICES } from '../data/shalomData';
 import { X, Check } from 'lucide-react';
 import { triggerHaptic } from '../utils/haptics';
-import { sendEnquiry, enquiryMailto, CONTACT } from '../utils/enquiry';
+import { sendEnquiry } from '../utils/enquiry';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -102,16 +102,13 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
               <p className="text-stone-300 text-[15px] leading-relaxed">
                 Your consultation request for <span className="text-white">{formData.service}</span> is with Shalom's team. They'll reply to {formData.email}.
               </p>
-              <p className="text-stone-400 text-[13px]">
-                Need to talk sooner? Call <a className="underline text-white" href={CONTACT.phoneHref}>{CONTACT.phone}</a>.
-              </p>
               <button onClick={onClose} className="mt-3 px-6 py-2.5 rounded-full bg-white text-black font-semibold text-[13px] cursor-pointer">Close</button>
             </div>
           ) : status === 'failed' ? (
             <div className="py-8 text-center flex flex-col items-center gap-3" role="alert">
               <h3 className="text-[22px] font-medium tracking-[-0.02em] text-white">That didn't go through.</h3>
               <p className="text-stone-300 text-[15px] leading-relaxed">
-                Your details are still here. Try again, email <a className="underline text-white" href={enquiryMailto(`Consultation request: ${formData.service}`, fields())}>{CONTACT.email}</a>, or call <a className="underline text-white" href={CONTACT.phoneHref}>{CONTACT.phone}</a>.
+                Your details are still here. Please check your connection and try again in a moment.
               </p>
               <button onClick={() => setStatus('idle')} className="mt-3 px-6 py-2.5 rounded-full bg-white text-black font-semibold text-[13px] cursor-pointer">Try again</button>
             </div>
