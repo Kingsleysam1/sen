@@ -146,7 +146,6 @@ export function EventsSection() {
   const past = EVENTS_DATA.filter((e) => new Date(e.isoEndDate).getTime() < now)
     .sort((a, b) => +new Date(b.isoStartDate) - +new Date(a.isoStartDate));
 
-  const goTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   const renderCard = (event: EventItem, i: number, isPast: boolean) => (
               <motion.article
@@ -282,18 +281,21 @@ export function EventsSection() {
 
               <h4 className="mt-8 text-[15px] font-semibold text-white">How it works</h4>
               <p className="mt-2 text-white/65 text-[15px] leading-[1.7] max-w-[600px]">
-                The program runs for 6 months, with one private 60-minute session each week. We begin by clarifying what you want to work on, then shape each conversation around your goals and current challenges. Topics may include leadership, career or business direction, decision-making, and personal development.
+                The program runs for 3 months, with one private 60-minute session each week. We begin by clarifying what you want to work on, then shape each conversation around your goals and current challenges. Topics may include leadership, career or business direction, decision-making, and personal development.
               </p>
               <p className="mt-3 text-white/65 text-[15px] leading-[1.7] max-w-[600px]">
                 Each session ends with practical next steps to work on between meetings. In the final session, we reflect on your progress and identify priorities for what comes next.
               </p>
 
-              <button
-                onClick={() => goTo('inquiries')}
-                className="mt-8 px-6 py-3 rounded-full bg-white hover:bg-[#8AC4FF] text-black text-[14px] font-semibold transition-colors cursor-pointer"
+              <a
+                href="https://forms.gle/ydGBQAPL21hgkmg88"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex mt-8 px-6 py-3 rounded-full bg-white hover:bg-[#8AC4FF] text-black text-[14px] font-semibold transition-colors"
               >
                 Join the waitlist
-              </button>
+                <span className="sr-only"> (opens a Google Form in a new tab)</span>
+              </a>
             </div>
           </article>
         </GsapScrollReveal>
