@@ -8,6 +8,7 @@ import {
   Check,
 } from 'lucide-react';
 import { EVENTS_DATA, EventItem } from '../data/shalomData';
+import { PHOTOS } from '../data/photos';
 import { GsapScrollReveal } from './GsapScrollReveal';
 import { triggerHaptic } from '../utils/haptics';
 
@@ -245,23 +246,57 @@ export function EventsSection() {
           </div>
         </GsapScrollReveal>
 
+        {upcoming.length > 0 && (
         <div className="-mx-5 px-5 sm:mx-0 sm:px-0 overflow-x-auto no-scrollbar">
           <div className="flex md:grid md:grid-cols-3 gap-4 sm:gap-5 items-stretch">
             {upcoming.map((event, i) => renderCard(event, i, false))}
-            {upcoming.length === 0 && (
-              <div className="shrink-0 w-[82vw] sm:w-[60vw] md:w-auto md:col-span-3 bg-black text-white rounded-[22px] p-8 sm:p-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
-                <div className="max-w-[560px]">
-                  <p className="text-[12px] font-semibold tracking-[0.16em] uppercase text-white/55 mb-3">Next event</p>
-                  <h3 className="text-[clamp(24px,3vw,36px)] font-medium leading-[1.1] tracking-[-0.03em]">The next date is being set.</h3>
-                  <p className="mt-3 text-white/70 text-[16px] leading-[1.6]">Join the community to hear first when registration opens, or book Shalom for your own team.</p>
-                </div>
-                <button onClick={() => goTo('inquiries')} className="self-start sm:self-end shrink-0 px-6 py-3 rounded-full bg-white hover:bg-[#8AC4FF] text-black text-[14px] font-semibold transition-colors cursor-pointer">
-                  Join the waitlist
-                </button>
-              </div>
-            )}
           </div>
         </div>
+        )}
+
+        {/* Inner Circle mentorship */}
+        <GsapScrollReveal>
+          <article
+            className={`${upcoming.length > 0 ? 'mt-10' : ''} relative overflow-hidden rounded-[24px] bg-black text-white grid grid-cols-1 md:grid-cols-12`}
+            aria-labelledby="inner-circle-heading"
+          >
+            <div className="relative md:order-2 md:col-span-5 h-[340px] sm:h-[420px] md:h-auto md:min-h-full">
+              <img
+                src={PHOTOS.innerCircle}
+                alt="Portrait of Shalom C. Ernest"
+                className="absolute inset-0 w-full h-full object-cover object-[50%_18%]"
+                loading="lazy"
+              />
+              {/* Blend the portrait into the card: down into the text on phones, left into it on desktop */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent md:bg-gradient-to-r md:from-black md:via-black/20 md:to-transparent" aria-hidden="true" />
+            </div>
+
+            <div className="relative md:order-1 md:col-span-7 p-7 sm:p-10 lg:p-14 -mt-16 md:mt-0">
+              <p className="text-[12px] font-semibold tracking-[0.16em] uppercase text-[#8AC4FF] mb-3">One-to-one mentorship</p>
+              <h3 id="inner-circle-heading" className="text-[clamp(30px,3.6vw,48px)] font-medium leading-[1.05] tracking-[-0.035em]">
+                Join the Inner Circle
+              </h3>
+              <p className="mt-4 text-white/80 text-[16px] sm:text-[17px] leading-[1.65] max-w-[600px]">
+                A focused one-to-one mentorship for people who want to grow as leaders, navigate important decisions, and make purposeful progress toward their goals.
+              </p>
+
+              <h4 className="mt-8 text-[15px] font-semibold text-white">How it works</h4>
+              <p className="mt-2 text-white/65 text-[15px] leading-[1.7] max-w-[600px]">
+                The program runs for 6 months, with one private 60-minute session each week. We begin by clarifying what you want to work on, then shape each conversation around your goals and current challenges. Topics may include leadership, career or business direction, decision-making, and personal development.
+              </p>
+              <p className="mt-3 text-white/65 text-[15px] leading-[1.7] max-w-[600px]">
+                Each session ends with practical next steps to work on between meetings. In the final session, we reflect on your progress and identify priorities for what comes next.
+              </p>
+
+              <button
+                onClick={() => goTo('inquiries')}
+                className="mt-8 px-6 py-3 rounded-full bg-white hover:bg-[#8AC4FF] text-black text-[14px] font-semibold transition-colors cursor-pointer"
+              >
+                Join the waitlist
+              </button>
+            </div>
+          </article>
+        </GsapScrollReveal>
 
         {past.length > 0 && (
           <div className="mt-14 sm:mt-16">

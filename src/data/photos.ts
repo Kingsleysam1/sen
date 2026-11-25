@@ -24,4 +24,5 @@ export const PHOTOS = {
   programLeadview: p('program-leadview.jpg'),                // training executives (Leadview)
   programClarity: p('program-clarity-conclave.jpg'),          // Clarity Conclave armchair session
   programYmi: p('program-ymi.jpg'),                           // Youth Making Impact team
+  innerCircle: p('inner-circle-portrait.jpg'),                // seated studio portrait, dark background
 };
