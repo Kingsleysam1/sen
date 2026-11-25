@@ -19,6 +19,9 @@ export const PHOTOS = {
   outdoors:     p('_DSC9895.jpg'),                            // standing beside a guest outdoors
   conference:   p('shalom_ernest_hero_1782810399094.jpg'),    // seated at an international conference
   trainingRoom: p('executive-training-room.jpg'),             // leading a session with executives
-  purposeStage: p('clarity-purpose-stage.jpg'),
-  projectPodium: p('project-advisory.jpg'),                   // podium, Lagos "A Decade of Impact"               // on stage, "Introduction to Purpose"
+  purposeStage: p('clarity-purpose-stage.jpg'),               // on stage, "Introduction to Purpose"
+  projectPodium: p('project-advisory.jpg'),                   // podium, Lagos "A Decade of Impact"
+  programLeadview: p('program-leadview.jpg'),                // training executives (Leadview)
+  programClarity: p('program-clarity-conclave.jpg'),          // Clarity Conclave armchair session
+  programYmi: p('program-ymi.jpg'),                           // Youth Making Impact team
 };
