@@ -234,10 +234,6 @@ export function EventsSection() {
         <GsapScrollReveal>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12 sm:mb-14">
             <div>
-              <p className="flex items-center gap-2 text-[11px] sm:text-[12px] font-semibold tracking-[0.16em] uppercase text-[#555] mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#111]" aria-hidden="true" />
-                Hosted Events &amp; Calendar
-              </p>
               <h2 id="events-heading" className="text-[clamp(36px,5.2vw,68px)] font-medium leading-[1.02] tracking-[-0.04em]">
                 Ideas That Move People
               </h2>
@@ -302,7 +298,7 @@ export function EventsSection() {
 
         {past.length > 0 && (
           <div className="mt-14 sm:mt-16">
-            <h3 className="text-[13px] font-semibold tracking-[0.16em] uppercase text-[#555] mb-4">Past events</h3>
+            <h3 className="text-[13px] font-semibold tracking-[0.16em] uppercase text-[#555] mb-4">Events and Calendar</h3>
             <ul className="divide-y divide-black/10 border-y border-black/10">
               {past.map((event) => (
                 <li key={event.id}>
