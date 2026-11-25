@@ -12,7 +12,7 @@ const PROGRAMS = [
   {
     number: '01',
     name: 'Leadview Consulting',
-    tagline: 'Enterprise Training & Advisory Firm',
+    tagline: 'Executive Training & Consulting Firm',
     image: PHOTOS.programLeadview,
     alt: 'Shalom Ernest leading a training session',
     position: '38% 30%',
@@ -28,7 +28,7 @@ const PROGRAMS = [
   {
     number: '03',
     name: 'Youth Making Impact',
-    tagline: 'Pan-African Youth Development',
+    tagline: 'Youth Development Ecosystem',
     image: PHOTOS.programYmi,
     alt: 'Shalom Ernest with the Youth Making Impact team',
     position: '48% 40%',
