@@ -297,3 +297,13 @@ section[id], footer[id], div[id="contact"] { scroll-margin-top: 88px; }
   outline-offset: 3px;
   border-radius: 6px;
 }
+
+/* Credibility logo strip: two rows looping in opposite directions, pause on hover */
+@keyframes logo-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.logo-track { animation: logo-scroll 60s linear infinite; }
+.logo-track-reverse { animation-direction: reverse; }
+.logo-marquee:hover .logo-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .logo-track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; row-gap: 2rem; }
+  .logo-track > li[data-dup] { display: none; }
+}
