@@ -152,14 +152,14 @@ function MainContent() {
         {/* 9. EVENTS — Active programmes */}
         <EventsSection />
 
-        {/* 9b. CONTACT — after mentorship */}
-        <ContactSection />
-
         {/* 10. TESTIMONIALS — What have others said? */}
         <TestimonialSlider />
 
         {/* 11. FAQ — Engagement enquiries */}
         <FAQSection />
+
+        {/* CONTACT: replaces the newsletter signup, sits right above the footer */}
+        <ContactSection />
       </main>
 
       {/* Footer */}
