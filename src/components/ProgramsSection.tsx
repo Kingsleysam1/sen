@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { GsapScrollReveal } from './GsapScrollReveal';
 import { triggerHaptic } from '../utils/haptics';
 import { PHOTOS } from '../data/photos';
@@ -36,6 +37,35 @@ const PROGRAMS = [
 ];
 
 export function ProgramsSection({ onOpenBooking }: ProgramsSectionProps) {
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
+  const cards = (): HTMLElement[] =>
+    scrollerRef.current ? Array.from(scrollerRef.current.querySelectorAll<HTMLElement>('[data-card]')) : [];
+
+  const onScroll = () => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const list = cards();
+    if (!list.length) return;
+    // Closest card to the left edge is the active one.
+    let best = 0, bestDist = Infinity;
+    list.forEach((c, i) => {
+      const d = Math.abs(c.offsetLeft - el.scrollLeft - list[0].offsetLeft);
+      if (d < bestDist) { bestDist = d; best = i; }
+    });
+    if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 4) best = list.length - 1;
+    setActive(best);
+  };
+
+  const goTo = (i: number) => {
+    const el = scrollerRef.current;
+    const list = cards();
+    if (!el || !list[i]) return;
+    triggerHaptic('light');
+    el.scrollTo({ left: list[i].offsetLeft - list[0].offsetLeft, behavior: 'smooth' });
+  };
+
   return (
     <section id="programs" className="bg-black text-white" aria-labelledby="programs-heading">
       <div className="site-container pb-24 sm:pb-32 pt-4">
@@ -59,25 +89,35 @@ export function ProgramsSection({ onOpenBooking }: ProgramsSectionProps) {
           </div>
         </GsapScrollReveal>
 
-        <div className="-mx-5 px-5 sm:mx-0 sm:px-0 overflow-x-auto no-scrollbar">
-          <div className="flex sm:grid sm:grid-cols-3 gap-4 sm:gap-5">
+        <div
+          ref={scrollerRef}
+          onScroll={onScroll}
+          className="-mx-5 px-5 sm:mx-0 sm:px-0 overflow-x-auto no-scrollbar snap-x snap-mandatory sm:snap-none scroll-px-5"
+          aria-roledescription="carousel"
+          aria-label="Featured programs"
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            className="flex sm:grid sm:grid-cols-3 gap-4 sm:gap-5"
+          >
             {PROGRAMS.map((program, idx) => (
-              <motion.button
+              <button
                 type="button"
                 key={program.number}
-                initial={{ opacity: 0, y: 28 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.65, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                data-card
+                aria-label={`${program.name}, ${idx + 1} of ${PROGRAMS.length}`}
                 onClick={() => { triggerHaptic('light'); onOpenBooking(); }}
-                className="group relative shrink-0 w-[78vw] sm:w-auto aspect-[3/4] overflow-hidden rounded-[22px] text-left cursor-pointer"
+                className="group relative shrink-0 w-[78vw] max-w-[340px] sm:max-w-none sm:w-auto aspect-[3/4] overflow-hidden rounded-[22px] text-left cursor-pointer snap-start"
               >
                 <img
                   src={program.image}
                   alt={program.alt}
                   style={{ objectPosition: program.position }}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-                  loading="lazy"
+                  loading={idx === 0 ? 'eager' : 'lazy'}
                 />
                 <div
                   className="absolute inset-0 pointer-events-none"
@@ -89,8 +129,47 @@ export function ProgramsSection({ onOpenBooking }: ProgramsSectionProps) {
                   </h3>
                   <p className="mt-2.5 text-[14px] text-white/80">{program.tagline}</p>
                 </div>
-              </motion.button>
+              </button>
             ))}
+          </motion.div>
+        </div>
+
+        {/* Phone controls: the cards sit side by side, so show that there's more to swipe */}
+        <div className="sm:hidden mt-6 flex items-center justify-between">
+          <div className="flex items-center gap-2" role="tablist" aria-label="Choose a program">
+            {PROGRAMS.map((p, i) => (
+              <button
+                key={p.number}
+                type="button"
+                role="tab"
+                aria-selected={active === i}
+                aria-label={`Show ${p.name}`}
+                onClick={() => goTo(i)}
+                className="h-11 flex items-center cursor-pointer"
+              >
+                <span className={`block h-1.5 rounded-full transition-all duration-300 ${active === i ? 'w-7 bg-white' : 'w-1.5 bg-white/35'}`} />
+              </button>
+            ))}
+          </div>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => goTo(active - 1)}
+              disabled={active === 0}
+              aria-label="Previous program"
+              className="w-11 h-11 rounded-full border border-white/25 flex items-center justify-center text-white disabled:opacity-30 cursor-pointer active:scale-95 transition"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              type="button"
+              onClick={() => goTo(active + 1)}
+              disabled={active === PROGRAMS.length - 1}
+              aria-label="Next program"
+              className="w-11 h-11 rounded-full bg-white text-black flex items-center justify-center disabled:opacity-30 cursor-pointer active:scale-95 transition"
+            >
+              <ChevronRight size={20} />
+            </button>
           </div>
         </div>
       </div>
