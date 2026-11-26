@@ -14,7 +14,7 @@ const NAV_ITEMS = [
   { label: 'Services',     target: 'initiatives' },
   { label: 'Programs',     target: 'programs' },
   { label: 'Listen',       target: 'milestones' },
-  { label: 'Events',       target: 'events' },
+  { label: 'Mentorship',   target: 'mentorship' },
 ];
 
 export function Navbar({ onNavClick, onOpenBooking }: NavbarProps) {

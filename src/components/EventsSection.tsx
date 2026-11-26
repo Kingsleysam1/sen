@@ -252,6 +252,7 @@ export function EventsSection() {
         {/* Inner Circle mentorship */}
         <GsapScrollReveal>
           <article
+            id="mentorship"
             className={`${upcoming.length > 0 ? 'mt-10' : ''} relative overflow-hidden rounded-[24px] bg-black text-white grid grid-cols-1 md:grid-cols-12`}
             aria-labelledby="inner-circle-heading"
           >

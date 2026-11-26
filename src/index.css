@@ -289,7 +289,7 @@ html.lenis, html.lenis body { height: auto; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
 
 /* Menu jumps land with the heading clear of the fixed header (72px + breathing room) */
-section[id], footer[id], div[id="contact"] { scroll-margin-top: 88px; }
+section[id], footer[id], article[id], div[id="contact"] { scroll-margin-top: 88px; }
 
 /* Visible keyboard focus on every interactive element */
 :where(a, button, input, select, textarea, [tabindex]):focus-visible {
