@@ -13,7 +13,7 @@ const NAV_ITEMS = [
   { label: 'About',        target: 'bio' },
   { label: 'Services',     target: 'initiatives' },
   { label: 'Programs',     target: 'programs' },
-  { label: 'Engagements',  target: 'milestones' },
+  { label: 'Listen',       target: 'milestones' },
   { label: 'Events',       target: 'events' },
 ];
 

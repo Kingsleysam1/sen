@@ -125,7 +125,7 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
         <nav aria-label="Footer" className="border-t border-white/[0.08] py-8 flex flex-wrap justify-center gap-x-6 gap-y-3">
           {[
             ['About', 'bio'], ['Services', 'initiatives'], ['Programs', 'programs'],
-            ['Engagements', 'milestones'], ['Events', 'events'], ['FAQ', 'faq'],
+            ['Listen', 'milestones'], ['Events', 'events'], ['FAQ', 'faq'],
           ].map(([label, id]) => (
             <button key={id} onClick={() => _onNavClick?.(id)} className="min-h-[44px] px-2 text-[14px] font-medium text-white/65 hover:text-white transition-colors cursor-pointer">
               {label}
