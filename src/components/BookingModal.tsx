@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { SERVICES } from '../data/shalomData';
 import { X, Check } from 'lucide-react';
 import { triggerHaptic } from '../utils/haptics';
-import { sendEnquiry } from '../utils/enquiry';
+import { sendEnquiry, CONTACT } from '../utils/enquiry';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -91,6 +91,9 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
             <h2 id="booking-title" className="text-[26px] sm:text-[28px] font-bold text-white tracking-tight font-sans">
               Book a Consultation
             </h2>
+            <p className="mt-2 text-[14px] text-stone-400">
+              Prefer email? Write to <a href={`mailto:${CONTACT.book}`} className="text-white underline underline-offset-4 hover:text-[#8AC4FF]">{CONTACT.book}</a>
+            </p>
           </div>
 
           {status === 'sent' ? (

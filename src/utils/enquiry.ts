@@ -10,6 +10,9 @@ export const CONTACT = {
   phone: PROFILE_DATA.phone,
   phoneHref: 'tel:' + PROFILE_DATA.phone.replace(/[^+\d]/g, ''),
   city: 'Lagos, Nigeria',
+  /** Public addresses on the domain; Spaceship forwards both to the Gmail inbox. */
+  hello: 'hello@shalomernest.com',
+  book: 'book@shalomernest.com',
 };
 
 const ENDPOINT = `https://formsubmit.co/ajax/${CONTACT.email}`;

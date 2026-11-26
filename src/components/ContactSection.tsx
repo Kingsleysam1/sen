@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Check, Linkedin, Instagram, Facebook } from 'lucide-react';
 import { PROFILE_DATA } from '../data/shalomData';
-import { sendEnquiry } from '../utils/enquiry';
+import { sendEnquiry, CONTACT } from '../utils/enquiry';
 import { triggerHaptic } from '../utils/haptics';
 import { GsapScrollReveal } from './GsapScrollReveal';
 
@@ -58,6 +58,16 @@ export function ContactSection() {
           <p className="mt-5 text-[17px] sm:text-[18px] leading-[1.65] text-white/75 max-w-[460px]">
             Whether it’s a keynote, a training for your team, an advisory engagement or a question about the Inner Circle, send a message and Shalom’s team will get back to you.
           </p>
+
+          <div className="mt-10">
+            <p className="text-[12px] font-semibold tracking-[0.16em] uppercase text-white/60 mb-2">Email</p>
+            <a href={`mailto:${CONTACT.hello}`} className="text-[18px] sm:text-[22px] font-medium tracking-[-0.02em] text-white hover:text-[#8AC4FF] underline-offset-4 hover:underline transition-colors">
+              {CONTACT.hello}
+            </a>
+            <p className="mt-2 text-[14px] text-white/60">
+              For bookings: <a href={`mailto:${CONTACT.book}`} className="text-white/85 hover:text-white underline underline-offset-4">{CONTACT.book}</a>
+            </p>
+          </div>
 
           <div className="mt-10">
             <p className="text-[12px] font-semibold tracking-[0.16em] uppercase text-white/60 mb-3">Follow Shalom</p>
