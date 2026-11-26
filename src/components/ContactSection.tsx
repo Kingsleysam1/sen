@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Check, Linkedin, Instagram, Facebook, Youtube } from 'lucide-react';
-import { PROFILE_DATA } from '../data/shalomData';
+import { Check } from 'lucide-react';
+import { SocialLinks } from './SocialLinks';
 import { sendEnquiry, CONTACT } from '../utils/enquiry';
 import { triggerHaptic } from '../utils/haptics';
 import { GsapScrollReveal } from './GsapScrollReveal';
@@ -71,25 +71,7 @@ export function ContactSection() {
 
           <div className="mt-10">
             <p className="text-[12px] font-semibold tracking-[0.16em] uppercase text-white/60 mb-3">Follow Shalom</p>
-            <div className="flex gap-3">
-              {[
-                { href: PROFILE_DATA.socials.linkedin, label: 'LinkedIn', icon: Linkedin },
-                { href: PROFILE_DATA.socials.instagram, label: 'Instagram', icon: Instagram },
-                { href: PROFILE_DATA.socials.facebook, label: 'Facebook', icon: Facebook },
-                { href: PROFILE_DATA.socials.youtube, label: 'YouTube', icon: Youtube },
-              ].map(({ href, label: l, icon: Icon }) => (
-                <a
-                  key={l}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={l}
-                  className="w-11 h-11 rounded-full border border-white/[0.15] flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors"
-                >
-                  <Icon size={18} />
-                </a>
-              ))}
-            </div>
+            <SocialLinks />
           </div>
         </GsapScrollReveal>
 

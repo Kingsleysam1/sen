@@ -1,6 +1,5 @@
 import React from 'react';
-import { Linkedin, Instagram, Facebook, Youtube, Globe } from 'lucide-react';
-import { PROFILE_DATA } from '../data/shalomData';
+import { SocialLinks } from './SocialLinks';
 
 interface FooterSectionProps {
   onNavClick?: (targetId: string) => void;
@@ -33,27 +32,7 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
             <img src="/logo-signature-white.png" alt="Shalom Ernest" width={521} height={186} className="h-14 sm:h-16 w-auto" loading="lazy" />
           </button>
 
-          {/* Social Icons (Square bordered) */}
-          <div className="flex items-center gap-3 pt-2">
-            {[
-              { href: PROFILE_DATA.socials.linkedin, label: 'LinkedIn', icon: Linkedin },
-              { href: PROFILE_DATA.socials.instagram, label: 'Instagram', icon: Instagram },
-              { href: PROFILE_DATA.socials.facebook, label: 'Facebook', icon: Facebook },
-              { href: PROFILE_DATA.socials.youtube, label: 'YouTube', icon: Youtube },
-              { href: 'https://leadviewconsulting.com', label: 'Website', icon: Globe },
-            ].map(({ href, label, icon: Icon }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="w-11 h-11 min-w-[44px] min-h-[44px] bg-white/[0.08] hover:bg-white flex items-center justify-center text-white/80 hover:text-black transition-all rounded-full"
-              >
-                <Icon className="w-4 h-4" />
-              </a>
-            ))}
-          </div>
+          <SocialLinks className="pt-2" />
         </div>
 
         {/* ── 3. COPYRIGHT STRIP ── */}
