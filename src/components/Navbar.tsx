@@ -18,7 +18,7 @@ const NAV_ITEMS = [
   { label: 'Contact',      target: 'contact' },
 ];
 
-export function Navbar({ onNavClick, onOpenBooking }: NavbarProps) {
+export function Navbar({ onNavClick }: NavbarProps) {
   const [isOpen, setIsOpen]     = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -44,9 +44,9 @@ export function Navbar({ onNavClick, onOpenBooking }: NavbarProps) {
     setIsOpen(false);
   };
 
-  const handleBooking = () => {
+  const handleGetInTouch = () => {
     triggerHaptic('medium');
-    onOpenBooking();
+    onNavClick('contact');
     setIsOpen(false);
   };
 
@@ -80,10 +80,10 @@ export function Navbar({ onNavClick, onOpenBooking }: NavbarProps) {
 
           <div className="flex items-center gap-2">
             <button
-              onClick={handleBooking}
+              onClick={handleGetInTouch}
               className="min-h-[44px] px-5 py-2 rounded-full bg-white hover:bg-[#8AC4FF] text-black text-[14px] font-semibold transition-colors cursor-pointer"
             >
-              Book Shalom
+              Get In Touch
             </button>
             <button
               onClick={handleToggle}
@@ -126,10 +126,10 @@ export function Navbar({ onNavClick, onOpenBooking }: NavbarProps) {
               ))}
             </nav>
             <button
-              onClick={handleBooking}
+              onClick={handleGetInTouch}
               className="mt-auto w-full py-4 rounded-full bg-white text-black font-semibold text-[16px]"
             >
-              Book Shalom
+              Get In Touch
             </button>
           </motion.div>
         )}
