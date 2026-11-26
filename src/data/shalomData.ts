@@ -71,7 +71,7 @@ export const PROFILE_DATA = {
   phone: "+234 813 207 8249",
   location: "Lagos, Nigeria (Advising clients across Africa & globally)",
   socials: {
-    linkedin: "https://www.linkedin.com/in/shalom-ernest-fimc-cmc-4028061a5",
+    linkedin: "https://www.linkedin.com/in/shalom-ernest-4028061a5",
     instagram: "https://instagram.com/shalomernest1",
     facebook: "https://www.facebook.com/shalom.ernest.98",
     youtube: "https://www.youtube.com/@ernestshalom"
