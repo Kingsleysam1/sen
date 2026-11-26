@@ -51,7 +51,7 @@ export function VideoSection() {
         <GsapScrollReveal>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12 md:mb-16">
             <div>
-              <p className="flex items-center gap-2 text-[11px] sm:text-[12px] font-semibold tracking-[0.16em] uppercase text-white/60 mb-4">
+              <p className="flex items-center gap-2 text-[12px] font-semibold tracking-[0.16em] uppercase text-white/60 mb-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#8AC4FF]" aria-hidden="true" />
                 Watch
               </p>
@@ -109,19 +109,19 @@ export function VideoSection() {
                     </span>
                   </span>
                   <span className="absolute left-5 bottom-4 sm:left-6 sm:bottom-5 text-left" aria-hidden="true">
-                    <span className="block text-[10px] font-semibold tracking-[0.2em] uppercase text-[#8AC4FF]">Shalom Ernest</span>
+                    <span className="block text-[12px] font-semibold tracking-[0.16em] uppercase text-[#8AC4FF]">Shalom Ernest</span>
                   </span>
                 </button>
               )}
             </div>
 
-            <p className="mt-7 text-[12px] font-medium tracking-[0.08em] uppercase text-white/55">
+            <p className="mt-7 text-[12px] font-medium tracking-[0.16em] uppercase text-white/55">
               {current.topic} <span className="mx-1.5" aria-hidden="true">•</span> {current.duration}
             </p>
             <h3 className="mt-2 text-[clamp(26px,3vw,40px)] font-medium leading-[1.1] tracking-[-0.03em] max-w-[560px]">
               {current.title}
             </h3>
-            {current.subtitle && <p className="mt-2 text-[15px] text-white/60">{current.subtitle}</p>}
+            {current.subtitle && <p className="mt-2 text-[16px] text-white/60">{current.subtitle}</p>}
 
             <div className="mt-7 flex items-center gap-6 sm:gap-8">
               <button type="button" onClick={prev} aria-label="Previous video" className="w-11 h-11 flex items-center justify-center text-white/70 hover:text-white cursor-pointer">
@@ -156,13 +156,13 @@ export function VideoSection() {
                   >
                     <span className={`relative shrink-0 w-28 sm:w-36 aspect-video rounded-[12px] overflow-hidden bg-[#111] ring-2 transition-all ${active ? 'ring-[#8AC4FF]' : 'ring-transparent'}`}>
                       <Thumb id={v.id} alt="" quality="mqdefault" className="w-full h-full object-cover" />
-                      <span className="absolute right-1.5 bottom-1.5 text-[10px] font-semibold bg-black/80 px-1.5 py-0.5 rounded">{v.duration}</span>
+                      <span className="absolute right-1.5 bottom-1.5 text-[12px] font-semibold bg-black/80 px-1.5 py-0.5 rounded">{v.duration}</span>
                     </span>
                     <span className="min-w-0">
-                      <span className="block text-[11px] sm:text-[12px] font-medium tracking-[0.08em] uppercase text-white/50">
+                      <span className="block text-[12px] font-medium tracking-[0.16em] uppercase text-white/50">
                         {v.topic} <span className="mx-1" aria-hidden="true">•</span> {v.duration}
                       </span>
-                      <span className={`block mt-1 text-[17px] sm:text-[21px] font-medium leading-[1.2] tracking-[-0.02em] transition-colors ${active ? 'text-white' : 'text-white/70 group-hover:text-white'}`}>
+                      <span className={`block mt-1 text-[18px] sm:text-[22px] font-medium leading-[1.2] tracking-[-0.02em] transition-colors ${active ? 'text-white' : 'text-white/70 group-hover:text-white'}`}>
                         {v.title}
                       </span>
                     </span>

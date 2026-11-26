@@ -85,10 +85,10 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
           {/* Header */}
           <div className="mb-6 text-left">
-            <span className="text-[#8AC4FF] font-bold text-[11px] sm:text-[12px] tracking-[0.2em] uppercase block mb-1">
+            <span className="text-[#8AC4FF] font-bold text-[12px] tracking-[0.16em] uppercase block mb-1">
               GET IN TOUCH
             </span>
-            <h2 id="booking-title" className="text-[24px] sm:text-[28px] font-bold text-white tracking-tight font-sans">
+            <h2 id="booking-title" className="text-[26px] sm:text-[28px] font-bold text-white tracking-tight font-sans">
               Book a Consultation
             </h2>
           </div>
@@ -99,24 +99,24 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                 <Check size={24} />
               </div>
               <h3 className="text-[22px] font-medium tracking-[-0.02em] text-white">Request received, {formData.name.split(' ')[0]}.</h3>
-              <p className="text-stone-300 text-[15px] leading-relaxed">
+              <p className="text-stone-300 text-[16px] leading-relaxed">
                 Your consultation request for <span className="text-white">{formData.service}</span> is with Shalom's team. They'll reply to {formData.email}.
               </p>
-              <button onClick={onClose} className="mt-3 px-6 py-2.5 rounded-full bg-white text-black font-semibold text-[13px] cursor-pointer">Close</button>
+              <button onClick={onClose} className="mt-3 px-6 py-2.5 rounded-full bg-white text-black font-semibold text-[14px] cursor-pointer">Close</button>
             </div>
           ) : status === 'failed' ? (
             <div className="py-8 text-center flex flex-col items-center gap-3" role="alert">
               <h3 className="text-[22px] font-medium tracking-[-0.02em] text-white">That didn't go through.</h3>
-              <p className="text-stone-300 text-[15px] leading-relaxed">
+              <p className="text-stone-300 text-[16px] leading-relaxed">
                 Your details are still here. Please check your connection and try again in a moment.
               </p>
-              <button onClick={() => setStatus('idle')} className="mt-3 px-6 py-2.5 rounded-full bg-white text-black font-semibold text-[13px] cursor-pointer">Try again</button>
+              <button onClick={() => setStatus('idle')} className="mt-3 px-6 py-2.5 rounded-full bg-white text-black font-semibold text-[14px] cursor-pointer">Try again</button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-4 text-left">
               {/* Full Name */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-[13px] font-medium text-stone-300">Full Name *</label>
+                <label className="text-[14px] font-medium text-stone-300">Full Name *</label>
                 <input
                   type="text"
                   required
@@ -130,7 +130,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
               {/* Email & Phone */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[13px] font-medium text-stone-300">Email Address *</label>
+                  <label className="text-[14px] font-medium text-stone-300">Email Address *</label>
                   <input
                     type="email"
                     required
@@ -141,7 +141,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                   />
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[13px] font-medium text-stone-300">Phone Number</label>
+                  <label className="text-[14px] font-medium text-stone-300">Phone Number</label>
                   <input
                     type="tel"
                     placeholder="+234 ..."
@@ -154,7 +154,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
               {/* Service Select */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-[13px] font-medium text-stone-300">Service of Interest</label>
+                <label className="text-[14px] font-medium text-stone-300">Service of Interest</label>
                 <select
                   value={formData.service}
                   onChange={(e) => setFormData((p) => ({ ...p, service: e.target.value }))}
@@ -170,7 +170,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
               {/* Message */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-[13px] font-medium text-stone-300">Additional Notes (Optional)</label>
+                <label className="text-[14px] font-medium text-stone-300">Additional Notes (Optional)</label>
                 <textarea
                   rows={3}
                   placeholder="Tell us about your organization or consulting goals..."

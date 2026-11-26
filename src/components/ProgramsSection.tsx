@@ -42,11 +42,11 @@ export function ProgramsSection({ onOpenBooking }: ProgramsSectionProps) {
         <GsapScrollReveal>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10 sm:mb-12">
             <div>
-              <p className="flex items-center gap-2 text-[11px] sm:text-[12px] font-semibold tracking-[0.16em] uppercase text-white/60 mb-4">
+              <p className="flex items-center gap-2 text-[12px] font-semibold tracking-[0.16em] uppercase text-white/60 mb-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#8AC4FF]" aria-hidden="true" />
                 Featured Programs
               </p>
-              <h2 id="programs-heading" className="text-[clamp(32px,4vw,52px)] font-medium leading-[1.05] tracking-[-0.04em]">
+              <h2 id="programs-heading" className="text-[clamp(36px,5.2vw,68px)] font-medium leading-[1.02] tracking-[-0.04em]">
                 An Ecosystem of Impact
               </h2>
             </div>

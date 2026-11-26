@@ -11,6 +11,9 @@ interface AnimatedCounterProps {
   className?: string;
 }
 
+const fmt = (n: number, d: number) =>
+  n.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+
 function AnimatedCounter({ value, suffix = '', prefix = '', decimals = 0, className = '' }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
@@ -25,7 +28,7 @@ function AnimatedCounter({ value, suffix = '', prefix = '', decimals = 0, classN
         ease: 'easeOut',
         onUpdate(val) {
           if (ref.current) {
-            ref.current.textContent = prefix + val.toFixed(decimals) + suffix;
+            ref.current.textContent = prefix + fmt(val, decimals) + suffix;
           }
         },
       });
@@ -35,7 +38,7 @@ function AnimatedCounter({ value, suffix = '', prefix = '', decimals = 0, classN
 
   return (
     <span ref={ref} className={className}>
-      {prefix}{value.toFixed(decimals)}{suffix}
+      {prefix}{fmt(value, decimals)}{suffix}
     </span>
   );
 }
@@ -54,7 +57,7 @@ export function MetricsSection() {
         <GsapScrollReveal>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14 sm:mb-20">
             <div>
-              <p className="flex items-center gap-2 text-[11px] sm:text-[12px] font-semibold tracking-[0.16em] uppercase text-[#555] mb-4">
+              <p className="flex items-center gap-2 text-[12px] font-semibold tracking-[0.16em] uppercase text-[#555] mb-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#111]" aria-hidden="true" />
                 Measured Milestones
               </p>
@@ -78,7 +81,7 @@ export function MetricsSection() {
               <div className="text-[clamp(56px,6vw,84px)] font-medium leading-none tracking-[-0.05em] text-[#111]">
                 <AnimatedCounter value={stat.value} suffix={stat.suffix} decimals={stat.decimals} />
               </div>
-              <h3 className="mt-5 text-[17px] font-semibold tracking-[-0.01em]">{stat.label}</h3>
+              <h3 className="mt-5 text-[18px] font-semibold tracking-[-0.01em]">{stat.label}</h3>
               <p className="mt-1 text-[14px] leading-snug text-[#666]">{stat.description}</p>
             </motion.div>
           ))}

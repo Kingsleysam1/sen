@@ -74,14 +74,14 @@ export function PartnersMarquee() {
     <section id="partners" className="bg-white text-[#111]" aria-labelledby="credibility-heading">
       <div className="site-container section-padding pb-10 sm:pb-12">
         <GsapScrollReveal>
-          <p className="flex items-center gap-2 text-[11px] sm:text-[12px] font-semibold tracking-[0.16em] uppercase text-[#555] mb-4">
+          <p className="flex items-center gap-2 text-[12px] font-semibold tracking-[0.16em] uppercase text-[#555] mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-[#111]" aria-hidden="true" />
             Professional Credibility
           </p>
           <h2 id="credibility-heading" className="text-[clamp(36px,5.2vw,68px)] font-medium leading-[1.02] tracking-[-0.04em]">
             Recognised. Certified. Trusted.
           </h2>
-          <p className="mt-5 text-[16px] sm:text-[17px] text-[#555] max-w-[620px]">
+          <p className="mt-5 text-[17px] sm:text-[18px] text-[#555] max-w-[620px]">
             Institutional affiliations, certifications and organisations served.
           </p>
         </GsapScrollReveal>

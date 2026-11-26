@@ -45,7 +45,7 @@ export function FAQSection() {
                   className="w-full flex items-start justify-between gap-6 py-6 text-left cursor-pointer group"
                   aria-expanded={isOpen}
                 >
-                  <span className="text-[18px] sm:text-[21px] font-medium text-[#111] leading-snug tracking-[-0.02em]">
+                  <span className="text-[18px] sm:text-[22px] font-medium text-[#111] leading-snug tracking-[-0.02em]">
                     {faq.question}
                   </span>
                   <motion.span

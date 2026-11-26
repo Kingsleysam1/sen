@@ -17,7 +17,7 @@ export function BioSection() {
 
           <div className="lg:col-span-7 flex flex-col gap-7">
             <GsapScrollReveal>
-              <p className="flex items-center gap-2 text-[11px] sm:text-[12px] font-semibold tracking-[0.16em] uppercase text-[#555]">
+              <p className="flex items-center gap-2 text-[12px] font-semibold tracking-[0.16em] uppercase text-[#555]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#111]" aria-hidden="true" />
                 About Shalom
               </p>
@@ -39,7 +39,7 @@ export function BioSection() {
             </GsapScrollReveal>
 
             <GsapScrollReveal>
-              <p className="text-[#555] text-[16px] sm:text-[17px] leading-[1.65]">
+              <p className="text-[#555] text-[16px] leading-[1.65]">
                 As the chief steward at Clarity Conclave, CEO of Leadview Management Consulting and Founder of Youth Making Impact Initiative, Shalom has trained over 10,000 professionals and young leaders across Africa. He helps corporate boards, founders, and innovators tackle complex challenges with clear structures, focused execution, and resilient leadership.
               </p>
             </GsapScrollReveal>
@@ -58,7 +58,7 @@ export function BioSection() {
             <GsapScrollReveal>
               <ul className="flex flex-wrap gap-2 pt-1" aria-label="Credentials">
                 {CREDENTIALS.map((c) => (
-                  <li key={c.tag} title={c.full} className="text-[13px] font-semibold text-[#111] bg-[#F2F2F0] px-3.5 py-1.5 rounded-full">
+                  <li key={c.tag} title={c.full} className="text-[14px] font-semibold text-[#111] bg-[#F2F2F0] px-3.5 py-1.5 rounded-full">
                     <abbr title={c.full} className="no-underline">{c.tag}</abbr>
                   </li>
                 ))}

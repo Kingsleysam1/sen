@@ -59,7 +59,7 @@ export function TestimonialSlider() {
       />
 
       <div className="relative site-container py-24 sm:py-36">
-        <p className="flex items-center gap-2 text-[11px] sm:text-[12px] font-semibold tracking-[0.16em] uppercase text-white/70 mb-8">
+        <p className="flex items-center gap-2 text-[12px] font-semibold tracking-[0.16em] uppercase text-white/70 mb-8">
           <span className="w-1.5 h-1.5 rounded-full bg-[#8AC4FF]" aria-hidden="true" />
           <span id="testimonials-heading">Executive Testimonials</span>
         </p>
@@ -73,10 +73,10 @@ export function TestimonialSlider() {
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             >
-              <blockquote className="text-[clamp(22px,2.9vw,38px)] font-medium leading-[1.28] tracking-[-0.025em]">
+              <blockquote className="text-[clamp(24px,2.9vw,38px)] font-medium leading-[1.25] tracking-[-0.025em]">
                 "{current.quote}"
               </blockquote>
-              <figcaption className="mt-7 text-[15px]">
+              <figcaption className="mt-7 text-[16px]">
                 <span className="font-semibold">{current.name}</span>
                 <span className="text-white/65"> · {current.role}, {current.organisation}</span>
               </figcaption>
@@ -96,14 +96,14 @@ export function TestimonialSlider() {
                 className="flex flex-col items-center text-center gap-2 cursor-pointer group w-[110px]"
               >
                 <span
-                  className={`w-14 h-14 rounded-full flex items-center justify-center text-[15px] font-semibold transition-all ${
+                  className={`w-14 h-14 rounded-full flex items-center justify-center text-[16px] font-semibold transition-all ${
                     isActive ? 'bg-white text-black ring-2 ring-[#8AC4FF] ring-offset-4 ring-offset-black' : 'bg-white/10 text-white/80 group-hover:bg-white/20'
                   }`}
                 >
                   {initials(t.name)}
                 </span>
-                <span className={`text-[13px] font-semibold leading-tight ${isActive ? 'text-white' : 'text-white/75'}`}>{t.name}</span>
-                <span className="text-[11px] text-white/65 leading-tight">{t.role}</span>
+                <span className={`text-[14px] font-semibold leading-tight ${isActive ? 'text-white' : 'text-white/75'}`}>{t.name}</span>
+                <span className="text-[12px] text-white/65 leading-tight">{t.role}</span>
               </button>
             );
           })}

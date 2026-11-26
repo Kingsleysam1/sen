@@ -34,10 +34,10 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
         {/* ── 1. JOIN COMMUNITY CARD ── */}
         <GsapScrollReveal>
           <div className="flex flex-col items-center text-center mb-10 sm:mb-12">
-            <span className="text-white/60 font-semibold text-[11px] sm:text-[12px] tracking-[0.16em] uppercase mb-4">
+            <span className="text-white/60 font-semibold text-[12px] tracking-[0.16em] uppercase mb-4">
               JOIN COMMUNITY
             </span>
-            <h2 className="text-[clamp(34px,5vw,64px)] font-medium text-white tracking-[-0.04em] leading-[1.02]">
+            <h2 className="text-[clamp(36px,5.2vw,68px)] font-medium text-white tracking-[-0.04em] leading-[1.02]">
               Sign Up for Newsletter
             </h2>
           </div>
@@ -51,15 +51,15 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
                 <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-black">
                   <Check size={24} />
                 </div>
-                <h3 className="text-[24px] font-medium tracking-[-0.02em] text-white">You're subscribed, {formData.firstName || 'friend'}.</h3>
-                <p className="text-white/70 text-[15px] leading-relaxed max-w-md">
+                <h3 className="text-[22px] font-medium tracking-[-0.02em] text-white">You're subscribed, {formData.firstName || 'friend'}.</h3>
+                <p className="text-white/70 text-[16px] leading-relaxed max-w-md">
                   Shalom's newsletter will arrive at {formData.email}, with upcoming events, programmes and leadership notes.
                 </p>
               </div>
             ) : status === 'failed' ? (
               <div className="text-center py-8 flex flex-col items-center gap-3" role="alert">
                 <h3 className="text-[22px] font-medium tracking-[-0.02em] text-white">That didn't go through.</h3>
-                <p className="text-white/70 text-[15px] leading-relaxed max-w-md">
+                <p className="text-white/70 text-[16px] leading-relaxed max-w-md">
                   Please check your connection and try again in a moment.
                 </p>
                 <button onClick={() => setStatus('idle')} className="mt-2 px-6 py-3 rounded-full bg-white text-black text-[14px] font-semibold cursor-pointer">Try again</button>
@@ -69,7 +69,7 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
                 {/* 2-column Name inputs */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5 text-left">
-                    <label className="text-[13px] font-medium text-stone-300">First Name</label>
+                    <label className="text-[14px] font-medium text-stone-300">First Name</label>
                     <input
                       type="text"
                       required
@@ -80,7 +80,7 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
                     />
                   </div>
                   <div className="flex flex-col gap-1.5 text-left">
-                    <label className="text-[13px] font-medium text-stone-300">Last Name</label>
+                    <label className="text-[14px] font-medium text-stone-300">Last Name</label>
                     <input
                       type="text"
                       required
@@ -94,7 +94,7 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
 
                 {/* Email input */}
                 <div className="flex flex-col gap-1.5 text-left">
-                  <label className="text-[13px] font-medium text-stone-300">Email Address</label>
+                  <label className="text-[14px] font-medium text-stone-300">Email Address</label>
                   <input
                     type="email"
                     required
@@ -166,7 +166,7 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
 
         {/* ── 3. COPYRIGHT STRIP ── */}
         <div className="border-t border-white/[0.08] pt-8 flex justify-center text-center">
-          <p className="text-stone-500 font-mono text-[11px] sm:text-[12px] uppercase tracking-wider">
+          <p className="text-stone-500 font-mono text-[12px] uppercase tracking-[0.16em]">
             © {new Date().getFullYear()} SHALOM ERNEST. ALL RIGHTS RESERVED
           </p>
         </div>

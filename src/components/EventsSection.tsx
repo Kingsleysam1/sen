@@ -94,7 +94,7 @@ function RegistrationModal({
             <div className="w-12 h-12 rounded-full bg-[#8AC4FF]/15 border border-[#8AC4FF]/30 flex items-center justify-center">
               <Check size={22} className="text-[#8AC4FF]" />
             </div>
-            <h3 className="text-[20px] font-bold text-white">Registration Started</h3>
+            <h3 className="text-[22px] font-bold text-white">Registration Started</h3>
             <p className="text-stone-400 text-[14px]">You've been redirected to the registration link.</p>
             <button onClick={onClose} className="px-6 py-2.5 bg-[#8AC4FF] text-[#0A0908] font-semibold rounded-full text-[14px] cursor-pointer mt-2">
               Done
@@ -102,8 +102,8 @@ function RegistrationModal({
           </div>
         ) : (
           <>
-            <h3 className="text-[20px] font-bold text-white mb-1">{event.title}</h3>
-            <p className="text-stone-400 text-[13px] mb-6">{event.dateDisplay} · {event.fee}</p>
+            <h3 className="text-[22px] font-bold text-white mb-1">{event.title}</h3>
+            <p className="text-stone-400 text-[14px] mb-6">{event.dateDisplay} · {event.fee}</p>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               {[
                 { label: 'Full Name', key: 'name', type: 'text', placeholder: 'Your full name' },
@@ -111,7 +111,7 @@ function RegistrationModal({
                 { label: 'Phone Number', key: 'phone', type: 'tel', placeholder: '+234 ...' },
               ].map(({ label, key, type, placeholder }) => (
                 <div key={key} className="flex flex-col gap-1.5">
-                  <label className="text-[11px] font-mono uppercase tracking-wider text-stone-500">{label}</label>
+                  <label className="text-[12px] font-mono uppercase tracking-[0.16em] text-stone-500">{label}</label>
                   <input
                     required
                     type={type}
@@ -168,7 +168,7 @@ export function EventsSection() {
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                     loading="lazy"
                   />
-                  <span className="absolute top-4 left-4 text-[11px] font-semibold bg-white text-black px-3 py-1 rounded-full">
+                  <span className="absolute top-4 left-4 text-[12px] font-semibold bg-white text-black px-3 py-1 rounded-full">
                     {event.type}
                   </span>
                 </button>
@@ -176,7 +176,7 @@ export function EventsSection() {
                 <div className="p-6 flex flex-col gap-4 flex-1">
                   <div>
                     <p className="text-[12px] font-medium text-[#666]">{event.organizer} · {isPast ? 'Past event' : event.status}</p>
-                    <h3 className="mt-1.5 text-[21px] font-semibold leading-[1.15] tracking-[-0.02em]">{event.title}</h3>
+                    <h3 className="mt-1.5 text-[22px] font-semibold leading-[1.15] tracking-[-0.02em]">{event.title}</h3>
                     <p className="mt-2 text-[14px] text-[#555] leading-[1.55]">{event.description}</p>
                   </div>
 
@@ -190,14 +190,14 @@ export function EventsSection() {
                   <div className="mt-auto flex items-center gap-2 pt-1">
                     <button
                       onClick={() => { triggerHaptic('medium'); setRegisterEvent(event); }}
-                      className="px-5 py-2.5 rounded-full bg-black hover:bg-[#1d3a5c] text-white text-[13px] font-semibold transition-colors cursor-pointer"
+                      className="px-5 py-2.5 rounded-full bg-black hover:bg-[#1d3a5c] text-white text-[14px] font-semibold transition-colors cursor-pointer"
                     >
                       Register
                     </button>
                     <div className="relative">
                       <button
                         onClick={() => setCalendarMenu(calendarMenu === event.id ? null : event.id)}
-                        className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-[#F2F2F0] hover:bg-[#E8E8E5] text-[#111] text-[13px] font-semibold transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-[#F2F2F0] hover:bg-[#E8E8E5] text-[#111] text-[14px] font-semibold transition-colors cursor-pointer"
                       >
                         <CalendarPlus className="w-3.5 h-3.5" /> Calendar
                       </button>
@@ -211,11 +211,11 @@ export function EventsSection() {
                           >
                             <a href={getGoogleCalendarUrl(event)} target="_blank" rel="noopener noreferrer"
                               onClick={() => setCalendarMenu(null)}
-                              className="flex items-center gap-2 text-[13px] text-[#333] hover:text-black px-3 py-2 rounded-lg hover:bg-[#F2F2F0]">
+                              className="flex items-center gap-2 text-[14px] text-[#333] hover:text-black px-3 py-2 rounded-lg hover:bg-[#F2F2F0]">
                               <ExternalLink className="w-3.5 h-3.5" /> Google Calendar
                             </a>
                             <button onClick={() => { downloadICS(event); setCalendarMenu(null); }}
-                              className="w-full flex items-center gap-2 text-[13px] text-[#333] hover:text-black px-3 py-2 rounded-lg hover:bg-[#F2F2F0] cursor-pointer text-left">
+                              className="w-full flex items-center gap-2 text-[14px] text-[#333] hover:text-black px-3 py-2 rounded-lg hover:bg-[#F2F2F0] cursor-pointer text-left">
                               <Download className="w-3.5 h-3.5" /> Apple / Outlook (.ics)
                             </button>
                           </motion.div>
@@ -269,18 +269,18 @@ export function EventsSection() {
 
             <div className="relative md:order-1 md:col-span-7 p-7 sm:p-10 lg:p-14 -mt-16 md:mt-0">
               <p className="text-[12px] font-semibold tracking-[0.16em] uppercase text-[#8AC4FF] mb-3">One-to-one mentorship</p>
-              <h3 id="inner-circle-heading" className="text-[clamp(30px,3.6vw,48px)] font-medium leading-[1.05] tracking-[-0.035em]">
+              <h3 id="inner-circle-heading" className="text-[clamp(26px,3vw,40px)] font-medium leading-[1.1] tracking-[-0.03em]">
                 Join the Inner Circle
               </h3>
-              <p className="mt-4 text-white/80 text-[16px] sm:text-[17px] leading-[1.65] max-w-[600px]">
+              <p className="mt-4 text-white/80 text-[17px] sm:text-[18px] leading-[1.65] max-w-[600px]">
                 A focused one-to-one mentorship for people who want to grow as leaders, navigate important decisions, and make purposeful progress toward their goals.
               </p>
 
-              <h4 className="mt-8 text-[15px] font-semibold text-white">How it works</h4>
-              <p className="mt-2 text-white/65 text-[15px] leading-[1.7] max-w-[600px]">
+              <h4 className="mt-8 text-[16px] font-semibold text-white">How it works</h4>
+              <p className="mt-2 text-white/65 text-[16px] leading-[1.7] max-w-[600px]">
                 The program runs for 3 months, with one private 60-minute session each week. We begin by clarifying what you want to work on, then shape each conversation around your goals and current challenges. Topics may include leadership, career or business direction, decision-making, and personal development.
               </p>
-              <p className="mt-3 text-white/65 text-[15px] leading-[1.7] max-w-[600px]">
+              <p className="mt-3 text-white/65 text-[16px] leading-[1.7] max-w-[600px]">
                 Each session ends with practical next steps to work on between meetings. In the final session, we reflect on your progress and identify priorities for what comes next.
               </p>
 
@@ -299,7 +299,7 @@ export function EventsSection() {
 
         {past.length > 0 && (
           <div className="mt-14 sm:mt-16">
-            <h3 className="text-[13px] font-semibold tracking-[0.16em] uppercase text-[#555] mb-4">Events and Calendar</h3>
+            <h3 className="text-[12px] font-semibold tracking-[0.16em] uppercase text-[#555] mb-4">Events and Calendar</h3>
             <ul className="divide-y divide-black/10 border-y border-black/10">
               {past.map((event) => (
                 <li key={event.id}>
@@ -316,9 +316,9 @@ export function EventsSection() {
                     />
                     <span className="flex-1 min-w-0">
                       <span className="block text-[16px] font-semibold tracking-[-0.01em] text-[#111] group-hover:underline underline-offset-4">{event.title}</span>
-                      <span className="block text-[13px] text-[#666] truncate">{event.organizer}</span>
+                      <span className="block text-[14px] text-[#666] truncate">{event.organizer}</span>
                     </span>
-                    <span className="text-[13px] text-[#555] text-right shrink-0">{event.dateDisplay}</span>
+                    <span className="text-[14px] text-[#555] text-right shrink-0">{event.dateDisplay}</span>
                   </button>
                 </li>
               ))}
@@ -357,7 +357,7 @@ export function EventsSection() {
               {new Date(flyerOpen.isoEndDate).getTime() >= now && <div className="mt-4 flex gap-3 justify-center">
                 <button
                   onClick={() => { setRegisterEvent(flyerOpen); setFlyerOpen(null); }}
-                  className="px-6 py-2.5 bg-[#8AC4FF] hover:bg-[#B9DCFF] text-[#0A0908] font-bold text-[13px] rounded-full transition-colors cursor-pointer"
+                  className="px-6 py-2.5 bg-[#8AC4FF] hover:bg-[#B9DCFF] text-[#0A0908] font-bold text-[14px] rounded-full transition-colors cursor-pointer"
                 >
                   Register Now →
                 </button>

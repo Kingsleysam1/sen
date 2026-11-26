@@ -49,7 +49,7 @@ export function HeroSection({ onNavClick, onOpenBooking }: HeroSectionProps) {
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.25, ease: EASE }}
-                className="text-white/80 font-semibold text-[10px] sm:text-[12px] tracking-[0.18em] uppercase mb-4"
+                className="text-white/80 font-semibold text-[11px] sm:text-[12px] tracking-[0.16em] uppercase mb-4"
               >
                 Management Consultant • Strategic Advisor • Institution Builder
               </motion.p>
@@ -67,7 +67,7 @@ export function HeroSection({ onNavClick, onOpenBooking }: HeroSectionProps) {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.5, ease: EASE }}
-                className="mt-5 sm:mt-6 text-white/85 text-[16px] sm:text-[19px] leading-[1.55] max-w-[560px]"
+                className="mt-5 sm:mt-6 text-white/85 text-[17px] sm:text-[18px] leading-[1.55] max-w-[560px]"
               >
                 I inspire and facilitate purposeful transformation in individuals &amp; organizations to create meaningful impact &amp; maximize potential.
               </motion.p>
@@ -80,13 +80,13 @@ export function HeroSection({ onNavClick, onOpenBooking }: HeroSectionProps) {
               >
                 <button
                   onClick={onOpenBooking}
-                  className="px-6 py-3 sm:px-7 sm:py-3.5 rounded-full bg-white hover:bg-[#8AC4FF] text-black text-[14px] sm:text-[15px] font-semibold transition-colors cursor-pointer"
+                  className="px-6 py-3 sm:px-7 sm:py-3.5 rounded-full bg-white hover:bg-[#8AC4FF] text-black text-[14px] font-semibold transition-colors cursor-pointer"
                 >
                   Book Shalom Ernest
                 </button>
                 <button
                   onClick={() => onNavClick('bio')}
-                  className="px-5 py-3 sm:py-3.5 rounded-full text-white/85 hover:text-white underline-offset-4 hover:underline text-[14px] sm:text-[15px] font-semibold transition-colors cursor-pointer"
+                  className="px-5 py-3 sm:py-3.5 rounded-full text-white/85 hover:text-white underline-offset-4 hover:underline text-[14px] font-semibold transition-colors cursor-pointer"
                 >
                   Meet Shalom
                 </button>
@@ -96,7 +96,7 @@ export function HeroSection({ onNavClick, onOpenBooking }: HeroSectionProps) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 0.8 }}
-                className="mt-6 text-white/70 text-[13px] sm:text-[14px] font-medium"
+                className="mt-6 text-white/70 text-[14px] font-medium"
               >
                 10,000+ trained <span aria-hidden="true" className="mx-2 text-white/35">·</span> FIMC, CMC, AILCS
               </motion.p>

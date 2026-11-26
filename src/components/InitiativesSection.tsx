@@ -104,7 +104,7 @@ export function InitiativesSection({ onOpenBooking }: InitiativesSectionProps) {
         <GsapScrollReveal>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12 md:mb-16">
             <div>
-              <p className="flex items-center gap-2 text-[11px] sm:text-[12px] font-semibold tracking-[0.16em] uppercase text-white/60 mb-4">
+              <p className="flex items-center gap-2 text-[12px] font-semibold tracking-[0.16em] uppercase text-white/60 mb-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#8AC4FF]" aria-hidden="true" />
                 Areas of Expertise
               </p>
@@ -129,11 +129,11 @@ export function InitiativesSection({ onOpenBooking }: InitiativesSectionProps) {
                     onMouseEnter={() => setActive(i)}
                     className="w-full flex items-baseline gap-4 sm:gap-6 py-5 sm:py-7 text-left cursor-pointer group"
                   >
-                    <span className={`text-[13px] font-semibold tabular-nums transition-colors ${isActive ? 'text-[#8AC4FF]' : 'text-white/35'}`}>
+                    <span className={`text-[14px] font-semibold tabular-nums transition-colors ${isActive ? 'text-[#8AC4FF]' : 'text-white/35'}`}>
                       {item.number}
                     </span>
                     <span
-                      className={`text-[clamp(24px,2.5vw,36px)] font-medium leading-[1.1] tracking-[-0.03em] transition-colors duration-300 ${
+                      className={`text-[clamp(26px,2.5vw,36px)] font-medium leading-[1.1] tracking-[-0.03em] transition-colors duration-300 ${
                         isActive ? 'text-white' : 'text-white/35 group-hover:text-white/70'
                       }`}
                     >
@@ -181,7 +181,7 @@ export function InitiativesSection({ onOpenBooking }: InitiativesSectionProps) {
         <GsapScrollReveal>
           <div className="mt-20 md:mt-28 max-w-[900px]">
             <p className="text-[12px] font-semibold tracking-[0.16em] uppercase text-white/50 mb-5">The Approach</p>
-            <p className="text-[clamp(24px,3vw,38px)] font-medium leading-[1.2] tracking-[-0.03em] text-white/90">
+            <p className="text-[clamp(24px,2.9vw,38px)] font-medium leading-[1.25] tracking-[-0.025em] text-white/90">
               "We don’t rise by motivation alone, we rise by clarity, character, contribution and a commitment to measurable progress."
             </p>
           </div>

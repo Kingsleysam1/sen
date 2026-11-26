@@ -80,7 +80,7 @@ export function Navbar({ onNavClick, onOpenBooking }: NavbarProps) {
           <div className="flex items-center gap-2">
             <button
               onClick={handleBooking}
-              className="min-h-[44px] px-5 py-2 rounded-full bg-white hover:bg-[#8AC4FF] text-black text-[13px] sm:text-[14px] font-semibold transition-colors cursor-pointer"
+              className="min-h-[44px] px-5 py-2 rounded-full bg-white hover:bg-[#8AC4FF] text-black text-[14px] font-semibold transition-colors cursor-pointer"
             >
               Book Shalom
             </button>
@@ -126,7 +126,7 @@ export function Navbar({ onNavClick, onOpenBooking }: NavbarProps) {
             </nav>
             <button
               onClick={handleBooking}
-              className="mt-auto w-full py-4 rounded-full bg-white text-black font-semibold text-[15px]"
+              className="mt-auto w-full py-4 rounded-full bg-white text-black font-semibold text-[16px]"
             >
               Book Shalom
             </button>
