@@ -19,6 +19,7 @@ import { ProgramsSection }    from './components/ProgramsSection';
 import { PartnersMarquee }    from './components/PartnersMarquee';
 import { VideoSection }       from './components/VideoSection';
 import { EventsSection }      from './components/EventsSection';
+import { ContactSection }     from './components/ContactSection';
 import { TestimonialSlider }  from './components/TestimonialSlider';
 import { FAQSection }         from './components/FAQSection';
 import { FooterSection }      from './components/FooterSection';
@@ -150,6 +151,9 @@ function MainContent() {
 
         {/* 9. EVENTS — Active programmes */}
         <EventsSection />
+
+        {/* 9b. CONTACT — after mentorship */}
+        <ContactSection />
 
         {/* 10. TESTIMONIALS — What have others said? */}
         <TestimonialSlider />

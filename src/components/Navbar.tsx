@@ -15,6 +15,7 @@ const NAV_ITEMS = [
   { label: 'Programs',     target: 'programs' },
   { label: 'Listen',       target: 'milestones' },
   { label: 'Mentorship',   target: 'mentorship' },
+  { label: 'Contact',      target: 'contact' },
 ];
 
 export function Navbar({ onNavClick, onOpenBooking }: NavbarProps) {
