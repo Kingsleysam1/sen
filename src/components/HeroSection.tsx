@@ -19,7 +19,7 @@ function HeroVideo() {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce) return; // keep the still poster
     const wide = window.matchMedia('(min-width: 768px)').matches;
-    setSrc(VIDEO_DIR + (wide ? 'hero-720.mp4' : 'hero-540.mp4'));
+    setSrc(VIDEO_DIR + (wide ? 'hero-v2-720.mp4' : 'hero-v2-540.mp4'));
   }, []);
 
   React.useEffect(() => {
@@ -40,7 +40,7 @@ function HeroVideo() {
     <video
       ref={ref}
       src={src ?? undefined}
-      poster={VIDEO_DIR + 'hero-poster.jpg'}
+      poster={VIDEO_DIR + 'hero-v2-poster.jpg'}
       muted
       loop
       playsInline

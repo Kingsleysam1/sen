@@ -8,3 +8,4 @@ coverage/
 !.env.example
 .originkit/
 .vercel
+_to_delete/
