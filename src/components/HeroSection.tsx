@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Navbar } from './Navbar';
-import { PHOTOS } from '../data/photos';
 
 interface HeroSectionProps {
   onNavClick: (targetId: string) => void;
@@ -10,6 +9,49 @@ interface HeroSectionProps {
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
+const VIDEO_DIR = '/src/assets/videos/';
+
+function HeroVideo() {
+  const ref = React.useRef<HTMLVideoElement>(null);
+  const [src, setSrc] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return; // keep the still poster
+    const wide = window.matchMedia('(min-width: 768px)').matches;
+    setSrc(VIDEO_DIR + (wide ? 'hero-720.mp4' : 'hero-540.mp4'));
+  }, []);
+
+  React.useEffect(() => {
+    const v = ref.current;
+    if (!v || !src) return;
+    v.muted = true;
+    v.play().catch(() => {});
+    // Pause when the hero is off screen to save battery and data.
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) v.play().catch(() => {});
+      else v.pause();
+    });
+    io.observe(v);
+    return () => io.disconnect();
+  }, [src]);
+
+  return (
+    <video
+      ref={ref}
+      src={src ?? undefined}
+      poster={VIDEO_DIR + 'hero-poster.jpg'}
+      muted
+      loop
+      playsInline
+      autoPlay
+      preload="metadata"
+      aria-hidden="true"
+      className="w-full h-full object-cover object-center"
+    />
+  );
+}
+
 export function HeroSection({ onNavClick, onOpenBooking }: HeroSectionProps) {
   return (
     <section id="hero" className="relative w-full bg-black pt-[64px] sm:pt-[72px]" aria-label="Hero">
@@ -17,28 +59,22 @@ export function HeroSection({ onNavClick, onOpenBooking }: HeroSectionProps) {
 
       <div className="px-3 sm:px-5 pb-3 sm:pb-5">
         <div className="relative overflow-hidden rounded-[22px] sm:rounded-[28px] h-[calc(100svh-76px)] sm:h-[calc(100svh-92px)] min-h-[560px] max-h-[920px] bg-[#0B1626]">
-          {/* Photo: Shalom on stage. Portrait crop on phones, wide on desktop. */}
-          <motion.picture
+          {/* Background film: muted highlight reel. Smaller file on phones; poster only when reduced motion is on. */}
+          <motion.div
             initial={{ scale: 1.06, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1.4, ease: EASE }}
-            className="absolute inset-0 block"
+            className="absolute inset-0"
           >
-            <source media="(min-width: 768px)" srcSet={PHOTOS.stageWide} />
-            <img
-              src={PHOTOS.stagePodium}
-              alt="Shalom C. Ernest speaking on stage at a leadership summit"
-              className="w-full h-full object-cover object-[50%_22%] md:object-[60%_35%]"
-              fetchPriority="high"
-            />
-          </motion.picture>
+            <HeroVideo />
+          </motion.div>
 
-          {/* Legibility: dark from the bottom and the left, photo stays bright on the right */}
+          {/* Legibility: overall dim plus dark from the bottom and the left, so text holds over bright frames */}
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                'linear-gradient(to top, rgba(5,10,20,0.92) 0%, rgba(5,10,20,0.55) 38%, rgba(5,10,20,0) 65%), linear-gradient(to right, rgba(5,10,20,0.75) 0%, rgba(5,10,20,0.25) 45%, rgba(5,10,20,0) 70%)',
+                'linear-gradient(to top, rgba(5,10,20,0.92) 0%, rgba(5,10,20,0.6) 38%, rgba(5,10,20,0) 65%), linear-gradient(to right, rgba(5,10,20,0.8) 0%, rgba(5,10,20,0.35) 45%, rgba(5,10,20,0) 70%), rgba(5,10,20,0.3)',
             }}
             aria-hidden="true"
           />
