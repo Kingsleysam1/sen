@@ -1,5 +1,5 @@
 import React from 'react';
-import { Linkedin, Instagram, Facebook, Globe } from 'lucide-react';
+import { Linkedin, Instagram, Facebook, Youtube, Globe } from 'lucide-react';
 import { PROFILE_DATA } from '../data/shalomData';
 
 interface FooterSectionProps {
@@ -39,6 +39,7 @@ export function FooterSection({ onNavClick: _onNavClick, onOpenBooking: _onOpenB
               { href: PROFILE_DATA.socials.linkedin, label: 'LinkedIn', icon: Linkedin },
               { href: PROFILE_DATA.socials.instagram, label: 'Instagram', icon: Instagram },
               { href: PROFILE_DATA.socials.facebook, label: 'Facebook', icon: Facebook },
+              { href: PROFILE_DATA.socials.youtube, label: 'YouTube', icon: Youtube },
               { href: 'https://leadviewconsulting.com', label: 'Website', icon: Globe },
             ].map(({ href, label, icon: Icon }) => (
               <a

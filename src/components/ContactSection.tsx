@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Check, Linkedin, Instagram, Facebook } from 'lucide-react';
+import { Check, Linkedin, Instagram, Facebook, Youtube } from 'lucide-react';
 import { PROFILE_DATA } from '../data/shalomData';
 import { sendEnquiry, CONTACT } from '../utils/enquiry';
 import { triggerHaptic } from '../utils/haptics';
@@ -76,6 +76,7 @@ export function ContactSection() {
                 { href: PROFILE_DATA.socials.linkedin, label: 'LinkedIn', icon: Linkedin },
                 { href: PROFILE_DATA.socials.instagram, label: 'Instagram', icon: Instagram },
                 { href: PROFILE_DATA.socials.facebook, label: 'Facebook', icon: Facebook },
+                { href: PROFILE_DATA.socials.youtube, label: 'YouTube', icon: Youtube },
               ].map(({ href, label: l, icon: Icon }) => (
                 <a
                   key={l}

@@ -73,7 +73,8 @@ export const PROFILE_DATA = {
   socials: {
     linkedin: "https://www.linkedin.com/in/shalom-ernest-fimc-cmc-4028061a5",
     instagram: "https://instagram.com/shalomernest1",
-    facebook: "https://www.facebook.com/shalom.ernest.98"
+    facebook: "https://www.facebook.com/shalom.ernest.98",
+    youtube: "https://www.youtube.com/@ernestshalom"
   },
   philosophy: "Great teams rarely fail from a lack of ambition—they stall when priorities become blurred. Real leadership is about creating focus, culture, and measurable progress.",
   mission: "Helping executives, founders, and public sector teams eliminate operational friction, align strategy with daily execution, and build organizations built to endure.",

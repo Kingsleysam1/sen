@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, SkipBack, SkipForward, Youtube } from 'lucide-react';
 import { GsapScrollReveal } from './GsapScrollReveal';
+import { PROFILE_DATA } from '../data/shalomData';
 
-const CHANNEL_URL = 'https://www.youtube.com/@ernestshalom';
+const CHANNEL_URL = PROFILE_DATA.socials.youtube;
 
 // Videos from Shalom's YouTube channel (@ernestshalom). Durations as listed on the channel.
 const VIDEOS = [
