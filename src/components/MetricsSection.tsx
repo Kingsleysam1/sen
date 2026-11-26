@@ -68,7 +68,7 @@ export function MetricsSection() {
           </div>
         </GsapScrollReveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-black/10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 border-t border-black/10">
           {IMPACT_STATS.map((stat, idx) => (
             <motion.div
               key={stat.label}
@@ -76,12 +76,12 @@ export function MetricsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.6, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className={`py-8 sm:py-10 sm:pr-8 border-b border-black/10 ${idx % 2 === 1 ? 'sm:pl-8 sm:border-l' : ''} ${idx > 0 ? 'lg:pl-8 lg:border-l' : ''}`}
+              className={`py-6 sm:py-10 pr-3 sm:pr-8 border-b border-black/10 ${idx % 2 === 1 ? 'pl-4 sm:pl-8 border-l' : ''} ${idx > 0 ? 'lg:pl-8 lg:border-l' : ''}`}
             >
-              <div className="text-[clamp(56px,6vw,84px)] font-medium leading-none tracking-[-0.05em] text-[#111]">
+              <div className="text-[clamp(40px,6vw,84px)] font-medium leading-none tracking-[-0.05em] text-[#111]">
                 <AnimatedCounter value={stat.value} suffix={stat.suffix} decimals={stat.decimals} />
               </div>
-              <h3 className="mt-5 text-[18px] font-semibold tracking-[-0.01em]">{stat.label}</h3>
+              <h3 className="mt-3 sm:mt-5 text-[16px] sm:text-[18px] font-semibold leading-snug tracking-[-0.01em]">{stat.label}</h3>
               <p className="mt-1 text-[14px] leading-snug text-[#666]">{stat.description}</p>
             </motion.div>
           ))}

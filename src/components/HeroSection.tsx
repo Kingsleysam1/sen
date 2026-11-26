@@ -13,14 +13,16 @@ const VIDEO_DIR = '/src/assets/videos/';
 
 function HeroVideo() {
   const ref = React.useRef<HTMLVideoElement>(null);
+  // Phones get a portrait cut of the reel: sharper on a tall screen and a smaller download.
+  const [wide] = React.useState(() => typeof window === 'undefined' || window.matchMedia('(min-width: 768px)').matches);
   const [src, setSrc] = React.useState<string | null>(null);
+  const poster = VIDEO_DIR + (wide ? 'hero-v2-poster.jpg' : 'hero-v2-poster-portrait.jpg');
 
   React.useEffect(() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce) return; // keep the still poster
-    const wide = window.matchMedia('(min-width: 768px)').matches;
-    setSrc(VIDEO_DIR + (wide ? 'hero-v2-720.mp4' : 'hero-v2-540.mp4'));
-  }, []);
+    setSrc(VIDEO_DIR + (wide ? 'hero-v2-720.mp4' : 'hero-v2-portrait.mp4'));
+  }, [wide]);
 
   React.useEffect(() => {
     const v = ref.current;
@@ -40,7 +42,7 @@ function HeroVideo() {
     <video
       ref={ref}
       src={src ?? undefined}
-      poster={VIDEO_DIR + 'hero-v2-poster.jpg'}
+      poster={poster}
       muted
       loop
       playsInline

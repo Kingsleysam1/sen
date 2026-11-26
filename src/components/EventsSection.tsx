@@ -317,8 +317,9 @@ export function EventsSection() {
                     <span className="flex-1 min-w-0">
                       <span className="block text-[16px] font-semibold tracking-[-0.01em] text-[#111] group-hover:underline underline-offset-4">{event.title}</span>
                       <span className="block text-[14px] text-[#666] truncate">{event.organizer}</span>
+                      <span className="block sm:hidden mt-0.5 text-[14px] text-[#555]">{event.dateDisplay}</span>
                     </span>
-                    <span className="text-[14px] text-[#555] text-right shrink-0">{event.dateDisplay}</span>
+                    <span className="hidden sm:block text-[14px] text-[#555] text-right shrink-0">{event.dateDisplay}</span>
                   </button>
                 </li>
               ))}

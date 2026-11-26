@@ -52,7 +52,7 @@ export function ProgramsSection({ onOpenBooking }: ProgramsSectionProps) {
             </div>
             <button
               onClick={() => { triggerHaptic('medium'); onOpenBooking(); }}
-              className="self-start sm:self-end shrink-0 text-[14px] font-semibold text-white/80 hover:text-white transition-colors cursor-pointer"
+              className="self-start sm:self-end shrink-0 inline-flex items-center min-h-[44px] text-[14px] font-semibold text-white/80 hover:text-white transition-colors cursor-pointer"
             >
               Get Involved ›
             </button>

@@ -84,7 +84,7 @@ export function TestimonialSlider() {
           </AnimatePresence>
         </div>
 
-        <div className="mt-12 flex flex-wrap gap-6 sm:gap-10" role="tablist" aria-label="Choose a testimonial">
+        <div className="mt-10 sm:mt-12 grid grid-cols-3 gap-2 sm:flex sm:flex-wrap sm:gap-10" role="tablist" aria-label="Choose a testimonial">
           {TESTIMONIALS.map((t, i) => {
             const isActive = i === currentIndex;
             return (
@@ -93,7 +93,7 @@ export function TestimonialSlider() {
                 role="tab"
                 aria-selected={isActive}
                 onClick={() => setCurrentIndex(i)}
-                className="flex flex-col items-center text-center gap-2 cursor-pointer group w-[110px]"
+                className="flex flex-col items-center text-center gap-2 cursor-pointer group sm:w-[110px] min-w-0"
               >
                 <span
                   className={`w-14 h-14 rounded-full flex items-center justify-center text-[16px] font-semibold transition-all ${

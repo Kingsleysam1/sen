@@ -61,11 +61,11 @@ export function ContactSection() {
 
           <div className="mt-10">
             <p className="text-[12px] font-semibold tracking-[0.16em] uppercase text-white/60 mb-2">Email</p>
-            <a href={`mailto:${CONTACT.hello}`} className="text-[18px] sm:text-[22px] font-medium tracking-[-0.02em] text-white hover:text-[#8AC4FF] underline-offset-4 hover:underline transition-colors">
+            <a href={`mailto:${CONTACT.hello}`} className="inline-flex items-center min-h-[44px] text-[18px] sm:text-[22px] font-medium tracking-[-0.02em] text-white hover:text-[#8AC4FF] underline-offset-4 hover:underline transition-colors">
               {CONTACT.hello}
             </a>
-            <p className="mt-2 text-[14px] text-white/60">
-              For bookings: <a href={`mailto:${CONTACT.book}`} className="text-white/85 hover:text-white underline underline-offset-4">{CONTACT.book}</a>
+            <p className="text-[14px] text-white/60">
+              For bookings: <a href={`mailto:${CONTACT.book}`} className="inline-flex items-center min-h-[44px] text-white/85 hover:text-white underline underline-offset-4">{CONTACT.book}</a>
             </p>
           </div>
 

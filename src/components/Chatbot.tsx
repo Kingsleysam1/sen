@@ -176,7 +176,7 @@ export function Chatbot({ onOpenBooking }: { onOpenBooking?: () => void }) {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end">
+    <div className="fixed bottom-[max(16px,env(safe-area-inset-bottom))] right-4 sm:bottom-5 sm:right-5 z-50 flex flex-col items-end">
       {/* Expanded Chat Window */}
       <AnimatePresence>
         {isOpen && (
@@ -349,7 +349,7 @@ export function Chatbot({ onOpenBooking }: { onOpenBooking?: () => void }) {
         }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="group relative w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#141210] border border-[#8AC4FF]/50 text-white shadow-2xl hover:border-[#8AC4FF] transition-all cursor-pointer flex items-center justify-center overflow-hidden hover:shadow-[0_0_25px_rgba(138, 196, 255,0.3)]"
+        className="group relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#141210] border border-[#8AC4FF]/50 text-white shadow-2xl hover:border-[#8AC4FF] transition-all cursor-pointer flex items-center justify-center overflow-hidden hover:shadow-[0_0_25px_rgba(138, 196, 255,0.3)]"
         aria-label="Toggle Clarity AI Chatbot"
       >
         <div className="relative z-10">
