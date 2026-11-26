@@ -36,7 +36,7 @@ export function ArticlesSection({ onSelectArticle }: ArticlesSectionProps) {
               </h2>
             </div>
             <a
-              href="https://www.linkedin.com/in/shalom-ernest-fimc-cmc-4028061a5"
+              href="https://www.linkedin.com/in/shalom-ernest-4028061a5"
               target="_blank"
               rel="noopener noreferrer"
               className="self-start lg:self-end flex items-center gap-2 typo-eyebrow text-[#9EAEA0] hover:text-[#8AC4FF] transition-colors duration-200 border-b border-white/[0.1] hover:border-[#8AC4FF]/50 pb-1"

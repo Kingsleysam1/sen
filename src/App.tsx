@@ -115,7 +115,7 @@ function MainContent() {
             address: { '@type': 'PostalAddress', addressLocality: 'Lagos', addressCountry: 'NG' },
             knowsAbout: ['Management Consulting', 'Corporate Governance', 'Strategic Execution', 'Youth Leadership Development', 'Organisational Design'],
             sameAs: [
-              'https://www.linkedin.com/in/shalom-ernest-fimc-cmc-4028061a5',
+              'https://www.linkedin.com/in/shalom-ernest-4028061a5',
               'https://instagram.com/shalomernest1',
               'https://www.facebook.com/shalom.ernest.98',
             ],

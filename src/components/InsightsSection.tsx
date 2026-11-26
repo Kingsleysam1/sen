@@ -19,7 +19,7 @@ export function InsightsSection() {
             </h2>
           </div>
           <a
-            href="https://www.linkedin.com/in/shalom-ernest-fimc-cmc-4028061a5"
+            href="https://www.linkedin.com/in/shalom-ernest-4028061a5"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-xs font-mono text-primary hover:text-white transition-colors"
