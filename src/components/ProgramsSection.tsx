@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowUpRight } from 'lucide-react';
 import { GsapScrollReveal } from './GsapScrollReveal';
 import { triggerHaptic } from '../utils/haptics';
 import { PHOTOS } from '../data/photos';
@@ -14,6 +14,8 @@ const PROGRAMS = [
     number: '01',
     name: 'Leadview Consulting',
     tagline: 'Executive Training & Consulting Firm',
+    url: 'https://www.instagram.com/leadviewconsulting',
+    linkLabel: 'on Instagram',
     image: PHOTOS.programLeadview,
     alt: 'Shalom Ernest leading a training session',
     position: '38% 30%',
@@ -22,6 +24,8 @@ const PROGRAMS = [
     number: '02',
     name: 'Clarity Conclave',
     tagline: 'Thought Leadership & Clarity Hub',
+    url: 'https://www.instagram.com/clarityconclave',
+    linkLabel: 'on Instagram',
     image: PHOTOS.programClarity,
     alt: 'Shalom Ernest speaking from an armchair at a Clarity Conclave session',
     position: '62% 40%',
@@ -30,6 +34,8 @@ const PROGRAMS = [
     number: '03',
     name: 'Youth Making Impact',
     tagline: 'Youth Development Ecosystem',
+    url: 'https://youthmakingimpact.org/',
+    linkLabel: 'website',
     image: PHOTOS.programYmi,
     alt: 'Shalom Ernest with the Youth Making Impact team',
     position: '48% 40%',
@@ -89,6 +95,7 @@ export function ProgramsSection({ onOpenBooking }: ProgramsSectionProps) {
           </div>
         </GsapScrollReveal>
 
+        <div className="relative">
         <div
           ref={scrollerRef}
           onScroll={onScroll}
@@ -104,12 +111,14 @@ export function ProgramsSection({ onOpenBooking }: ProgramsSectionProps) {
             className="flex sm:grid sm:grid-cols-3 gap-4 sm:gap-5"
           >
             {PROGRAMS.map((program, idx) => (
-              <button
-                type="button"
+              <a
                 key={program.number}
+                href={program.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 data-card
-                aria-label={`${program.name}, ${idx + 1} of ${PROGRAMS.length}`}
-                onClick={() => { triggerHaptic('light'); onOpenBooking(); }}
+                aria-label={`${program.name} ${program.linkLabel} (opens in a new tab)`}
+                onClick={() => triggerHaptic('light')}
                 className="group relative shrink-0 w-[78vw] max-w-[340px] sm:max-w-none sm:w-auto aspect-[3/4] overflow-hidden rounded-[22px] text-left cursor-pointer snap-start"
               >
                 <img
@@ -128,15 +137,37 @@ export function ProgramsSection({ onOpenBooking }: ProgramsSectionProps) {
                     {program.name}
                   </h3>
                   <p className="mt-2.5 text-[14px] text-white/80">{program.tagline}</p>
+                  <span className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-white/15 backdrop-blur-sm px-3.5 py-1.5 text-[12px] font-semibold tracking-[0.04em] text-white group-hover:bg-white group-hover:text-black transition-colors">
+                    {program.linkLabel === 'website' ? 'Visit website' : 'View on Instagram'} <ArrowUpRight size={14} aria-hidden="true" />
+                  </span>
                 </div>
-              </button>
+              </a>
             ))}
           </motion.div>
         </div>
 
-        {/* Phone controls: the cards sit side by side, so show that there's more to swipe */}
-        <div className="sm:hidden mt-6 flex items-center justify-between">
-          <div className="flex items-center gap-2" role="tablist" aria-label="Choose a program">
+        {/* Phone slider arrows, over the cards */}
+        <button
+          type="button"
+          onClick={() => goTo(active - 1)}
+          aria-label="Previous program"
+          className={`sm:hidden absolute left-1 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-black/55 backdrop-blur-md border border-white/30 text-white flex items-center justify-center shadow-lg active:scale-95 transition-all duration-300 cursor-pointer ${active === 0 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+        >
+          <ChevronLeft size={24} />
+        </button>
+        <button
+          type="button"
+          onClick={() => goTo(active + 1)}
+          aria-label="Next program"
+          className={`sm:hidden absolute right-1 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white text-black flex items-center justify-center shadow-[0_4px_20px_rgba(0,0,0,0.5)] active:scale-95 transition-all duration-300 cursor-pointer ${active === PROGRAMS.length - 1 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+        >
+          <ChevronRight size={24} />
+        </button>
+        </div>
+
+        {/* Phone position: segmented bar plus the program name */}
+        <div className="sm:hidden mt-5">
+          <div className="flex gap-2" role="tablist" aria-label="Choose a program">
             {PROGRAMS.map((p, i) => (
               <button
                 key={p.number}
@@ -145,32 +176,15 @@ export function ProgramsSection({ onOpenBooking }: ProgramsSectionProps) {
                 aria-selected={active === i}
                 aria-label={`Show ${p.name}`}
                 onClick={() => goTo(i)}
-                className="h-11 flex items-center cursor-pointer"
+                className="flex-1 h-8 flex items-center cursor-pointer"
               >
-                <span className={`block h-1.5 rounded-full transition-all duration-300 ${active === i ? 'w-7 bg-white' : 'w-1.5 bg-white/35'}`} />
+                <span className={`block w-full h-1 rounded-full transition-colors duration-300 ${active === i ? 'bg-white' : 'bg-white/20'}`} />
               </button>
             ))}
           </div>
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => goTo(active - 1)}
-              disabled={active === 0}
-              aria-label="Previous program"
-              className="w-11 h-11 rounded-full border border-white/25 flex items-center justify-center text-white disabled:opacity-30 cursor-pointer active:scale-95 transition"
-            >
-              <ChevronLeft size={20} />
-            </button>
-            <button
-              type="button"
-              onClick={() => goTo(active + 1)}
-              disabled={active === PROGRAMS.length - 1}
-              aria-label="Next program"
-              className="w-11 h-11 rounded-full bg-white text-black flex items-center justify-center disabled:opacity-30 cursor-pointer active:scale-95 transition"
-            >
-              <ChevronRight size={20} />
-            </button>
-          </div>
+          <p className="mt-1 text-[14px] text-white/70" aria-live="polite">
+            <span className="text-white font-semibold">{String(active + 1).padStart(2, '0')}</span> / {String(PROGRAMS.length).padStart(2, '0')} · {PROGRAMS[active].name}
+          </p>
         </div>
       </div>
     </section>
