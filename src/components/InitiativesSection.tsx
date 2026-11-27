@@ -180,7 +180,7 @@ export function InitiativesSection({ onOpenBooking }: InitiativesSectionProps) {
 
         <GsapScrollReveal>
           <div className="mt-20 md:mt-28 max-w-[900px]">
-            <p className="text-[12px] font-semibold tracking-[0.16em] uppercase text-white/50 mb-5">The Approach</p>
+            <p className="text-[12px] font-semibold tracking-[0.16em] uppercase text-white/50 mb-5">My Mantra</p>
             <p className="text-[clamp(24px,2.9vw,38px)] font-medium leading-[1.25] tracking-[-0.025em] text-white/90">
               "We don’t rise by motivation alone, we rise by clarity, character, contribution and a commitment to measurable progress."
             </p>
